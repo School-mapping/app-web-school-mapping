@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - School Mapping</title>
-    <script src="./js/cadastro.js"></script>
-    <link rel="stylesheet" href="./css/cadastro.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - School Mapping</title>
+  <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 <body>
-    
-        <main>
+  <main class="container">
 
-        <section>
-            <h2>Cadastro</h2>
-        </section>
+    <section class="secao-cadastro">
+      <h1>Cadastre-se</h1>
+      <p>Preencha os campos abaixo para criar sua conta no School Mapping</p>
 
-        <section>
-            <p>Usuário</p>
-            <input type="text" id="input-usuario">
-        </section>
-
-        <section>
-            <p>E-mail</p>
-            <input type="text" id="input-senha">
-        </section>
-
-        <section>
-            <p>Senha</p>
-            <input type="password" id="input-senha">
-        </section>
-
-        <section>
-            <p>Confirmar Senha</p>
-            <input type="password" id="input-senha">
-        </section>
-
-        <br>
+      <form>
+        <div class="input_cadastro">
+          <input type="text" placeholder="Usuário" id="input-usuario">
+        </div>
+        <div class="input_cadastro">
+          <input type="email" placeholder="E-mail" id="input-email">
+        </div>
+        <div class="input_cadastro">
+          <input type="password" placeholder="Senha" id="input-senha">
+        </div>
+        <div class="input_cadastro">
+          <input type="password" placeholder="Confirmar senha" id="input-confirma">
+        </div>
         
-        <section>
-            <button onclick="cadastrar()">Cadastrar</button>
-        </section>
-        <a href="./login.html">Já tenho uma conta</a>
+        <button type="button">Cadastrar</button>
+      </form>
 
-    </main>
+      <a href="./login.html">Já tenho uma conta</a>
+    </section>
 
+    <section class="secao-imagem">
+      <img src="./assets/ex.jpg" alt="">
+
+    </section>
+  </main>
 </body>
 </html>

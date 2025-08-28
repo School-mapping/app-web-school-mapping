@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(135deg, #2c0475, #2a0331);
+  color: #fff;
+}
+
+.secao-imagem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secao-imagem img {
+  width: 80%;
+  height: auto;
+  margin-left: 10vw;
+  max-width: 500px;
+}
+
+.secao-cadastro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px;
+}
+
+.secao-cadastro h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.input_cadastro {
+  margin-bottom: 20px;
+}
+
+.input_cadastro p {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.input_cadastro input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  color: #5a00ff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: #f2f2f2;
+  transform: scale(1.05);
+}
+
+.secao-cadastro a {
+  display: block;
+  margin-top: 20px;
+  color: #fff;
+  text-decoration: underline;
+  text-align: center;
+}
+
+/* Responsividade - mobile */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 23px;
+    height: auto;
+  }
+
+  .secao-imagem {
+    display: none;
+  }
+
+  .secao-cadastro {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .secao-cadastro h1 {
+    font-size: 2rem;
+  }
+
+  .input_cadastro p {
+    font-size: 1rem;
+  }
+}

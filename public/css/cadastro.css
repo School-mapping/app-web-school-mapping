@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(135deg, #2c0475, #2a0331);
+  color: #fff;
+}
+
+/* Responsividade - mobile */
+ @media (max-width: 768px){
+    .container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 23px;
+        height: auto;
+    }
+
+.secao-cadastro{
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+.secao-cadastro h1{
+    font-size: 1rem;
+    /* white-space: nowrap;
+    se usar ele, não vai quebrar a linha - ver com o grupo */
+
+}
+.secao-cadastro p{
+    font-size: 1rem;
+}
+.secao-imagem{
+    display: none;
+}
+
+
+ }
+
+
+
+.secao-cadastro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px;
+}
+
+.secao-cadastro h1 {
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+.secao-cadastro p {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.input_cadastro {
+  margin-bottom: 20px;
+}
+
+.input_cadastro input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  color: #5a00ff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: #f2f2f2;
+  transform: scale(1.05);
+}
+
+.secao-cadastro a {
+  display: block;
+  margin-top: 20px;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.secao-imagem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20vh;
+
+}
+
+.secao-imagem img {
+  width: 80%;
+  height: 80%;
+  max-width: 500px;
+}
