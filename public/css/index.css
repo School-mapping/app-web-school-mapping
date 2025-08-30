@@ -145,7 +145,7 @@ text-align: justify;}
 .card {
   width: 200px;
   height: 200px;
-   background: linear-gradient(135deg, #ffffff 0%, #f3f0ff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f3f0ff 100%);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -185,7 +185,7 @@ text-align: justify;}
 .pag3 {
   position: relative;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -219,5 +219,35 @@ text-align: justify;}
 .texto-sobre p {
    font-size: 1.6rem;      
   line-height: 1.8; 
+  color: #2a0331;
+}
+
+.pag4 {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  overflow: hidden;
+  background-color: #2c0475;
+}
+.texto-sobre2 {
+  position: absolute;
+  top: 40%;
+  right: 4%;
+  transform: translateY(-50%);
+  max-width: 50%;
+  color: white;
+  padding: 30px;
+  text-align: justify;
+}
+
+.texto-sobre2 h2 {
+  font-size: 3.3rem;
+  margin-bottom: 16px;
+  color: #2a0331;
+}
+
+.texto-sobre2 p {
+  font-size: 1.2rem;
+  line-height: 1.6;
   color: #2a0331;
 }
