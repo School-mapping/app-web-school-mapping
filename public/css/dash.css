@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+}
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.barraLateral-esquerda {
+  width: 12vw;
+  height: 100vh;
+  background-color: #2a0331;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+}
+.conteudo-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+.btn-menu {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-menu:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.sair-section {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconepessoa {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  margin-top: 10px;
+}
+
+.barraLateral-direita{
+  width: 12%;
+  background-color: #2a0331;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+.conteudo {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.linha-graficos {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.grafico {
+  flex: 1;
+  height: 300px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .barraLateral-esquerda,
+  .barraLateral-direita {
+    width: 100%;
+    height: 60px;
+  }
+
+  .conteudo {
+    padding: 10px;
+  }
+
+  .linha-graficos {
+    flex-direction: column;
+  }
+
+  .grafico {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
