@@ -7,6 +7,7 @@
 
 body, html {
   height: 100%;
+  overflow-y: hidden;
 }
 
 .container {
@@ -14,6 +15,7 @@ body, html {
   height: 100vh;
   background: linear-gradient(135deg, #2c0475, #2a0331);
   color: #fff;
+  position: relative;
 }
 
 /* Responsividade - mobile */
@@ -44,13 +46,12 @@ body, html {
     display: none;
 }
 
-
  }
 
 
 
 .secao-cadastro {
-  flex: 1;
+  flex: 0.9;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,15 +108,17 @@ button:hover {
 
 .secao-imagem {
   flex: 1;
+  /* background-color: #f2f2f2; */
   display: flex;
   align-items: center;
+  width: 100%;
+  height: 100%;
   justify-content: center;
-  margin-top: 20vh;
-
 }
 
 .secao-imagem img {
-  width: 80%;
-  height: 80%;
-  max-width: 500px;
+  width: 120%;
+  height:120%;
+  object-fit: contain;
+  margin-right: 10vw;
 }
