@@ -40,8 +40,6 @@ body, html {
   gap: 20px;
 }
 
-
-
 .btn-menu {
   display: block;             
   background-color: transparent;
@@ -139,4 +137,30 @@ body, html {
     width: 100%;
     margin-bottom: 20px;
   }
+}
+.notificacoes {
+  display: flex;
+  flex-direction: column;
+  width: 88%;
+  gap: 25px;
+}
+
+.notificacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  background-color: #fff;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  /* width: ; */
+  color: #2a0331;
+  height: 50px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.notificacao:hover {
+  background-color: #eaf6ff;
+  cursor: pointer;
 }
