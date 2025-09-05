@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
   <link rel="stylesheet" href="./css/dash.css" />
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="dashboard">
@@ -14,24 +15,33 @@
   <div class="conteudo-central">
 
     <nav class="menu-lateral">
-      <button class="btn-menu">Home</button>
-      <button class="btn-menu">Configuração</button>
+      <a href="index.html" class="btn-menu">Home</a>
+  <a href="index.html" class="btn-menu">Configuração</a>
     </nav>
   </div>
 
   <div class="sair-section">
-    <button class="btn-menu sair">Sair</button>
+         <a href="index.html" class="btn-menu">Sair</a>
+
   </div>
 </aside>
 
     <main class="conteudo">
       <div class="linha-graficos">
-        <div class="grafico">Gráfico 1</div>
-        <div class="grafico">Gráfico 2</div>
+        <div class="grafico">
+            <canvas id="grafico1"></canvas>
+        </div>
+        <div class="grafico">
+            <canvas id="graficoBarras"></canvas>
+        </div>
       </div>
       <div class="linha-graficos">
-        <div class="grafico">Gráfico 3</div>
-        <div class="grafico">Gráfico 4</div>
+        <div class="grafico">
+            <canvas id="grafico3"></canvas>
+        </div>
+        <div class="grafico">
+            <canvas id="grafico4"></canvas>
+        </div>
       </div>
     </main>
 
@@ -39,3 +49,40 @@
   </div>
 </body>
 </html>
+<script>
+    const ctx = document.getElementById('graficoBarras');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro', 'Centro-Oeste'],
+        datasets: [{
+          label: 'IDEB',
+          data: [1, 7, 5, 3.3, 8, 10],
+          backgroundColor: '#2c0475',
+          borderRadius: 6,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: { display: true, text: 'Pior IDEB por região' },
+          legend: { display: true },
+
+          tooltip: { mode: 'index', intersect: false }
+        },
+          scales: {
+          x: {
+            grid: { display: false }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(0,0,0,0.06)' },
+            ticks: { precision: 0 }
+          }
+        }
+      }
+    });
+  </script>
