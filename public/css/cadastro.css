@@ -19,8 +19,62 @@ body, html {
 }
 
 /* Responsividade - mobile */
- @media (max-width: 768px){
-    .container{
+ @media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .secao-cadastro {
+    width: 100%;
+    max-width: 360px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+  }
+  .secao-cadastro h1 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+
+  .input_cadastro {
+    margin-bottom: 10px;
+  }
+
+  .input_cadastro p {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  .input_cadastro input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  .secao-cadastro a {
+    font-size: 0.8rem;
+    margin-top: 10px;}
+
+  .secao-imagem {
+    display: none !important; 
+  } 
+}
+
+
+ /* Responsividade - Ipads */
+@media (min-width: 768px) and (max-width: 1024px) {
+   .container{
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -35,7 +89,7 @@ body, html {
 }
 .secao-cadastro h1{
     font-size: 1rem;
-    /* white-space: nowrap;
+     white-space: nowrap;/*
     se usar ele, não vai quebrar a linha - ver com o grupo */
 
 }
@@ -43,11 +97,11 @@ body, html {
     font-size: 1rem;
 }
 .secao-imagem{
-    display: none;
+    display: none !important;
 }
 
- }
 
+}
 
 
 .secao-cadastro {
