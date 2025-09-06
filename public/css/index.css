@@ -301,9 +301,110 @@ a{
   text-decoration: underline;
 }
 
+/* Responsividade - Ipad */
+@media (min-width: 768px) and (max-width: 1304px) {
+  body{
+    height: 100vh;
+    width: 100%;
+  }
+  nav {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .fundoimg {
+  position: relative;
+  height: 90vh;
+}
+
+
+
+.conteudo {
+  width: 500px;
+  position: absolute;
+  left: 45%;
+  transform: translate(-70%, 30%);
+  z-index: 0;
+  padding: 30px;
+  border-radius: 30px;
+  max-width: 90%;
+  background-color: rgb(255, 255, 255);
+}
+
+
+
+  .conteudo h1{
+    font-size: 22px;
+  }
+
+  .pag2 {
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+  }
+  .esq{
+    margin-top: 8vh;
+  }
+
+  .esq, .dir {
+    width: 100%;
+    padding: 40px;
+    border-radius: 0;
+  }
+
+  .linha {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    display: flex;
+  }
+
+  .card {
+    width: 45%;
+    height: auto;
+  }
+
+  .pag3 img {
+    object-fit: cover;
+    height: 50vh;
+  }
+
+  .texto-sobre,
+  .texto-sobre2 {
+    position: static;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .pag5 {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .esq5, .dir5 {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .dir5 img {
+    object-fit: contain;
+    height: 40vh;
+  }
+}
+  
+
+
 
 /* Responsividade - celular/mobile */
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .site-desktop {
     display: none;
   }
@@ -369,69 +470,4 @@ a{
     flex-direction: column;
     align-items: flex-start;
   }
-}
-
-/* Responsividade - Ipad */
-@media (min-width: 768px) and (max-width: 1304px) {
-  .fundoimg,
-  .pag3 img,
-  .dir5 img {
-    display: none;
-  }
-
-  .conteudo {
-    padding: 60px;
-    margin: 40px auto;
-    flex-direction: column;
-  }
-
-  .pag2 {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .esq, .dir {
-    width: 100%;
-    padding: 60px;
-    border-radius: 0;
-  }
-
-  .linha {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-  }
-
-  .card {
-    width: 45%;
-    height: auto;
-  }
-
-  .texto-sobre,
-  .texto-sobre2 {
-    position: static;
-    max-width: 100%;
-    padding: 30px;
-  }
-
-  .pag5 {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .esq5, .dir5 {
-    width: 100%;
-    height: auto;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-}
+} */
