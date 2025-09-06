@@ -7,6 +7,8 @@
 
 body, html {
   height: 100%;
+  background: linear-gradient(135deg, #2c0475, #2a0331);
+
   overflow-y: hidden;
 }
 
@@ -74,34 +76,52 @@ body, html {
 
  /* Responsividade - Ipads */
 @media (min-width: 768px) and (max-width: 1024px) {
-   .container{
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 23px;
-        height: auto;
-    }
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    height: auto;
+  }
 
-.secao-cadastro{
+  .secao-cadastro {
     width: 100%;
-    max-width: 400px;
+    max-width: 650px; 
+    padding: 20px;
     text-align: center;
-}
-.secao-cadastro h1{
-    font-size: 1rem;
-     white-space: nowrap;/*
-    se usar ele, não vai quebrar a linha - ver com o grupo */
+  }
 
-}
-.secao-cadastro p{
+  .secao-cadastro h1 {
+    font-size: 2rem;
+    white-space: normal; 
+    margin-bottom: 20px;
+  }
+
+  .secao-cadastro p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .input_cadastro input {
     font-size: 1rem;
-}
-.secao-imagem{
+    padding: 14px;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+
+  .secao-cadastro a {
+    font-size: 0.9rem;
+    margin-top: 15px;
+  }
+
+  .secao-imagem {
     display: none !important;
+  }
 }
 
-
-}
 
 
 .secao-cadastro {
