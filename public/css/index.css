@@ -9,6 +9,9 @@
 .site-mobile {
   display: none;
 }
+.pag4{
+  display: none !important;
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -303,6 +306,9 @@ a{
 
 /* Responsividade - Ipad */
 @media (min-width: 768px) and (max-width: 1304px) {
+  body, html {
+  overflow-x: hidden;
+}
   body{
     height: 100vh;
     width: 100%;
@@ -324,11 +330,8 @@ a{
   height: 90vh;
 }
 
-
-
 .conteudo {
   width: 500px;
-  position: absolute;
   left: 45%;
   transform: translate(-70%, 30%);
   z-index: 0;
@@ -337,7 +340,6 @@ a{
   max-width: 90%;
   background-color: rgb(255, 255, 255);
 }
-
 
 
   .conteudo h1{
@@ -353,7 +355,7 @@ a{
   .esq{
     margin-top: 8vh;
     background-color: white;
-      width: 100%;
+    width: 100%;
     padding: 40px;
     border-radius: 0;
     background-image: url('../assets/Cabeçalho\ \(14\).png') !important;
@@ -373,30 +375,56 @@ a{
   flex-direction: row;
 }
   .linha {
-    /* flex-wrap: wrap; */
-    justify-content: center;
-    flex-direction: row;
-    gap: 30px;
-    display: flex;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: row;
+}
+.card {
+  flex: 1 1 150px;
+  max-width: 90%;
+  box-sizing: border-box;
+}
 
-  .card {
-    width: 53%;
-    height: auto;
-  }
 
   .pag3 img {
-    object-fit: cover;
-    /* height: 50vh; */
+    /* object-fit: cover;
+     */
+     display: none;
   }
+.pag3:nth-of-type(4){
+    background-image: url('../assets/Cabeçalho\ \(17\).png') !important;
+    background-size: cover;       
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
 
   .texto-sobre,
   .texto-sobre2 {
-    /* position: static; */
-    max-width: 100%;
-    padding: 20px;
+    max-width: 69%;
+    padding: 21px;
+    top: 4%;
   }
+  .texto-sobre p{
+    font-size: 22px;
+    letter-spacing: 1.1px;
+  }
+  .texto-sobre h2{
+    white-space: nowrap ;
 
+  }
+.pag3:nth-of-type(5) {
+  background-image: url('../assets/Cabeçalho (24).png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.pag3 p{
+  margin-top: 10vh;
+  max-inline-size: 600px;
+  
+}
   .pag5 {
     flex-direction: column;
     height: auto;
@@ -404,13 +432,13 @@ a{
 
   .esq5, .dir5 {
     width: 100%;
-    /* height: auto; */
-    padding: 20px;
   }
 
   .dir5 img {
     object-fit: contain;
-    /* height: 40vh; */
+  }
+  .texto-sobre2{
+    margin-top: 40vh;
   }
 }
   
