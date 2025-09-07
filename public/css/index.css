@@ -363,7 +363,8 @@ a{
     background-position: center; 
     background-repeat: no-repeat; 
   }
-
+.esq h2{
+margin-top: 4vh;}
   .dir {
     width: 100%;
     padding: 40px;
@@ -406,6 +407,8 @@ a{
     padding: 21px;
     top: 4%;
   }
+
+
   .texto-sobre p{
     font-size: 22px;
     letter-spacing: 1.1px;
@@ -446,11 +449,10 @@ a{
 
 
 /* Responsividade - celular/mobile - */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
  body, html {
   overflow-x: hidden;
 }
-
   .site-desktop {
     display: none;
   }
@@ -491,10 +493,14 @@ body{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  
   }
-  .conteudo p{
-    width: 500px;
-  }
+  .conteudo p {
+  width: 100%;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
 
   .pag2 {
     flex-direction: column;
@@ -511,9 +517,13 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   }
+  .esq h2{
+    font-size: 40px;
+  }
   .esq p{
     max-width: 90%;
   }
+ 
 .dir {
     width: 100%;
     padding: 30px;
@@ -553,7 +563,7 @@ padding-top: 7vh;
 
 }
 .pag3:nth-of-type(4) p{
- padding-top: 13vh;
+ padding-top: 12vh;
 
 
 }
@@ -590,4 +600,82 @@ padding-top: 7vh;
   }
 
 
+}
+
+@media (max-width: 555px) {
+  .conteudo p,
+  .esq p,
+  .pag3 p {
+    font-size: 15px;
+    max-width: 100%;
+    padding: 10px;
+    word-break: break-word;
+    margin: 0;
+  }
+  h1{
+    white-space: nowrap;
+  }
+  .conteudo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/Cabeçalho (42).png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+.conteudo p{
+  max-width: 420px;
+}
+h2{
+  font-size: 20px;
+}
+
+  .logo {
+    font-size: 16px;
+  }
+
+  nav ul {
+    flex-direction: row;
+    gap: 5px;
+    padding: 0 10px;
+  }
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+ .texto-sobre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; 
+  padding: 20px;
+  text-align: center;
+}
+
+.pag3:nth-of-type(4){
+height: 60vh;
+
+}
+
+  .pag3:nth-of-type(5) {
+    height: 50vh;
+    flex-direction: column-reverse;
+  }
+
+  .pag3:nth-of-type(5) h2 {
+  margin-bottom: 20px; 
+  color: red;
+  font-size: 24px;
+  text-align: center;
+  /* position: initial; */
+}
+
+
+  .pag3:nth-of-type(5) p {
+    margin-top: 40vh;
+    font-size: 13px;
+  }
 }
