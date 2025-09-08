@@ -637,7 +637,7 @@ h2{
 
   nav ul {
     flex-direction: row;
-    gap: 5px;
+    gap: 10px;
     padding: 0 10px;
   }
   .card {
@@ -655,10 +655,14 @@ h2{
   text-align: center;
 }
 
+
 .pag3:nth-of-type(4){
 height: 60vh;
-
+display: flex;
+justify-content: center;
 }
+
+
 
   .pag3:nth-of-type(5) {
     height: 50vh;
@@ -666,16 +670,19 @@ height: 60vh;
   }
 
   .pag3:nth-of-type(5) h2 {
-  margin-bottom: 20px; 
-  color: red;
+  margin-bottom: -9px; 
+  
+    position: relative;
+   color: #2a0331;
   font-size: 24px;
-  text-align: center;
+  /* text-align: center; */
   /* position: initial; */
 }
 
 
   .pag3:nth-of-type(5) p {
-    margin-top: 40vh;
+    margin-top: 0px;
     font-size: 13px;
+    margin-bottom: 235px;
   }
 }
