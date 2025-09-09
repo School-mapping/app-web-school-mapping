@@ -63,7 +63,7 @@ nav ul li a:hover {
 .fundoimg {
   width: 100%;
   height: 95vh;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
     background-image: url('../assets/mt4.png') !important;
     background-size: cover;       
     background-position: center; 
