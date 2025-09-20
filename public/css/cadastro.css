@@ -196,3 +196,9 @@ button:hover {
   object-fit: contain;
   margin-right: 10vw;
 }
+
+span {
+  display: flex;
+  margin-left: 10px;
+  padding-top: 3px;
+}
