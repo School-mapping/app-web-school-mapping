@@ -201,3 +201,10 @@ button:hover {
     display: block;
   }
 }
+
+span {
+  display: flex;
+  font-size: 22px;
+  justify-content: center;
+  padding-top: 10px;
+}
