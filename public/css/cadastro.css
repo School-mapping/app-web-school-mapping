@@ -8,7 +8,7 @@
 body, html {
   height: 100%;
   background: linear-gradient(135deg, #2c0475, #2a0331);
-
+overflow-x: hidden;
   overflow-y: hidden;
 }
 
@@ -195,4 +195,10 @@ button:hover {
   height:120%;
   object-fit: contain;
   margin-right: 10vw;
+}
+
+span {
+  display: flex;
+  margin-left: 10px;
+  padding-top: 3px;
 }

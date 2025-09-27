@@ -9,11 +9,14 @@
 .site-mobile {
   display: none;
 }
+.pag4{
+  display: none !important;
+}
 
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
-  color: #2c0475;
+  color: #2a0331;
   overflow-x: hidden;
   overflow-y: visible !important;
 }
@@ -58,10 +61,17 @@ nav ul li a:hover {
   object-fit: cover;
 }
 .fundoimg {
-  width: 100vw;
-  height: 85vh;
-  overflow: hidden;
-  position: relative;
+  width: 100%;
+  height: 95vh;
+  background-color: rgb(255, 255, 255);
+    background-image: url('../assets/mt4.png') !important;
+    background-size: cover;       
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .fundoimg.desktop {
@@ -86,18 +96,14 @@ nav ul li a:hover {
 }
 
 .conteudo {
-  width: 100%;
+  width: 60%;
   max-width: 1000px; 
-  padding: 80px;
-  position: relative;
   background-color: white;
-  margin: -400px auto 100px;
-  margin-left: 0%;
-  color: #2a0331;
-  display: flex;
+  padding: 60px;
   border-radius: 60px;
-  z-index: 1; 
+  box-sizing: border-box;
 }
+
 .conteudo p{
   margin-top: 15px;
 text-align: justify;}
@@ -114,7 +120,7 @@ text-align: justify;}
   width: 50%;
   height: 100%;
   background-color: rgb(255, 255, 255);
-  color: black;
+  color: #2a0331;
   padding: 120px;
 }
 .esq h2{
@@ -303,6 +309,9 @@ a{
 
 /* Responsividade - Ipad */
 @media (min-width: 768px) and (max-width: 1304px) {
+  body, html {
+  overflow-x: hidden;
+}
   body{
     height: 100vh;
     width: 100%;
@@ -319,25 +328,26 @@ a{
     margin-top: 10px;
   }
 
-  .fundoimg {
-  position: relative;
-  height: 90vh;
+ .fundoimg {
+  width: 100%;
+  height: 95vh;
+    background-image: url('../assets/mt4.png') !important;
+    background-size: cover;       
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    box-sizing: border-box;
 }
 
-
-
 .conteudo {
-  width: 500px;
-  position: absolute;
-  left: 45%;
-  transform: translate(-70%, 30%);
-  z-index: 0;
+  width: 600px;
   padding: 30px;
   border-radius: 30px;
   max-width: 90%;
   background-color: rgb(255, 255, 255);
 }
-
 
 
   .conteudo h1{
@@ -348,41 +358,108 @@ a{
     flex-direction: column;
     height: auto;
     margin: 0;
+    background-color: #2a0331;
   }
   .esq{
     margin-top: 8vh;
-  }
-
-  .esq, .dir {
+    background-color: white;
     width: 100%;
     padding: 40px;
     border-radius: 0;
+    background-image: url('../assets/Cabeçalho\ \(14\).png') !important;
+    background-size: cover;       
+    background-position: center; 
+    background-repeat: no-repeat; 
   }
-
+.esq h2{
+margin-top: 4vh;}
+  .dir {
+    width: 100%;
+    padding: 40px;
+    border-radius: 0;
+    background-color: #2a0331;
+  }
+.dir{
+  display: flex;
+  flex-direction: row;
+}
   .linha {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    display: flex;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: row;
+}
+.card {
+  flex: 1 1 150px;
+  max-width: 90%;
+  box-sizing: border-box;
+}
+.pag3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  height: auto;
+  position: relative;
+}
+.pag3 img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; 
+  position: static;   
+}
 
-  .card {
-    width: 45%;
-    height: auto;
-  }
-
-  .pag3 img {
-    object-fit: cover;
-    height: 50vh;
-  }
 
   .texto-sobre,
   .texto-sobre2 {
-    position: static;
-    max-width: 100%;
-    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 21px;
+    font-size: 22px;
+  }
+.texto-sobre {
+  width: 50%;
+  height: 90%;
+  max-width: 1000px;
+  margin-bottom: 160px;
+  background-color: rgb(255, 255, 255); 
+  padding: 20px;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.texto-sobre2{
+  top: 4%;
+  margin-top: 50vh;
+  margin-right: -3vw;
+   word-wrap: break-word;
+   border-radius: 30px;
+   width: 50%;
+   font-size: 22px !important;
+
+}
+
+  .texto-sobre p{
+    width: 100%;
+    max-height: 100%;
+    margin-right: 3vw;
+    background-color: rgb(255, 255, 255);
+    color: #2a0331;
+    height: auto;
+    font-size: 22px;
+  }
+  .texto-sobre h2{
+    white-space: nowrap ;
+    margin-top: 0;
+
   }
 
+.pag3 p{
+  /* margin-top: 10vh; */
+  max-inline-size: 600px;
+  
+}
   .pag5 {
     flex-direction: column;
     height: auto;
@@ -390,49 +467,107 @@ a{
 
   .esq5, .dir5 {
     width: 100%;
-    height: auto;
-    padding: 20px;
   }
 
   .dir5 img {
     object-fit: contain;
-    height: 40vh;
   }
 }
   
 
 
 
-/* Responsividade - celular/mobile */
-/* @media (max-width: 767px) {
-  .site-desktop {
+/* Responsividade - celular/mobile - */
+@media (max-width: 768px) {
+ body, html {
+  overflow-x: hidden;
+}
+  /* .site-desktop {
     display: none;
-  }
+  } */
   .site-mobile {
     display: block;
   }
-
-  .fundoimg,.pag3 img,  .dir5 img {
+body{
+  background-color: #2c0475;
+}
+  .pag3 img,  .dir5 img {
     display: none;
   }
-
-  .conteudo {
-    padding: 30px;
-    margin: 20px auto;
+    nav ul {
     flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
   }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+ .logo{
+  font-size: 20px;
+ }
+.fundoimg{
+  color: #2a0331;
+    background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 50vh;
+  background-image: url("../assets/Cabeçalho\ \(42\).png") !important;
+    background-size: cover;       
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex;
+    align-items: center;  
+}
+  .conteudo {
+    /* padding: 30px; */
+    padding: 20px;
+    flex-direction: column;
+   background-color: rgb(255, 255, 255);
+   border-radius: 20px;
+width: 80%;   
+  }
+  .conteudo p {
+  width: 100%;
+  word-wrap: break-word;
+}
+.conteudo h1{
+white-space: nowrap;
+
+}
 
   .pag2 {
     flex-direction: column;
     height: auto;
+    margin-top: 0px;
   }
 
-  .esq, .dir {
+  .esq {
+  width: 100%;
+  padding: 30px;
+  border-radius: 0;
+  background-image: url('../assets/Cabeçalho (29).png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+  .esq h2{
+    font-size: 40px;
+  }
+  .esq p{
+    max-width: 90%;
+  }
+ 
+.dir {
     width: 100%;
     padding: 30px;
     border-radius: 0;
+    background-color: #2a0331;
+    display: flex;
+    flex-direction: row;
   }
-
   .linha {
     flex-direction: column;
     gap: 20px;
@@ -449,7 +584,41 @@ a{
     max-width: 100%;
     padding: 20px;
   }
+.pag3{
+  background-color: rgb(255, 255, 255);
+  height: 60vh;
+  background-image: url('../assets/Design\ sem\ nome\ \(15\).png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.pag3 h2{
+  font-size: 50px;
+}  
+.pag3 p{
+  font-size: 20px;
+}
+.pag3:nth-of-type(4){
+  background-color: rgb(255, 255, 255);
+  background-image: url('../assets/Design\ sem\ nome\ \(17\).png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.pag3:nth-of-type(4) h2{
+padding-top: 70vh;
 
+
+}
+.pag3:nth-of-type(4) p{
+ padding-bottom: 12vh;
+
+}
+
+
+.pag3:nth-of-type(5) p{
+  margin-top: 70vh;
+}
   .pag5 {
     flex-direction: column;
     height: auto;
@@ -460,14 +629,113 @@ a{
     height: auto;
   }
 
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+
+}
+
+@media (max-width: 555px) {
+
+  .fundoimg {
+    color: #2a0331;
+    background-color: white;
+  width: 100%;
+  height: 50vh;
+  background-image: url("../assets/Cabeçalho\ \(42\).png") !important;
+    background-size: cover;       
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+  .conteudo p,
+  .esq p,
+  .pag3 p {
+    font-size: 15px;
+    max-width: 100%;
+    padding: 10px;
+    word-break: break-word;
+    margin: 0;
+  }
+  h1{
+    white-space: nowrap;
+  }
+  .conteudo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  width: 5%;
+  height: 4%;
+ 
+  }
+.conteudo p{
+  max-width: 420px;
+}
+h2{
+  font-size: 20px;
+}
+
+  .logo {
+    font-size: 16px;
   }
 
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
+  nav ul {
+    flex-direction: row;
+    gap: 10px;
+    padding: 0 10px;
   }
-} */
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+ .texto-sobre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; 
+  padding: 20px;
+  text-align: center;
+}
+.pag3{
+  background-color: rgb(255, 255, 255);
+  height: 50vh;
+  background-image: url("../assets/Cabeçalho\ \(14\).png");
+  background-size: cover;       
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+.pag3:nth-of-type(4){
+height: 60vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: rgb(255, 255, 255);
+background-image: url("../assets/Cabeçalho\ \(22\).png") !important;
+background-size: cover;       
+background-position: center; 
+background-repeat: no-repeat; 
+}
+
+.texto-sobre2{
+width: 100%;
+height: 100%;
+margin-left: 20%;
+margin-bottom: 70%;
+
+}
+  .pag3:nth-of-type(5) h2 {
+  margin-bottom: -9px; 
+  position: relative;
+   color: #2a0331;
+  font-size: 24px;
+
+}
+  .pag3:nth-of-type(5) p {
+    margin-top: 0px;
+    font-size: 13px;
+    margin-bottom: 235px;
+  }
+}
