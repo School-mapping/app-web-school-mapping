@@ -40,12 +40,12 @@
 
             <div>
                 <p>Senha</p>
-                <span id="bdSenha">bd.passwd</span> <button onclick="visualizarSenha()"><img src="" alt="mask-senha"></button> <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha"><img id="imagemAtualizarSenha" src="./assets/icon_att.png" alt="icone-atualizar"></button>
+                <span id="bdSenha">bd.passwd</span> <button  onclick="visualizarSenha()" id="botaoMascaraSenha"><img id="mascaraImagem" src="./assets/senha_oculta.png" alt="mask-senha"></button> <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha"><img id="imagemAtualizarSenha" src="./assets/icon_att.png" alt="icone-atualizar"></button>
                 <div id="confirmarSenha" style="display: none; border: 1px solid black;">
                     <h3>Atualizar Senha</h3>
                     
                     <p>Insira a nova senha</p>
-                    <input type="text" id="novaSenha" onchange="verificarAtualizarSenha()"> <br>
+                    <input type="password" id="novaSenha" onchange="verificarAtualizarSenha()"> <br>
                     <span id="mensagemAtualizarSenha"></span>
 
                     <p>Senha atual</p>

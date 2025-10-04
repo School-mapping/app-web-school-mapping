@@ -116,8 +116,10 @@ function visualizarSenha() {
     
     if (bdSenha.innerHTML == "********") {
         bdSenha.innerHTML = senhaInfo;
+        document.getElementById("mascaraImagem").setAttribute("src", "./assets/senha_visivel.png");
     } else {
         bdSenha.innerHTML = "********";
+        document.getElementById("mascaraImagem").setAttribute("src", "./assets/senha_oculta.png");
     }
 }
 
