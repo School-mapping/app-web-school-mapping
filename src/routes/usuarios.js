@@ -20,6 +20,10 @@ router.put("/atualizarEmail/:id", function(req, res) {
     usuarioController.atualizarEmail(req, res);
 });
 
+router.put("/atualizarSenha/:id", function(req, res) {
+    usuarioController.atualizarSenha(req, res);
+})
+
 router.delete("/deletarConta/:id", function(req, res) {
     usuarioController.deletarConta(req, res);
 });

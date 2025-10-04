@@ -1,17 +1,42 @@
-.botaoAtualizar {
+#botaoAtualizarEmail {
     width: 20px;
     height: 20px;
     border-radius: 25px;
     border-style: none;
     position: relative;
     top: 5px;
+    left: 5px;
 }
 
-.imagemAtualizar {
+#imagemAtualizarEmail {
     display: flex;
     width: 20px;
     height: 20px;
     position: relative;
     right: 8px;
     bottom: 2px;
+
+}
+
+#botaoAtualizarSenha {
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    border-style: none;
+    position: relative;
+    top: 5px;
+    left: 35px;
+}
+
+#imagemAtualizarSenha {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    right: 8px;
+    bottom: 2px;
+}
+
+.inputSenha {
+    cursor: not-allowed;
 }

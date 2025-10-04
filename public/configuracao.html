@@ -22,8 +22,8 @@
 
             <div>
                 <p>E-Mail</p>
-                <span id="bdEmail">bd.email</span> <button onclick="atualizarEmailMensagem()" class="botaoAtualizar"><img class="imagemAtualizar" src="./assets/icon_att.png" alt="icone-atualizar"></button>
-                <div id="confirmarEmail" style="display: block; border: 1px solid black;">
+                <span id="bdEmail">bd.email</span> <button onclick="atualizarEmailMensagem()" id="botaoAtualizarEmail"><img id="imagemAtualizarEmail" src="./assets/icon_att.png" alt="icone-atualizar"></button>
+                <div id="confirmarEmail" style="display: none; border: 1px solid black;">
                     <h3>Atualizar E-Mail</h3>
 
                     <p>Insira o novo E-Mail</p>
@@ -40,7 +40,21 @@
 
             <div>
                 <p>Senha</p>
-                <span id="bdSenha">bd.passwd</span> <button onclick="atualizarSenha()" class="botaoAtualizar"><img class="imagemAtualizar" src="./assets/icon_att.png" alt="icone-atualizar"></button>
+                <span id="bdSenha">bd.passwd</span> <button onclick="visualizarSenha()"><img src="" alt="mask-senha"></button> <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha"><img id="imagemAtualizarSenha" src="./assets/icon_att.png" alt="icone-atualizar"></button>
+                <div id="confirmarSenha" style="display: none; border: 1px solid black;">
+                    <h3>Atualizar Senha</h3>
+                    
+                    <p>Insira a nova senha</p>
+                    <input type="text" id="novaSenha" onchange="verificarAtualizarSenha()"> <br>
+                    <span id="mensagemAtualizarSenha"></span>
+
+                    <p>Senha atual</p>
+                    <input type="password" id="confirmarSenhaSenha">
+                    
+
+                    <button onclick="atualizarSenha()">Atualizar</button>
+                    <button onclick="voltarSenha()"">Voltar</button>
+                </div>
             </div>
 
             <div>

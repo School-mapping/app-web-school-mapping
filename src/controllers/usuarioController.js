@@ -102,12 +102,35 @@ function atualizarEmail(req, res) {
     if (id == undefined) {
         console.log("id está indefinido!");
     } else if (email == undefined) {
-        console.log("email está indefinido!");
+        console.log("E-Mmail está indefinido!");
     } else {
         usuarioModel.atualizarEmail(id, email)
         .then(
             function () {
-                res.json("Usuário deletado.");
+                res.json("E-Mail atualizado.");
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
+function atualizarSenha(req, res) {
+    var id = req.params.id;
+    var senha = req.body.senha;
+
+    if (id == undefined) {
+        console.log("id está indefinido!");
+    } else if (senha == undefined) {
+        console.log("Senha está indefinido!");
+    } else {
+        usuarioModel.atualizarSenha(id, senha)
+        .then(
+            function () {
+                res.json("Senha atualizada.");
             }
         ).catch(
             function (erro) {
@@ -144,5 +167,6 @@ module.exports = {
     logar,
     getInfoUser,
     atualizarEmail,
+    atualizarSenha,
     deletarConta
 }
