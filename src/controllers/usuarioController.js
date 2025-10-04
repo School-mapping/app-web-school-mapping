@@ -75,7 +75,7 @@ function getInfoUser(req, res) {
     var id = req.params.id;
 
     if (id == undefined) {
-        console.log('id está indefinido!')
+        console.log('id está indefinido!');
     } else {
         usuarioModel.getInfoUser(id)
         .then(
@@ -95,9 +95,54 @@ function getInfoUser(req, res) {
     }
 }
 
+function atualizarEmail(req, res) {
+    var id = req.params.id;
+    var email = req.body.email;
+
+    if (id == undefined) {
+        console.log("id está indefinido!");
+    } else if (email == undefined) {
+        console.log("email está indefinido!");
+    } else {
+        usuarioModel.atualizarEmail(id, email)
+        .then(
+            function () {
+                res.json("Usuário deletado.");
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
+function deletarConta(req, res) {
+    var id = req.params.id;
+
+    if (id == undefined) {
+        console.log("id está indefinido!");
+    } else {
+        usuarioModel.deletarConta(id)
+        .then(
+            function () {
+                res.json("Usuário deletado.");
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 
 module.exports = {
     cadastrar,
     logar,
-    getInfoUser
+    getInfoUser,
+    atualizarEmail,
+    deletarConta
 }

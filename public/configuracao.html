@@ -22,12 +22,25 @@
 
             <div>
                 <p>E-Mail</p>
-                <span id="bdEmail">bd.email</span>
+                <span id="bdEmail">bd.email</span> <button onclick="atualizarEmailMensagem()" class="botaoAtualizar"><img class="imagemAtualizar" src="./assets/icon_att.png" alt="icone-atualizar"></button>
+                <div id="confirmarEmail" style="display: block; border: 1px solid black;">
+                    <h3>Atualizar E-Mail</h3>
+
+                    <p>Insira o novo E-Mail</p>
+                    <input type="text" id="novoEmail" onchange="verificarAtualizarEmail()"> <br>
+                    <span id="mensagemAtualizarEmail"></span>
+
+                    <p>Confirmar senha</p>
+                    <input type="password" id="confirmarSenhaEmail">
+
+                    <button onclick="atualizarEmail()">Atualizar</button>
+                    <button onclick="voltarEmail()"">Voltar</button>
+                </div>
             </div>
 
             <div>
                 <p>Senha</p>
-                <span id="bdSenha">bd.passwd</span>
+                <span id="bdSenha">bd.passwd</span> <button onclick="atualizarSenha()" class="botaoAtualizar"><img class="imagemAtualizar" src="./assets/icon_att.png" alt="icone-atualizar"></button>
             </div>
 
             <div>
@@ -36,7 +49,15 @@
             </div>
 
             <div>
-                <button>Deletar usuário</button>
+                <button onclick="deletarMensagem()">Deletar usuário</button>
+                <div id="confirmarDelete" style="display: none; border: 1px solid black;">
+                    <h3>Deletar Conta</h3>
+
+                    <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUIDA PERMANENTEMENTE.</p>
+
+                    <button onclick="deletarConta()">Deletar</button>
+                    <button onclick="voltarDelete()"">Voltar</button>
+                </div>
             </div>
         </section>
     </main>

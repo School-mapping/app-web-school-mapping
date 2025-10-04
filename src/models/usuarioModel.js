@@ -34,8 +34,30 @@ function getInfoUser(id) {
             return database.executar(instrucaoSql);
 }
 
+function atualizarEmail(id, email) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarEmail():", id, email);
+
+    var instrucaoSql = `
+            UPDATE TB_Usuarios SET email = "${email}" WHERE id = ${id};
+            `
+            console.log("Executando a instrução SQL: \n" + instrucaoSql);
+            return database.executar(instrucaoSql);
+}
+
+function deletarConta(id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletarConta():", id);
+
+    var instrucaoSql = `
+            DELETE FROM TB_Usuarios WHERE id = ${id};
+            `
+            console.log("Executando a instrução SQL: \n" + instrucaoSql);
+            return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     logar,
-    getInfoUser
+    getInfoUser,
+    atualizarEmail,
+    deletarConta
 };

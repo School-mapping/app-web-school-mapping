@@ -16,4 +16,12 @@ router.get("/getInfoUser/:id", function(req, res) {
     usuarioController.getInfoUser(req, res);
 });
 
+router.put("/atualizarEmail/:id", function(req, res) {
+    usuarioController.atualizarEmail(req, res);
+});
+
+router.delete("/deletarConta/:id", function(req, res) {
+    usuarioController.deletarConta(req, res);
+});
+
 module.exports = router;
