@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações - School Mapping</title>
+    <link rel="stylesheet" href="./css/configuracao.css">
+    <script src="./js/configuracao.js"></script>
 </head>
-<body>
+<body onload="getInfoUser()">
     
+    <main>
+        <section>
+            <h1>Dados de usuário</h1>
+        </section>
 
+        <section>
+            <div>
+                <p>Usuário</p>
+                <span id="bdUsuario">bd.username</span>
+            </div>
+
+            <div>
+                <p>E-Mail</p>
+                <span id="bdEmail">bd.email</span>
+            </div>
+
+            <div>
+                <p>Senha</p>
+                <span id="bdSenha">bd.passwd</span>
+            </div>
+
+            <div>
+                <p>Data de criação</p>
+                <span id="bdData">bd.criado_em</span>
+            </div>
+
+            <div>
+                <button>Deletar usuário</button>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
