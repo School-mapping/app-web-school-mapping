@@ -71,7 +71,102 @@ function logar(req, res) {
     }
 }
 
+function getInfoUser(req, res) {
+    var id = req.params.id;
+
+    if (id == undefined) {
+        console.log('id está indefinido!');
+    } else {
+        usuarioModel.getInfoUser(id)
+        .then(
+            function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve erro ao buscar informações do usuário! ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        );
+    }
+}
+
+function atualizarEmail(req, res) {
+    var id = req.params.id;
+    var email = req.body.email;
+
+    if (id == undefined) {
+        console.log("id está indefinido!");
+    } else if (email == undefined) {
+        console.log("E-Mmail está indefinido!");
+    } else {
+        usuarioModel.atualizarEmail(id, email)
+        .then(
+            function () {
+                res.json("E-Mail atualizado.");
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
+function atualizarSenha(req, res) {
+    var id = req.params.id;
+    var senha = req.body.senha;
+
+    if (id == undefined) {
+        console.log("id está indefinido!");
+    } else if (senha == undefined) {
+        console.log("Senha está indefinido!");
+    } else {
+        usuarioModel.atualizarSenha(id, senha)
+        .then(
+            function () {
+                res.json("Senha atualizada.");
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
+function deletarConta(req, res) {
+    var id = req.params.id;
+
+    if (id == undefined) {
+        console.log("id está indefinido!");
+    } else {
+        usuarioModel.deletarConta(id)
+        .then(
+            function () {
+                res.json("Usuário deletado.");
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
+
 module.exports = {
     cadastrar,
-    logar
+    logar,
+    getInfoUser,
+    atualizarEmail,
+    atualizarSenha,
+    deletarConta
 }

@@ -1,0 +1,57 @@
+#botaoAtualizarEmail {
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    border-style: none;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+#imagemAtualizarEmail {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    right: 8px;
+    bottom: 2px;
+
+}
+
+#botaoAtualizarSenha {
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    border-style: none;
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+#imagemAtualizarSenha {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    right: 8px;
+    bottom: 2px;
+}
+
+#botaoMascaraSenha {
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    border-style: none;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+#mascaraImagem {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    right: 8px;
+    bottom: 2px;
+}
