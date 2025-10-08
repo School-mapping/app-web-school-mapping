@@ -114,11 +114,11 @@ function voltarEmail() {
 
 function visualizarSenha() {
     
-    if (bdSenha.innerHTML == "********") {
-        bdSenha.innerHTML = senhaInfo;
-        document.getElementById("mascaraImagem").setAttribute("src", "./assets/senha_visivel.png");
+    if (bdSenha.type == "password") {
+        bdSenha.type = "text";
+        mascaraImagem.setAttribute("src", "./assets/senha_visivel.png");
     } else {
-        bdSenha.innerHTML = "********";
+        bdSenha.type = "password"
         document.getElementById("mascaraImagem").setAttribute("src", "./assets/senha_oculta.png");
     }
 }
