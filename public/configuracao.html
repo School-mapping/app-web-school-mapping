@@ -8,6 +8,7 @@
   <script src="./js/configuracao.js"></script>
 </head>
 <body onload="getInfoUser()">
+
   <div class="container">
     <aside class="barraLat">
       <div class="iconePerfil">👤</div>
@@ -35,6 +36,7 @@
               <img src="./assets/icon_att.png" />
             </button>
           </div>
+
           <div id="confirmarEmail" class="confirm-box">
             <h3>Atualizar E-Mail</h3>
             <p>Insira o novo E-Mail</p>
@@ -54,12 +56,13 @@
           <div class="input-wrapper">
             <input type="password" id="bdSenha" value="senha do sujeito" />
             <button onclick="visualizarSenha()" id="botaoMascaraSenha">
-              <img src="./assets/senha_oculta.png" alt="" />
+              <img id="mascaraImagem" src="./assets/senha_oculta.png" alt="maskIMG" />
             </button>
             <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha">
               <img src="./assets/icon_att.png" />
             </button>
-          </div>
+        </div>
+
           <div id="confirmarSenha" class="confirm-box">
             <h3>Atualizar Senha</h3>
             <p>Insira a nova senha</p>
@@ -80,7 +83,17 @@
         </div>
 
         <div class="delete-bloco">
-          <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
-          <div id="confirmarDelete" class="confirm-box">
-            <h3>Deletar Conta</h3>
-            <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUÍDA PERMANENTEMENTE.</p>
+            <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
+            <div id="confirmarDelete" class ="confirm-box">
+                <h3>Deletar Conta</h3>
+
+                <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUIDA PERMANENTEMENTE.</p>
+
+                <button onclick="deletarConta()">Deletar</button>
+                <button onclick="voltarDelete()">Voltar</button>
+            </div>
+        </div>
+        </section>
+    </main>
+</body>
+</html>
