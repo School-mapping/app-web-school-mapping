@@ -1,74 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estatísticas - School Mapping</title>
   <link rel="stylesheet" href="./css/dash.css" />
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
   <div class="dashboard">
-<aside class="barraLateral-esquerda">
-    <img src="./assets/user.png" alt="" class="iconepessoa"/>
+    <aside class="barraLateral-esquerda">
+      <img src="./assets/user.png" alt="" class="iconepessoa" />
 
-  <div class="conteudo-central">
+      <div class="conteudo-central">
 
-    <nav class="menu-lateral">
-      <a href="index.html" class="btn-menu">Home</a>
-  <a href="configuracao.html" class="btn-menu">Configuração</a>
-    </nav><ss="sair-section">
-         <a href="index.html" class="btn-menu">Sair</a>
+        <nav class="menu-lateral">
+          <a href="index.html" class="btn-menu">Home</a>
+          <a href="configuracao.html" class="btn-menu">Configuração</a>
+        </nav><ss="sair-section">
+          <a href="index.html" class="btn-menu">Sair</a>
 
-  </div>
-</aside>
+      </div>
+    </aside>
 
     <main class="conteudo">
       <div class="linha-graficos">
         <div class="grafico">
-            <h2 style="font-weight: 200; color: gray; font-size: 15px;">
-  Mapa de Calor do IDEB por Estado
-</h2>
-      <div id="mapaCalorGeo" style="width: 100%; height: 100%;"></div>
+          <h2 style="font-weight: 200; color: gray; font-size: 15px;">
+            Mapa de Calor do IDEB por Estado
+          </h2>
+          <div id="mapaCalorGeo" style="width: 100%; height: 100%;"></div>
 
         </div>
         <div class="grafico">
-            <canvas id="graficoBarras"></canvas>
+          <canvas id="graficoBarras"></canvas>
         </div>
       </div>
       <div class="linha-graficos">
         <div class="grafico">
-            <canvas id="graficoLinha"></canvas>
+          <canvas id="graficoLinha"></canvas>
         </div>
         <div class="grafico">
-            <canvas id="graficoPizza"></canvas>
+          <canvas id="graficoPizza"></canvas>
         </div>
       </div>
     </main>
 
     <aside class="barraLateral-direita">
-        <div class="notificacoes">
-  <div class="notificacao" style="color: red;">Novo IDEB! </div>
-  <div class="notificacao" style="color: blue;">Repasse Financeiro novo</div>
-  <div class="notificacao" style="color: green;">Aumento de 2.2 no IDEB</div>
-  <!-- <div class="notificacao">4</div>
+      <div class="notificacoes">
+        <div class="notificacao" style="color: red;">Novo IDEB! </div>
+        <div class="notificacao" style="color: blue;">Repasse Financeiro novo</div>
+        <div class="notificacao" style="color: green;">Aumento de 2.2 no IDEB</div>
+        <!-- <div class="notificacao">4</div>
   <div class="notificacao">5</div>
   <div class="notificacao">6</div>
   <div class="notificacao">7</div>
   <div class="notificacao">8</div> -->
-</div>
+      </div>
 
 
     </aside>
   </div>
 </body>
-  </div>
+</div>
 
-  <div cla
-</html>
-<script>
+<div cla </html>
+  <script>
     const ctx = document.getElementById('graficoBarras');
 
     new Chart(ctx, {
@@ -92,7 +93,7 @@
 
           tooltip: { mode: 'index', intersect: false }
         },
-          scales: {
+        scales: {
           x: {
             grid: { display: false }
           },
@@ -107,140 +108,152 @@
 
     const ctxLinha = document.getElementById('graficoLinha');
 
-new Chart(ctxLinha, {
-  type: 'line',
-  data: {
-    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
-    datasets: [{
-      label: 'IDEB',
-      data: [4, 2, 3, 6, 7, 10],
-      borderColor: '#2c0475',
-      backgroundColor: 'rgba(44, 4, 117, 0.5)',
-      tension: 0.3,
-      fill: true,
-      pointRadius: 4,
-      pointBackgroundColor: '#4B7BF5'
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Evolução do IDEB na Escola X ao longo dos anos'
+    new Chart(ctxLinha, {
+      type: 'line',
+      data: {
+        labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+        datasets: [{
+          label: 'IDEB',
+          data: [4, 2, 3, 6, 7, 10],
+          borderColor: '#2c0475',
+          backgroundColor: 'rgba(44, 4, 117, 0.5)',
+          tension: 0.3,
+          fill: true,
+          pointRadius: 4,
+          pointBackgroundColor: '#4B7BF5'
+        }]
       },
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Ano'
-        },
-        grid: {
-          display: false
-        }
-      },
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'IDEB'
-        },
-        ticks: {
-          stepSize: 0.5
-        },
-        grid: {
-          color: 'rgba(0,0,0,0.05)'
-        }
-      }
-    }
-  }
-});
-const ctxPizza = document.getElementById('graficoPizza');
-
-new Chart(ctxPizza, {
-  type: 'pie',
-  data: {
-    labels: ['Atingiram', 'Não Atingiram'],
-    datasets: [{
-      label: 'Distribuição do IDEB',
-      data: [133, 241],
-      backgroundColor: [
-        '#27ae60',
-        '#c0392b',
-      ],
-      borderColor: '#fff',
-      borderWidth: 2
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Número de escolas que atingiram a meta',
-        font: {
-          size: 18,
-          weight: '600'
-        },
-        color: '#2c0475'
-      },
-      legend: {
-        position: 'right',
-        labels: {
-          boxWidth: 20,
-          padding: 15,
-          font: {
-            size: 14
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Evolução do IDEB na Escola X ao longo dos anos'
           },
-          color: '#333'
-        }
-      },
-      tooltip: {
-        callbacks: {
-          label: ctx => `${ctx.label}: ${ctx.raw}`
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Ano'
+            },
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'IDEB'
+            },
+            ticks: {
+              stepSize: 0.5
+            },
+            grid: {
+              color: 'rgba(0,0,0,0.05)'
+            }
+          }
         }
       }
-    }
-  }
-});
+    });
+    const ctxPizza = document.getElementById('graficoPizza');
+
+    new Chart(ctxPizza, {
+      type: 'pie',
+      data: {
+        labels: ['Atingiram', 'Não Atingiram'],
+        datasets: [{
+          label: 'Distribuição do IDEB',
+          data: [133, 241],
+          backgroundColor: [
+            '#27ae60',
+            '#c0392b',
+          ],
+          borderColor: '#fff',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Número de escolas que atingiram a meta',
+            font: {
+              size: 18,
+              weight: '600'
+            },
+            color: '#2c0475'
+          },
+          legend: {
+            position: 'right',
+            labels: {
+              boxWidth: 20,
+              padding: 15,
+              font: {
+                size: 14
+              },
+              color: '#333'
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.label}: ${ctx.raw}`
+            }
+          }
+        }
+      }
+    });
 
   </script>
-<script type="text/javascript">
-  google.charts.load('current', {
-    packages: ['geochart']
-  });
-  google.charts.setOnLoadCallback(drawRegionsMap);
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDPpXaJeeEDVazesF8nBZONca1a8cwbE&callback=initMap"></script>
+  <script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), {
+        zoom: 11,
+        center: { lat: -23.55, lng: -46.63 },
+        mapTypeId: 'roadmap'
+      });
 
-  function drawRegionsMap() {
-    const data = google.visualization.arrayToDataTable([
-      ['Region', 'IDEB'],
-      ['BR-SP', 10],
-      ['BR-RJ', 5.2],
-      ['BR-MG', 6.0],
-      ['BR-BA', 4.8],
-      ['BR-RS', 6.3],
-      ['BR-PE', 0.0]
-    ]);
+      map.data.loadGeoJson("./geojsons/subprefeituras-sp.geojson");
+      map.data.setStyle(feature => {
+        let nome = feature.getProperty('nome');
+        var cor = nome === 'Pinheiros' ? '#FF0000' : '#00FF00';
+        return {
+          fillColor: cor,
+          strokeWeight: 1,
+          fillOpacity: 0.6,
+          strokeColor: '#333'
+        };
+      });
 
-    const options = {
-      region: 'BR', 
-      resolution: 'provinces', 
-      colorAxis: {
-        colors: ['#2c0475', '#ffcc00', '#ff0000'] 
-      },
-      backgroundColor: '#f5f5f5',
-      datalessRegionColor: '#eeeeee',
-      defaultColor: '#cccccc'
-    };
+      map.data.addListener("click", function (event) {
+        const nome = event.feature.getProperty("name");
 
-    const chart = new google.visualization.GeoChart(document.getElementById('mapaCalorGeo'));
-    chart.draw(data, options);
-  }
-</script>
-  
+        const infoWindow = new google.maps.InfoWindow({
+          content: `
+      <div style="font-size:16px; font-weight:bold;">${nome}</div>
+      <div style="margin-top:8px;">IDEB: 6.5</div>
+      <div>Meta: 7.0</div>
+    `,
+          position: event.latLng
+        });
+        infoWindow.open(map);
+      });
+
+      map.data.addListener('mouseover', e => {
+        map.data.overrideStyle(e.feature, { fillOpacity: 0.9 });
+      });
+      map.data.addListener('mouseout', e => {
+        map.data.revertStyle();
+      });
+    }
+
+  </script>
