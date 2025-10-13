@@ -215,45 +215,85 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDPpXaJeeEDVazesF8nBZONca1a8cwbE&callback=initMap"></script>
   <script>
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), {
-        zoom: 11,
-        center: { lat: -23.55, lng: -46.63 },
-        mapTypeId: 'roadmap'
-      });
+    async function initMap() {
 
-      map.data.loadGeoJson("./geojsons/subprefeituras-sp.geojson");
-      map.data.setStyle(feature => {
-        let nome = feature.getProperty('nome');
-        var cor = nome === 'Pinheiros' ? '#FF0000' : '#00FF00';
-        return {
-          fillColor: cor,
-          strokeWeight: 1,
-          fillOpacity: 0.6,
-          strokeColor: '#333'
-        };
-      });
+      try {
 
-      map.data.addListener("click", function (event) {
-        const nome = event.feature.getProperty("name");
+        const response = await fetch("./geojsons/subprefeituras-sp.geojson");
+        if (!response.ok) {
+          throw new Error('Não foi possível carregar o GeoJSON!');
+        }
 
-        const infoWindow = new google.maps.InfoWindow({
-          content: `
-      <div style="font-size:16px; font-weight:bold;">${nome}</div>
-      <div style="margin-top:8px;">IDEB: 6.5</div>
-      <div>Meta: 7.0</div>
-    `,
-          position: event.latLng
+        const bounds = new google.maps.LatLngBounds();
+        geojson.features.forEach(feature => {
+          // Processa cada ponto de cada polígono para extender os limites
+          const processPoints = (coords) => {
+            coords.forEach(point => {
+              // GeoJSON tem [lng, lat], Google Maps usa (lat, lng)
+              bounds.extend(new google.maps.LatLng(point[1], point[0]));
+
+            });
+          }
+          // O GeoJSON pode ter Polygons ou MultiPolygons
+          if (feature.geometry.type === 'Polygon') {
+            feature.geometry.coordinates.forEach(processPoints);
+          } else if (feature.geometry.type === 'MultiPolygon') {
+            feature.geometry.coordinates.forEach(polygon => {
+              polygon.forEach(processPoints);
+            });
+          }
         });
-        infoWindow.open(map);
-      });
 
-      map.data.addListener('mouseover', e => {
-        map.data.overrideStyle(e.feature, { fillOpacity: 0.9 });
-      });
-      map.data.addListener('mouseout', e => {
-        map.data.revertStyle();
-      });
+        const geojson = response.json();
+
+        console.log(geojson);
+
+        var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), {
+          zoom: 11,
+          center: { lat: -23.55, lng: -46.63 },
+          mapTypeId: 'roadmap',
+          restriction: {
+            latLngBounds: bounds,
+            strictBounds: false
+          }
+        });
+
+        map.data.loadGeoJson("./geojsons/subprefeituras-sp.geojson");
+        map.data.setStyle(feature => {
+          let nome = feature.getProperty('nome');
+          var cor = nome === 'Pinheiros' ? '#FF0000' : '#00FF00';
+          return {
+            fillColor: cor,
+            strokeWeight: 1,
+            fillOpacity: 1,
+            strokeColor: '#333',
+          };
+        });
+
+        map.data.addListener("click", function (event) {
+          const nome = event.feature.getProperty("name");
+
+          const infoWindow = new google.maps.InfoWindow({
+            content: `
+          <div style="font-size:16px; font-weight:bold;">${nome}</div>
+          <div style="margin-top:8px;">IDEB: 6.5</div>
+          <div>Meta: 7.0</div>
+          `,
+            position: event.latLng
+          });
+          infoWindow.open(map);
+        });
+
+        map.data.addListener('mouseover', e => {
+          map.data.overrideStyle(e.feature, { fillOpacity: 0.9 });
+        });
+        map.data.addListener('mouseout', e => {
+          map.data.revertStyle();
+        });
+      } catch (error) {
+        console.error("Erro ao inicializar o mapa:", error);
+        document.getElementById('mapaCalorGeo').innerText = 'Falha ao carregar o mapa.';
+      }
     }
 
   </script>
