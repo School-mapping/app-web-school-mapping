@@ -19,21 +19,31 @@
       <div class="conteudo-central">
 
         <nav class="menu-lateral">
-          <a href="index.html" class="btn-menu">Home</a>
-          <a href="configuracao.html" class="btn-menu">Configuração</a>
+          <div class="btn-menu" style="display: flex; flex-direction: row; align-items: center;">
+            <img src="./assets/home_icon.png" style="width: 25px; height: 25px; margin-right: 4px" />
+            <a href="index.html">Home</a>
+          </div>
+
+          <div class="btn-menu" style="display: flex; flex-direction: row; align-items: center;">
+            <img src="assets/config_icon.png" style="width: 25px; height: 25px; margin-right: 4px">
+            <a href="configuracao.html">Configuração</a>
+          </div>
         </nav><ss="sair-section">
-          <a href="index.html" class="btn-menu">Sair</a>
+          <div class="btn-menu" style="display: flex; flex-direction: row; align-items: center;">
+            <img src="assets/logout_icon.png" style="width: 25px; height: 25px; margin-right: 4px">
+            <a href="index.html">Sair</a>
+          </div>
 
       </div>
     </aside>
 
     <main class="conteudo">
       <div class="linha-graficos">
-        <div class="grafico">
+        <div class="grafico" style="width: 300px; height: 300px;">
           <h2 style="font-weight: 200; color: gray; font-size: 15px;">
             Mapa de Calor do IDEB por Estado
           </h2>
-          <div id="mapaCalorGeo" style="width: 100%; height: 100%;"></div>
+          <div id="mapaCalorGeo"></div>
 
         </div>
         <div class="grafico">
@@ -49,21 +59,6 @@
         </div>
       </div>
     </main>
-
-    <aside class="barraLateral-direita">
-      <div class="notificacoes">
-        <div class="notificacao" style="color: red;">Novo IDEB! </div>
-        <div class="notificacao" style="color: blue;">Repasse Financeiro novo</div>
-        <div class="notificacao" style="color: green;">Aumento de 2.2 no IDEB</div>
-        <!-- <div class="notificacao">4</div>
-  <div class="notificacao">5</div>
-  <div class="notificacao">6</div>
-  <div class="notificacao">7</div>
-  <div class="notificacao">8</div> -->
-      </div>
-
-
-    </aside>
   </div>
 </body>
 </div>
@@ -78,7 +73,7 @@
         labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
         datasets: [{
           label: 'IDEB',
-          data: [1, 7, 5, 3.3, 8, 10],
+          data: [6.2, 7.0, 5.3, 3.3, 8.0],
           backgroundColor: '#2c0475',
           borderRadius: 6,
           borderSkipped: false
@@ -131,9 +126,8 @@
             display: true,
             text: 'Evolução do IDEB na Escola X ao longo dos anos'
           },
-          legend: {
-            display: false
-          }
+          legend: { diplay: true, position: 'bottom', labels: { boxWidth: 20, padding: 15, font: { size: 14, weight: '200' }, color: 'grey' } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}` } }
         },
         scales: {
           x: {
@@ -147,10 +141,6 @@
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'IDEB'
-            },
             ticks: {
               stepSize: 0.5
             },
@@ -164,48 +154,35 @@
     const ctxPizza = document.getElementById('graficoPizza');
 
     new Chart(ctxPizza, {
-      type: 'pie',
+      type: 'bar',
       data: {
-        labels: ['Atingiram', 'Não Atingiram'],
+        labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
         datasets: [{
-          label: 'Distribuição do IDEB',
-          data: [133, 241],
-          backgroundColor: [
-            '#27ae60',
-            '#c0392b',
-          ],
+          label: 'Verba recebida (em milhões)',
+          data: [133.000, 241.000, 153.000, 135.000, 181.000],
+          backgroundColor: '#2c0475',
           borderColor: '#fff',
-          borderWidth: 2
+          borderWidth: 2,
+          borderRadius: 6,
+          borderSkipped: false
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          title: {
-            display: true,
-            text: 'Número de escolas que atingiram a meta',
-            font: {
-              size: 18,
-              weight: '600'
-            },
-            color: '#2c0475'
+          title: { display: true, text: 'Verba total por região', color: 'black', font: { size: 14, weight: '400' }, },
+          legend: { diplay: true, position: 'bottom', labels: { boxWidth: 20, padding: 15, font: { size: 14, weight: '200' }, color: 'grey' } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}` } }
+        },
+        scales: {
+          x: {
+            grid: { display: false }
           },
-          legend: {
-            position: 'right',
-            labels: {
-              boxWidth: 20,
-              padding: 15,
-              font: {
-                size: 14
-              },
-              color: '#333'
-            }
-          },
-          tooltip: {
-            callbacks: {
-              label: ctx => `${ctx.label}: ${ctx.raw}`
-            }
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(0,0,0,0.06)' },
+            ticks: { precision: 0 }
           }
         }
       }
@@ -224,39 +201,29 @@
           throw new Error('Não foi possível carregar o GeoJSON!');
         }
 
-        const bounds = new google.maps.LatLngBounds();
-        geojson.features.forEach(feature => {
-          // Processa cada ponto de cada polígono para extender os limites
-          const processPoints = (coords) => {
-            coords.forEach(point => {
-              // GeoJSON tem [lng, lat], Google Maps usa (lat, lng)
-              bounds.extend(new google.maps.LatLng(point[1], point[0]));
-
-            });
-          }
-          // O GeoJSON pode ter Polygons ou MultiPolygons
-          if (feature.geometry.type === 'Polygon') {
-            feature.geometry.coordinates.forEach(processPoints);
-          } else if (feature.geometry.type === 'MultiPolygon') {
-            feature.geometry.coordinates.forEach(polygon => {
-              polygon.forEach(processPoints);
-            });
-          }
-        });
+        const bounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(-24.20, -47.00),
+          new google.maps.LatLng(-23.30, -46.20)
+        );
 
         const geojson = response.json();
 
-        console.log(geojson);
-
-        var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), {
-          zoom: 11,
+        const mapOptions = {
+          zoom: 9,
           center: { lat: -23.55, lng: -46.63 },
-          mapTypeId: 'roadmap',
+          mapTypeId: google.maps.MapTypeId.SATELLITE,
+          disableDoubleClickZoom: true,
+          streetViewControl: false,
+          fullscreenControl: false,
+          mapTypeControl: false,
           restriction: {
             latLngBounds: bounds,
-            strictBounds: false
-          }
-        });
+            strictBounds: false,
+          },
+          labels: false
+        };
+
+        var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), mapOptions);
 
         map.data.loadGeoJson("./geojsons/subprefeituras-sp.geojson");
         map.data.setStyle(feature => {
@@ -291,8 +258,7 @@
           map.data.revertStyle();
         });
       } catch (error) {
-        console.error("Erro ao inicializar o mapa:", error);
-        document.getElementById('mapaCalorGeo').innerText = 'Falha ao carregar o mapa.';
+        console.error(error);
       }
     }
 

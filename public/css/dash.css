@@ -6,6 +6,7 @@
 
 body, html {
   height: 100%;
+  width: 100vw;
 }
 .dashboard {
   display: flex;
@@ -43,14 +44,18 @@ body, html {
 .btn-menu {
   display: block;             
   background-color: transparent;
-  border: none;               
-  color: white;
+  border: none;
   font-size: 1.3rem;
-  padding: 10px 20px;
+  padding: 10px 10px;
   text-align: center;
   text-decoration: none;      
   cursor: pointer;
   transition: background 0.3s ease;
+}
+
+.btn-menu a {
+  color: white;
+  text-decoration: none;
 }
 
 .btn-menu:hover {
@@ -85,8 +90,8 @@ body, html {
   justify-content: center; 
 }
 .conteudo {
-  flex: 1;
   padding: 20px;
+  width: 100vw;
   background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
@@ -95,15 +100,13 @@ body, html {
 
 .linha-graficos {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
-  margin-bottom: 20px;
 }
 
 .grafico {
-  flex: 1;
   font-family: 'Segoe UI', Roboto, sans-serif;
   height: 300px;
+  width: 100%;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -111,6 +114,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 
 @media (max-width: 768px) {
@@ -138,29 +142,8 @@ body, html {
     margin-bottom: 20px;
   }
 }
-.notificacoes {
-  display: flex;
-  flex-direction: column;
-  width: 88%;
-  gap: 25px;
-}
 
-.notificacao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  background-color: #fff;
-  font-size: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  /* width: ; */
-  color: #2a0331;
-  height: 50px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
-}
-
-.notificacao:hover {
-  background-color: #eaf6ff;
-  cursor: pointer;
+#mapaCalorGeo {
+  width: 300px;
+  height: 300px;
 }
