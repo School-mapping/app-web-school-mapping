@@ -38,12 +38,29 @@
     </aside>
 
     <main class="conteudo">
+      <div class="linha-graficos kpis">
+        <div class="grafico kpi">teste</div>
+        <div class="grafico kpi">teste</div>
+        <div class="grafico kpi">teste 2</div>
+        <div class="grafico kpi">teste</div>
+        <div class="grafico filtros">
+          <label for=""></label>
+          <label for="ano">Ano:</label>
+          <select id="selectAno" name="ano" onchange="atualizarDados()">
+            <option value=2021>2021</option>
+            <option value=2022>2022</option>
+            <option value=2023>2023</option>
+            <option value=2024>2024</option>
+            <option value=2025>2025</option>
+          </select>
+        </div>
+      </div>
       <div class="linha-graficos">
-        <div class="grafico" style="width: 300px; height: 300px;">
+        <div class="grafico">
           <h2 style="font-weight: 200; color: gray; font-size: 15px;">
             Mapa de Calor do IDEB por Estado
           </h2>
-          <div id="mapaCalorGeo"></div>
+          <div id="mapaCalorGeo" style="width: 100%; height: 100%;"></div>
 
         </div>
         <div class="grafico">
@@ -55,211 +72,342 @@
           <canvas id="graficoLinha"></canvas>
         </div>
         <div class="grafico">
-          <canvas id="graficoPizza"></canvas>
+          <canvas id="graficoBarras2"></canvas>
         </div>
       </div>
     </main>
   </div>
 </body>
 </div>
+<script>
+  const ctx = document.getElementById('graficoBarras');
 
-<div cla </html>
-  <script>
-    const ctx = document.getElementById('graficoBarras');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
+      datasets: [{
+        label: 'IDEB',
+        data: [6.2, 7.0, 5.3, 3.3, 8.0],
+        backgroundColor: '#2c0475',
+        borderRadius: 6,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: 'Média do IDEB por região' },
+        legend: { display: true },
 
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
-        datasets: [{
-          label: 'IDEB',
-          data: [6.2, 7.0, 5.3, 3.3, 8.0],
-          backgroundColor: '#2c0475',
-          borderRadius: 6,
-          borderSkipped: false
-        }]
+        tooltip: { mode: 'index', intersect: false }
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: { display: true, text: 'Média do IDEB por região' },
-          legend: { display: true },
-
-          tooltip: { mode: 'index', intersect: false }
+      scales: {
+        x: {
+          grid: { display: false }
         },
-        scales: {
-          x: {
-            grid: { display: false }
-          },
-          y: {
-            beginAtZero: true,
-            grid: { color: 'rgba(0,0,0,0.06)' },
-            ticks: { precision: 0 }
-          }
+        y: {
+          beginAtZero: true,
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { precision: 0 }
         }
-      }
-    });
-
-    const ctxLinha = document.getElementById('graficoLinha');
-
-    new Chart(ctxLinha, {
-      type: 'line',
-      data: {
-        labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
-        datasets: [{
-          label: 'IDEB',
-          data: [4, 2, 3, 6, 7, 10],
-          borderColor: '#2c0475',
-          backgroundColor: 'rgba(44, 4, 117, 0.5)',
-          tension: 0.3,
-          fill: true,
-          pointRadius: 4,
-          pointBackgroundColor: '#4B7BF5'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Evolução do IDEB na Escola X ao longo dos anos'
-          },
-          legend: { diplay: true, position: 'bottom', labels: { boxWidth: 20, padding: 15, font: { size: 14, weight: '200' }, color: 'grey' } },
-          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}` } }
-        },
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Ano'
-            },
-            grid: {
-              display: false
-            }
-          },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              stepSize: 0.5
-            },
-            grid: {
-              color: 'rgba(0,0,0,0.05)'
-            }
-          }
-        }
-      }
-    });
-    const ctxPizza = document.getElementById('graficoPizza');
-
-    new Chart(ctxPizza, {
-      type: 'bar',
-      data: {
-        labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
-        datasets: [{
-          label: 'Verba recebida (em milhões)',
-          data: [133.000, 241.000, 153.000, 135.000, 181.000],
-          backgroundColor: '#2c0475',
-          borderColor: '#fff',
-          borderWidth: 2,
-          borderRadius: 6,
-          borderSkipped: false
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: { display: true, text: 'Verba total por região', color: 'black', font: { size: 14, weight: '400' }, },
-          legend: { diplay: true, position: 'bottom', labels: { boxWidth: 20, padding: 15, font: { size: 14, weight: '200' }, color: 'grey' } },
-          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}` } }
-        },
-        scales: {
-          x: {
-            grid: { display: false }
-          },
-          y: {
-            beginAtZero: true,
-            grid: { color: 'rgba(0,0,0,0.06)' },
-            ticks: { precision: 0 }
-          }
-        }
-      }
-    });
-
-  </script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDPpXaJeeEDVazesF8nBZONca1a8cwbE&callback=initMap"></script>
-  <script>
-    async function initMap() {
-
-      try {
-
-        const response = await fetch("./geojsons/subprefeituras-sp.geojson");
-        if (!response.ok) {
-          throw new Error('Não foi possível carregar o GeoJSON!');
-        }
-
-        const bounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(-24.20, -47.00),
-          new google.maps.LatLng(-23.30, -46.20)
-        );
-
-        const geojson = response.json();
-
-        const mapOptions = {
-          zoom: 9,
-          center: { lat: -23.55, lng: -46.63 },
-          mapTypeId: google.maps.MapTypeId.SATELLITE,
-          disableDoubleClickZoom: true,
-          streetViewControl: false,
-          fullscreenControl: false,
-          mapTypeControl: false,
-          restriction: {
-            latLngBounds: bounds,
-            strictBounds: false,
-          },
-          labels: false
-        };
-
-        var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), mapOptions);
-
-        map.data.loadGeoJson("./geojsons/subprefeituras-sp.geojson");
-        map.data.setStyle(feature => {
-          let nome = feature.getProperty('nome');
-          var cor = nome === 'Pinheiros' ? '#FF0000' : '#00FF00';
-          return {
-            fillColor: cor,
-            strokeWeight: 1,
-            fillOpacity: 1,
-            strokeColor: '#333',
-          };
-        });
-
-        map.data.addListener("click", function (event) {
-          const nome = event.feature.getProperty("name");
-
-          const infoWindow = new google.maps.InfoWindow({
-            content: `
-          <div style="font-size:16px; font-weight:bold;">${nome}</div>
-          <div style="margin-top:8px;">IDEB: 6.5</div>
-          <div>Meta: 7.0</div>
-          `,
-            position: event.latLng
-          });
-          infoWindow.open(map);
-        });
-
-        map.data.addListener('mouseover', e => {
-          map.data.overrideStyle(e.feature, { fillOpacity: 0.9 });
-        });
-        map.data.addListener('mouseout', e => {
-          map.data.revertStyle();
-        });
-      } catch (error) {
-        console.error(error);
       }
     }
+  });
 
-  </script>
+  const ctxLinha = document.getElementById('graficoLinha');
+
+  new Chart(ctxLinha, {
+    type: 'line',
+    data: {
+      labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+      datasets: [{
+        label: 'Nota média (IDEB)',
+        data: [8.54, 8.12, 7.97, 7.67, 7.4, 6.98],
+        borderColor: '#2c0475',
+        backgroundColor: 'rgba(44, 4, 117, 0.5)',
+        tension: 0.3,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#4B7BF5'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Nota média do IDEB ao longo dos anos'
+        },
+        legend: { diplay: true, position: 'bottom', labels: { boxWidth: 20, padding: 15, font: { size: 14, weight: '200' }, color: 'grey' } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}` } }
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Ano'
+          },
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 0.5
+          },
+          grid: {
+            color: 'rgba(0,0,0,0.05)'
+          }
+        }
+      }
+    }
+  });
+  // Configuração do gráfico bidirecional
+  const ctxBarras2 = document.getElementById('graficoBarras2');
+
+  // Dados para o gráfico
+  const zonas = ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'];
+  let dadosIDEB = [6.2, 7.0, 5.3, 3.3, 8.0];
+  let dadosVerba = [133, 241, 153, 135, 181]; // Valores em milhões
+
+  // Encontrar o valor máximo para normalizar os dados
+  const maxIDEB = Math.max(...dadosIDEB);
+  const maxVerba = Math.max(...dadosVerba);
+
+  // Normalizar os dados para a mesma escala (0-1)
+  const dadosIDEBNormalizados = dadosIDEB.map(v => v / maxIDEB);
+  const dadosVerbaNormalizados = dadosVerba.map(v => v / maxVerba);
+
+  // Escalar para o intervalo desejado (0-5 para cada lado)
+  const escala = 5;
+  const dadosIDEBNegativo = dadosIDEB.map(v => -(v / maxIDEB * escala));
+  const dadosVerbaPositivo = dadosVerba.map(v => (v / maxVerba * escala));
+
+  const data = {
+    labels: zonas,
+    datasets: [
+      {
+        label: 'IDEB',
+        data: dadosIDEBNegativo, // Valores negativos para o lado esquerdo
+        backgroundColor: 'rgba(0, 97, 242, 0.8)',
+        borderWidth: 1,
+        xAxisID: 'x1' // Usa o mesmo eixo X para ambos os conjuntos
+      },
+      {
+        label: 'Verba (milhões R$)',
+        data: dadosVerbaPositivo, // Valores positivos para o lado direito
+        backgroundColor: 'rgba(0, 180, 216, 0.8)',
+        borderWidth: 1,
+        xAxisID: 'x1' // Usa o mesmo eixo X para ambos os conjuntos
+      }
+    ]
+  };
+
+  new Chart(ctxBarras2, {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
+
+      // Ponto chave 1: Define o eixo Y como o eixo principal (gráfico horizontal)
+      indexAxis: 'y',
+
+      plugins: {
+        title: {
+          display: true,
+          text: 'Gráfico de Barras Bidirecional (Tornado)'
+        },
+        tooltip: {
+          callbacks: {
+            // Ponto chave 2: Formata a tooltip para mostrar valores positivos
+            label: function (context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              // Mostra o valor absoluto (positivo)
+              label += Math.abs(context.parsed.x);
+              return label;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          // Ponto chave 3: Empilha os dados no eixo X
+          stacked: true,
+          ticks: {
+            // Ponto chave 4: Formata os rótulos do eixo X para serem positivos
+            callback: function (value, index, values) {
+              return Math.abs(value); // Mostra o valor absoluto
+            }
+          },
+          title: {
+            display: false
+          }
+        },
+        y: {
+          // Ponto chave 5: Empilha os dados no eixo Y (categorias)
+          // Isso garante que as barras comecem no centro
+          stacked: true,
+          title: {
+            display: true,
+            text: 'Categorias'
+          }
+        }
+      }
+    }
+  });
+
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDPpXaJeeEDVazesF8nBZONca1a8cwbE&callback=initMap"></script>
+<script>
+  async function initMap() {
+
+    try {
+
+      const response = await fetch("./geojsons/subprefeituras-sp.geojson");
+      if (!response.ok) {
+        throw new Error('Não foi possível carregar o GeoJSON!');
+      }
+
+      const bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-24.20, -47.00),
+        new google.maps.LatLng(-23.30, -46.20)
+      );
+
+      const geojson = response.json();
+
+      const mapOptions = {
+        zoom: 9,
+        center: { lat: -23.55, lng: -46.63 },
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        disableDoubleClickZoom: true,
+        streetViewControl: false,
+        fullscreenControl: false,
+        mapTypeControl: false,
+        restriction: {
+          latLngBounds: bounds,
+          strictBounds: false,
+        },
+        labels: false
+      };
+
+      var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), mapOptions);
+
+      map.data.loadGeoJson("./geojsons/subprefeituras-sp.geojson");
+      map.data.setStyle(feature => {
+        let nome = feature.getProperty('nome');
+        var cor = nome === 'Pinheiros' ? '#FF0000' : '#00FF00';
+        return {
+          fillColor: cor,
+          strokeWeight: 1,
+          fillOpacity: 1,
+          strokeColor: '#333',
+        };
+      });
+
+      map.data.addListener("click", function (event) {
+        const nome = event.feature.getProperty("name");
+
+        let ideb = Math.floor(Math.random() * 4) + 4;
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: `
+          <div style="font-size:16px; font-weight:bold;">${nome}</div>
+          <div style="margin-top:8px;">IDEB: ${ideb}</div>
+          <div>Meta: 7.0</div>
+          `,
+          position: event.latLng
+        });
+        infoWindow.open(map);
+      });
+
+      map.data.addListener('mouseover', e => {
+        map.data.overrideStyle(e.feature, { fillOpacity: 0.9 });
+      });
+      map.data.addListener('mouseout', e => {
+        map.data.revertStyle();
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function atualizarDados() {
+    const selectAno = document.getElementById('selectAno').value;
+
+    const dadosMockados = {
+      2020: {
+        graficoBarras: [5.20, 6.30, 7.45, 8.10, 9.25],
+        graficoBarras2: {
+          ideb: [-5.20, -6.30, -7.45, -8.10, -9.25],  // Valores negativos para IDEB
+          verba: [133, 241, 153, 135, 181]  // Valores positivos para Verba
+        }
+      },
+      2021: {
+        graficoBarras: [5.35, 6.45, 7.55, 8.25, 9.35],
+        graficoBarras2: {
+          ideb: [-5.35, -6.45, -7.55, -8.25, -9.35],
+          verba: [140, 250, 160, 142, 190]
+        }
+      },
+      2022: {
+        graficoBarras: [5.50, 6.60, 7.70, 8.40, 9.50],
+        graficoBarras2: {
+          ideb: [-5.50, -6.60, -7.70, -8.40, -9.50],
+          verba: [150, 260, 170, 152, 200]
+        }
+      },
+      2023: {
+        graficoBarras: [5.67, 6.77, 7.85, 8.55, 9.67],
+        graficoBarras2: {
+          ideb: [-5.67, -6.77, -7.85, -8.55, -9.67],
+          verba: [160, 270, 180, 162, 210]
+        }
+      },
+      2024: {
+        graficoBarras: [5.80, 6.90, 8.00, 8.70, 9.80],
+        graficoBarras2: {
+          ideb: [-5.80, -6.90, -8.00, -8.70, -9.80],
+          verba: [170, 280, 190, 172, 220]
+        }
+      },
+      2025: {
+        graficoBarras: [6.00, 7.10, 8.20, 8.90, 10.00],
+        graficoBarras2: {
+          ideb: [-6.00, -7.10, -8.20, -8.90, -10.00],
+          verba: [180, 290, 200, 182, 230]
+        }
+      }
+    };
+
+    const dadosAnoSelecionado = dadosMockados[selectAno];
+    
+    dadosIDEB = dadosAnoSelecionado.graficoBarras2.ideb;
+    dadosVerba = dadosAnoSelecionado.graficoBarras2.verba;
+    
+    atualizarGrafico('graficoBarras2', dadosAnoSelecionado.graficoBarras2);
+    atualizarGrafico('graficoBarras', dadosAnoSelecionado.graficoBarras);
+
+  }
+
+  function atualizarGrafico(idGrafico, novosDados) {
+  const grafico = Chart.getChart(idGrafico);
+  if (grafico) {
+    if (idGrafico === 'graficoBarras2') {
+      dadosIDEB = novosDados.ideb;
+      dadosVerba = novosDados.verba;
+    } else {
+      dadosIDEB = novosDados;
+    }
+    grafico.update();
+  }
+}
+</script>
