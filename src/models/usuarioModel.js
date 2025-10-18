@@ -1,10 +1,10 @@
 var database = require("../database/config")
 
-function cadastrar(usuario, email, senha) {
+function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", usuario, email, senha);
     
     var instrucaoSql = `
-        INSERT INTO TB_Usuarios (usuario, email, senha) VALUES ('${usuario}', '${email}', '${senha}');
+        INSERT INTO TB_Usuarios (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -13,18 +13,17 @@ function cadastrar(usuario, email, senha) {
 function logar(usuario, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", usuario, senha)
     var instrucaoSql = `
-        SELECT id, usuario, email, senha FROM TB_Usuarios WHERE usuario = '${usuario}' AND senha = '${senha}';
+        SELECT id, nome, email, senha FROM TB_Usuarios WHERE nome = '${usuario}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
 function getInfoUser(id) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function getInfoUser():", id);
 
     var instrucaoSql = `
             SELECT id, 
-                usuario, 
+                nome, 
                 email, 
                 senha, 
                 date_format(criado_em, '%d/%m/%Y') as criado_em
