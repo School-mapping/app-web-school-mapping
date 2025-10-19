@@ -23,8 +23,13 @@ function getInfoUser() {
 
         if (resposta.ok) {
           console.log('Busquei informações do usuário', resposta)
-         resposta.json()
-          .then(function (infoUser) {
+         return resposta.json()
+          
+        } else {
+          throw "Erro ao buscar dados no data base";
+        }
+    })
+        .then(function (infoUser) {
             console.log(infoUser)
             bdUsuario.value = infoUser[0].nome;
             bdEmail.value = infoUser[0].email;
@@ -36,11 +41,6 @@ function getInfoUser() {
             senhaInfo = infoUser[0].senha;
             dataInfo = infoUser[0].criado_em;
     })
-        } else {
-          throw "Erro ao buscar dados no data base";
-        }
-    })
-        
         .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
     });
