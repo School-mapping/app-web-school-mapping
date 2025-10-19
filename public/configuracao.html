@@ -12,11 +12,13 @@
   <div class="container">
     <aside class="barraLat">
     <img src="./assets/user.png" alt="" class="iconepessoa"/>
+    <span id="nomeUser"></span>
 
       <nav>
         <a href="index.html">Home</a>
+        <a href="dash.html">Painel</a>
         <a class="ativo" href="#">Configuração</a>
-        <a href="dash.html">Sair</a>
+        <a href="index.html">Sair</a>
       </nav>
     </aside>
 
@@ -26,13 +28,13 @@
 
         <div class="info-bloco">
           <label for="bdUsuario">Usuário</label>
-          <input type="text" id="bdUsuario" placeholder="Xxxxx" />
+          <input type="text" id="bdUsuario" placeholder="Xxxxx" disabled/>
         </div>
 
         <div class="info-bloco">
           <label for="bdEmail">E-Mail</label>
           <div class="input-wrapper">
-            <input type="email" id="bdEmail" placeholder="x@z.com" />
+            <input type="email" id="bdEmail" placeholder="x@z.com" disabled/>
             <button onclick="atualizarEmailMensagem()" id="botaoAtualizarEmail">
               <img src="./assets/icon_att.png" />
             </button>
@@ -55,7 +57,7 @@
         <div class="info-bloco">
           <label for="bdSenha">Senha</label>
           <div class="input-wrapper">
-            <input type="password" id="bdSenha" value="senha do sujeito" />
+            <input type="password" id="bdSenha" value="senha do sujeito" disabled/>
             <button onclick="visualizarSenha()" id="botaoMascaraSenha">
               <img id="mascaraImagem" src="./assets/senha_oculta.png" alt="maskIMG" />
             </button>
@@ -67,7 +69,7 @@
           <div id="confirmarSenha" class="confirm-box">
             <h3>Atualizar Senha</h3>
             <p>Insira a nova senha</p>
-            <input type="password" id="novaSenha" onchange="verificarAtualizarSenha()" />
+            <input type="password" id="novaSenha" onchange="verificarAtualizarSenha()"/>
             <span id="mensagemAtualizarSenha"></span>
             <p>Senha atual</p>
             <input type="password" id="confirmarSenhaSenha" />
@@ -80,7 +82,7 @@
 
         <div class="info-bloco">
           <label for="bdData">Data de criação</label>
-          <input type="text" id="bdData" placeholder="xx/xx/xxxx" />
+          <input type="text" id="bdData" placeholder="xx/xx/xxxx" disabled/>
         </div>
 
         <div class="delete-bloco">
@@ -88,7 +90,7 @@
             <div id="confirmarDelete" class ="confirm-box">
                 <h3>Deletar Conta</h3>
 
-                <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUIDA PERMANENTEMENTE.</p>
+                <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUÍDA PERMANENTEMENTE.</p>
 
                 <button onclick="deletarConta()">Deletar</button>
                 <button id="voltarbt" onclick="voltarDelete()">Voltar</button>

@@ -169,6 +169,7 @@ function cadastrar() {
     
             if (resposta.ok) {
                 console.log('Credenciais enviadas para o backend.')
+                document.getElementById("mensagemCadastro").style.display = "block";
               
                 setTimeout(() => {
                     window.location = "login.html";
@@ -179,7 +180,6 @@ function cadastrar() {
           })
           .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                // document.getElementById(id-da-mensagem).innerHTML = "Erro ao finalizar cadastro.";
           });
     
         return false;

@@ -25,6 +25,15 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 30px 0;
+  font-size: 19px;
+}
+
+#nomeUser {
+  display: flex;
+  position: absolute;
+  top: 15%;
+  color: white;
+  text-decoration: underline;
 }
 
 .iconePerfil {
@@ -201,6 +210,7 @@ body {
     object-fit: cover;
     border: 2px solid white;
     margin-top: 10px;
+    margin-bottom: 100%;
   }
   #confirmarDelete h3{
   color: red !important;
@@ -216,4 +226,8 @@ body {
   }
   #voltarbt{
     background-color: #24a4f4 !important;
+  }
+
+  #bdUsuario{
+
   }

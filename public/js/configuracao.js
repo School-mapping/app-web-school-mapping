@@ -35,6 +35,7 @@ function getInfoUser() {
             bdEmail.value = infoUser[0].email;
             bdSenha.value = infoUser[0].senha;
             bdData.value = infoUser[0].criado_em;
+            nomeUser.innerHTML = infoUser[0].nome;
 
             usuarioInfo = infoUser[0].usuario;
             emailInfo = infoUser[0].email;
@@ -108,6 +109,7 @@ function atualizarEmail() {
 
 function atualizarEmailMensagem() {
     document.getElementById("confirmarEmail").style.display = "block";
+    document.getElementById("confirmarSenha").style.display = "none";
 }
 
 function voltarEmail() {
@@ -225,6 +227,7 @@ function atualizarSenha() {
 
 function atualizarSenhaMensagem() {
     document.getElementById("confirmarSenha").style.display = "block";
+    document.getElementById("confirmarEmail").style.display = "none";
 }
 
 function voltarSenha() {
