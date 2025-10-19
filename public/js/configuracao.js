@@ -13,6 +13,7 @@ function getInfoUser() {
 
     fetch(`/usuarios/getInfoUser/${id}`, {
         method: "GET",
+        cache:"no-store",
         headers: {
             "Content-Type": "application/json",
         }
@@ -22,23 +23,24 @@ function getInfoUser() {
 
         if (resposta.ok) {
           console.log('Busquei informações do usuário', resposta)
-          return resposta.json();
-        } else {
-          throw "Erro ao buscar dados no data base";
-        }
-    })
-        .then(function (infoUser) {
+         resposta.json()
+          .then(function (infoUser) {
             console.log(infoUser)
-            bdUsuario.innerHTML = infoUser[0].usuario;
-            bdEmail.innerHTML = infoUser[0].email;
-            bdSenha.innerHTML = "********";
-            bdData.innerHTML = infoUser[0].criado_em;
+            bdUsuario.value = infoUser[0].nome;
+            bdEmail.value = infoUser[0].email;
+            bdSenha.value = infoUser[0].senha;
+            bdData.value = infoUser[0].criado_em;
 
             usuarioInfo = infoUser[0].usuario;
             emailInfo = infoUser[0].email;
             senhaInfo = infoUser[0].senha;
             dataInfo = infoUser[0].criado_em;
     })
+        } else {
+          throw "Erro ao buscar dados no data base";
+        }
+    })
+        
         .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
     });
