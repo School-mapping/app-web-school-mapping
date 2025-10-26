@@ -46,7 +46,7 @@
         <div class="grafico filtros">
           <label for=""></label>
           <label for="ano">Ano:</label>
-          <select id="selectAno" name="ano" onchange="atualizarDados()">
+          <select id="selectAno" name="ano" onchange="atualizarDash()">
             <option value=2021>2021</option>
             <option value=2022>2022</option>
             <option value=2023>2023</option>
@@ -171,35 +171,29 @@
 
   // Dados para o gráfico
   const zonas = ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'];
-  let dadosIDEB = [6.2, 7.0, 5.3, 3.3, 8.0];
-  let dadosVerba = [133, 241, 153, 135, 181]; // Valores em milhões
+  var dadosIDEB = [6.2, 7.0, 5.3, 3.3, 8.0];
+  var dadosVerba = [133, 241, 153, 135, 181];
 
-  // Encontrar o valor máximo para normalizar os dados
-  const maxIDEB = Math.max(...dadosIDEB);
-  const maxVerba = Math.max(...dadosVerba);
+  var dadosIDEBNegativoGrafico = [...dadosIDEB];
+  var dadosVerbaPositivoGrafico = [...dadosVerba];
 
-  // Normalizar os dados para a mesma escala (0-1)
-  const dadosIDEBNormalizados = dadosIDEB.map(v => v / maxIDEB);
-  const dadosVerbaNormalizados = dadosVerba.map(v => v / maxVerba);
-
-  // Escalar para o intervalo desejado (0-5 para cada lado)
-  const escala = 5;
-  const dadosIDEBNegativo = dadosIDEB.map(v => -(v / maxIDEB * escala));
-  const dadosVerbaPositivo = dadosVerba.map(v => (v / maxVerba * escala));
+  function atualizarDash() {
+    atualizarGraficos();
+  }
 
   const data = {
     labels: zonas,
     datasets: [
       {
         label: 'IDEB',
-        data: dadosIDEBNegativo, // Valores negativos para o lado esquerdo
+        data: dadosIDEBNegativoGrafico, // Valores negativos para o lado esquerdo
         backgroundColor: 'rgba(0, 97, 242, 0.8)',
         borderWidth: 1,
         xAxisID: 'x1' // Usa o mesmo eixo X para ambos os conjuntos
       },
       {
         label: 'Verba (milhões R$)',
-        data: dadosVerbaPositivo, // Valores positivos para o lado direito
+        data: dadosVerbaPositivoGrafico, // Valores positivos para o lado direito
         backgroundColor: 'rgba(0, 180, 216, 0.8)',
         borderWidth: 1,
         xAxisID: 'x1' // Usa o mesmo eixo X para ambos os conjuntos
@@ -207,7 +201,7 @@
     ]
   };
 
-  new Chart(ctxBarras2, {
+  const grafico2 = new Chart(ctxBarras2, {
     type: 'bar',
     data: data,
     options: {
@@ -249,6 +243,9 @@
           },
           title: {
             display: false
+          },
+          legends: {
+            display: false
           }
         },
         y: {
@@ -258,11 +255,36 @@
           title: {
             display: true,
             text: 'Categorias'
+          },
+          legends: {
+            display: false
           }
         }
       }
     }
   });
+  function atualizarDadosGraficoBarras2(dadosIDEB, dadosVerba) {
+
+    const maxIDEB = Math.max(...dadosIDEB);
+    const maxVerba = Math.max(...dadosVerba);
+
+    // Normalizar os dados para a mesma escala (0-1)
+    const dadosIDEBNormalizados = dadosIDEB.map(v => v / maxIDEB);
+    const dadosVerbaNormalizados = dadosVerba.map(v => v / maxVerba);
+
+    // Escalar para o intervalo desejado (0-5 para cada lado)
+    const escala = 10;
+    const dadosIDEBNegativo = dadosIDEB.map(v => -(v / maxIDEB * escala));
+    const dadosVerbaPositivo = dadosVerba.map(v => (v / maxVerba * escala));
+
+    // Atualizar os dados no gráfico
+    grafico2.data.datasets[0].data = dadosIDEBNegativo;
+    grafico2.data.datasets[1].data = dadosVerbaPositivo;
+
+    grafico2.update(); 
+  }
+
+
 
 </script>
 <script async defer
@@ -340,74 +362,23 @@
     }
   }
 
-  function atualizarDados() {
+  function atualizarGraficos() {
     const selectAno = document.getElementById('selectAno').value;
 
     const dadosMockados = {
-      2020: {
-        graficoBarras: [5.20, 6.30, 7.45, 8.10, 9.25],
-        graficoBarras2: {
-          ideb: [-5.20, -6.30, -7.45, -8.10, -9.25],  // Valores negativos para IDEB
-          verba: [133, 241, 153, 135, 181]  // Valores positivos para Verba
-        }
-      },
-      2021: {
-        graficoBarras: [5.35, 6.45, 7.55, 8.25, 9.35],
-        graficoBarras2: {
-          ideb: [-5.35, -6.45, -7.55, -8.25, -9.35],
-          verba: [140, 250, 160, 142, 190]
-        }
-      },
-      2022: {
-        graficoBarras: [5.50, 6.60, 7.70, 8.40, 9.50],
-        graficoBarras2: {
-          ideb: [-5.50, -6.60, -7.70, -8.40, -9.50],
-          verba: [150, 260, 170, 152, 200]
-        }
-      },
-      2023: {
-        graficoBarras: [5.67, 6.77, 7.85, 8.55, 9.67],
-        graficoBarras2: {
-          ideb: [-5.67, -6.77, -7.85, -8.55, -9.67],
-          verba: [160, 270, 180, 162, 210]
-        }
-      },
-      2024: {
-        graficoBarras: [5.80, 6.90, 8.00, 8.70, 9.80],
-        graficoBarras2: {
-          ideb: [-5.80, -6.90, -8.00, -8.70, -9.80],
-          verba: [170, 280, 190, 172, 220]
-        }
-      },
-      2025: {
-        graficoBarras: [6.00, 7.10, 8.20, 8.90, 10.00],
-        graficoBarras2: {
-          ideb: [-6.00, -7.10, -8.20, -8.90, -10.00],
-          verba: [180, 290, 200, 182, 230]
-        }
-      }
+      2020: [[5.20, 6.30, 7.45, 8.10, 9.25], [133, 241, 153, 135, 181]],
+      2021: [[5.35, 6.45, 7.55, 8.25, 9.35], [140, 250, 160, 142, 190]],
+      2022: [[5.50, 6.60, 7.70, 8.40, 9.50], [150, 260, 170, 152, 200]],
+      2023: [[5.67, 6.77, 7.85, 8.55, 9.67], [160, 270, 180, 162, 210]],
+      2024: [[5.80, 6.90, 8.00, 8.70, 9.80], [170, 280, 190, 172, 220]],
+      2025: [[6.00, 7.10, 8.20, 8.90, 10.00], [180, 290, 200, 182, 230]]
     };
 
-    const dadosAnoSelecionado = dadosMockados[selectAno];
-    
-    dadosIDEB = dadosAnoSelecionado.graficoBarras2.ideb;
-    dadosVerba = dadosAnoSelecionado.graficoBarras2.verba;
-    
-    atualizarGrafico('graficoBarras2', dadosAnoSelecionado.graficoBarras2);
-    atualizarGrafico('graficoBarras', dadosAnoSelecionado.graficoBarras);
+    const dadosIDEB = dadosMockados[selectAno][0];
+    const dadosVerba = dadosMockados[selectAno][1];   
+
+    atualizarDadosGraficoBarras2(dadosIDEB, dadosVerba);
 
   }
 
-  function atualizarGrafico(idGrafico, novosDados) {
-  const grafico = Chart.getChart(idGrafico);
-  if (grafico) {
-    if (idGrafico === 'graficoBarras2') {
-      dadosIDEB = novosDados.ideb;
-      dadosVerba = novosDados.verba;
-    } else {
-      dadosIDEB = novosDados;
-    }
-    grafico.update();
-  }
-}
 </script>
