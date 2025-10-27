@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/dash.css" />
+    <link rel="stylesheet" href="../css/escolas.css" />
+</head>
+
+<body>
+
+    <aside class="barraLateral-esquerda"> <img src="../assets/user.png" alt="" class="iconepessoa" />
+        <div class="conteudo-central">
+            <nav class="menu-lateral">
+                <a href="../dash.html" class="btn-menu">Home</a>
+                <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+                <a href="../configuracao.html" class="btn-menu">Configuração</a>
+            </nav>
+            <ss="sair-section"> <!-- Fechar seção -->
+                <a href="#" class="btn-menu">Sair</a>
+        </div>
+    </aside>
+
+    <main class="conteudo">
+        <header class="classHitorico">
+            <span>Dashboard principal > Escolas</span>
+        </header>
+
+        <section class="classPainelEscolas">
+            <h1 class="titleEscolas">Lista de Escolas do Município</h1>
+
+            <div class="listaEscolas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome da Escola</th>
+                            <th>Código INEP</th>
+                            <th>IDEB</th>
+                            <th>Endereço</th>
+                            <th>CEP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="window.location.href='dashPorEscola.html'">
+                            <td>E.M. Jeremias Jubileu</td>
+                            <td>35000001</td>
+                            <td>5.3</td>
+                            <td>Rua Jeremia Jubileu, 45 - Itaquera</td>
+                            <td>08080-808</td>
+                        </tr>
+                        <tr>
+                            <td>E.M. Carlos Almeida</td>
+                            <td>35000002</td>
+                            <td>5.8</td>
+                            <td>Rua Carlos Almeida, 78 - Capão Redondo</td>
+                            <td>09080-808</td>
+                        </tr>
+
+                        <tr>
+                            <td>E.M. Ana Beatriz Silva</td>
+                            <td>35000003</td>
+                            <td>6.1</td>
+                            <td>Av. das Flores, 120 - Vila Mariana</td>
+                            <td>04110-200</td>
+                        </tr>
+
+                        <tr>
+                            <td>E.M. João Batista de Souza</td>
+                            <td>35000004</td>
+                            <td>4.9</td>
+                            <td>Rua São Bento, 89 - Penha</td>
+                            <td>03650-100</td>
+                        </tr>
+
+                        <tr>
+                            <td>E.M. Maria das Graças Oliveira</td>
+                            <td>35000005</td>
+                            <td>6.5</td>
+                            <td>Rua das Palmeiras, 310 - Lapa</td>
+                            <td>05020-080</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
