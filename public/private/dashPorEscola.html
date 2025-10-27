@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="../css/dash.css" />
+<link rel="stylesheet" href="../css/dashPorEscola.css" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash específica</title>
+</head>
+
+<body>
+  <aside class="barraLateral-esquerda">
+      <img src="../assets/user.png" alt="" class="iconepessoa" />
+
+      <div class="conteudo-central">
+
+        <nav class="menu-lateral">
+          <a href="../dash.html" class="btn-menu">Home</a>
+          <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="../configuracao.html" class="btn-menu">Configuração</a>
+        </nav><ss="sair-section">
+            <!-- Fechar seção -->
+          <a href="#" class="btn-menu">Sair</a>
+
+      </div>
+    </aside>
+
+    <Main class="conteudo">
+        <div class="classHitorico">
+            <div class="">Dashboard principal > Escolas > E.M. Jeremias Jubileu</div>
+            <button id="buttonCompararEscola">Comparar com melhor escola do ranking</button>
+        </div>
+
+        <div class="classKpis" id="divKpis">
+            <div class="classKpi classKpi1">
+                <b>7.8 (-1🔽)</b><br>
+                IDEB atual 
+            </div>
+            <div class="classKpi classKpi2">
+                <b>300k (+R$50k🔼)</b><br>
+               Último repasse Financeiro - PTRF  
+            </div>
+            <div class="classKpi classKpi3">
+                <b>48º Lugar (+3🔼)</b><br>
+               Ranking de melhores escolas (IDEB) 
+            </div>
+        </div>
+
+        <div class="classGraficoPrincipal">
+            <canvas id="canvasGraficoPrincipal"></canvas>
+        </div>
+   
+    </Main>
+
+</body>
+
+</html>
+<script>
+
+const ctx = document.getElementById('canvasGraficoPrincipal');
+
+const mixedChart = new Chart(ctx, {
+    type: 'bar', // Tipo base (pode ser qualquer um, mas 'bar' é comum)
+    data: {
+        labels: ['2023', '2024'],
+        datasets: [
+            {
+                type: 'bar',
+                label: 'IDEB',
+                data: [8.8, 7.8],
+                yAxisID: 'LeftY', // eixo da esquerda
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                type: 'line',
+                label: 'Repasses Financeiros',
+                data: [250000, 300000],
+                yAxisID: 'RightY', // eixo da direita
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                tension: 0.3
+            }
+        ]
+    },
+    options: {
+        responsive: false, // desativa redimensionamento automático
+        scales: {
+            LeftY: {
+                type: 'linear',
+                position: 'left',
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Escala do IDEB'
+                }
+            },
+            RightY: {
+                type: 'linear',
+                position: 'right',
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Repasses financeiros - PTRF'
+                },
+                grid: {
+                    drawOnChartArea: false // evita sobreposição da grade
+                }
+            }
+        }
+    }
+});
+
+
+</script>
