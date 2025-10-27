@@ -9,11 +9,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body onload="carregarNome()">
   <div class="dashboard">
-    <aside class="barraLateral-esquerda">
-      <img src="./assets/user.png" alt="" class="iconepessoa" />
-
+<aside class="barraLateral-esquerda">
+    <img src="./assets/user.png" alt="" class="iconepessoa"/>
+    <span id="nomeUser"></span>
       <div class="conteudo-central">
 
         <nav class="menu-lateral">
@@ -68,8 +68,15 @@
 </body>
 </div>
 
-<div cla </html>
-  <script>
+  <div cla
+</html>
+
+<script>
+  function carregarNome() {
+    nomeUser.innerHTML = sessionStorage.USUARIO;
+  }
+</script>
+<script>
     const ctx = document.getElementById('graficoBarras');
 
     new Chart(ctx, {
