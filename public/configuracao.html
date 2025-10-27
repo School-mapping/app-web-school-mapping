@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configurações - School Mapping</title>
   <link rel="stylesheet" href="./css/configuracao.css" />
+  <link rel="stylesheet" href="css/dash.css">
   <script src="./js/configuracao.js"></script>
 </head>
+
 <body onload="getInfoUser()">
 
   <div class="container">
-    <aside class="barraLat">
-    <img src="./assets/user.png" alt="" class="iconepessoa"/>
+    <aside class="barraLateral-esquerda">
+      <img src="./assets/user.png" alt="" class="iconepessoa" />
 
-      <nav>
-        <a href="index.html">Home</a>
-        <a class="ativo" href="#">Configuração</a>
-        <a href="dash.html">Sair</a>
-      </nav>
+      <div class="conteudo-central">
+
+        <nav class="menu-lateral">
+          <a href="dash.html" class="btn-menu">Home</a>
+          <a href="private/escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="configuracao.html" class="btn-menu">Configuração</a>
+        </nav><ss="sair-section">
+          <!-- Fechar seção -->
+          <a href="#" class="btn-menu">Sair</a>
+
+      </div>
     </aside>
 
     <main class="conteudoPrincipal">
@@ -62,7 +71,7 @@
             <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha">
               <img src="./assets/icon_att.png" />
             </button>
-        </div>
+          </div>
 
           <div id="confirmarSenha" class="confirm-box">
             <h3>Atualizar Senha</h3>
@@ -84,17 +93,18 @@
         </div>
 
         <div class="delete-bloco">
-            <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
-            <div id="confirmarDelete" class ="confirm-box">
-                <h3>Deletar Conta</h3>
+          <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
+          <div id="confirmarDelete" class="confirm-box">
+            <h3>Deletar Conta</h3>
 
-                <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUIDA PERMANENTEMENTE.</p>
+            <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUIDA PERMANENTEMENTE.</p>
 
-                <button onclick="deletarConta()">Deletar</button>
-                <button id="voltarbt" onclick="voltarDelete()">Voltar</button>
-            </div>
+            <button onclick="deletarConta()">Deletar</button>
+            <button id="voltarbt" onclick="voltarDelete()">Voltar</button>
+          </div>
         </div>
-        </section>
+      </section>
     </main>
 </body>
+
 </html>
