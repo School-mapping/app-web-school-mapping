@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações - School Mapping</title>
+  <link rel="stylesheet" href="../css/configuracao.css" />
+  <link rel="stylesheet" href="../css/dash.css">
+  <script src="../js/configuracao.js"></script>
+</head>
+
+<body onload="getInfoUser(); carregarNome();">
+
+  <div class="container">
+    <aside class="barraLateral-esquerda">
+      <img src="../assets/user.png" alt="" class="iconepessoa" />
+      <div class="conteudo-central">
+
+        <span id="nomeUser"></span>
+
+        <nav class="menu-lateral">
+          <a href="./dash.html" class="btn-menu">Home</a>
+          <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="./configuracao.html" class="btn-menu">Configuração</a>
+        </nav><ss="sair-section">
+          <a href="#" class="btn-menu">Sair</a>
+
+      </div>
+    </aside>
+
+    </aside>
+
+    <main class="conteudoPrincipal">
+
+      <div class="classHitorico">
+        <div class="">Configurações de usuário</div>
+      </div>
+
+      <section class="user-card">
+        <h1>Dados de usuário</h1>
+
+        <div class="info-bloco">
+          <label for="bdUsuario">Usuário</label>
+          <input type="text" id="bdUsuario" placeholder="Xxxxx" disabled />
+        </div>
+
+        <div class="info-bloco">
+          <label for="bdEmail">E-Mail</label>
+          <div class="input-wrapper">
+            <input type="email" id="bdEmail" placeholder="x@z.com" disabled />
+            <button onclick="atualizarEmailMensagem()" id="botaoAtualizarEmail">
+              <img src="../assets/icon_att.png" />
+            </button>
+          </div>
+
+          <div id="confirmarEmail" class="confirm-box">
+            <h3>Atualizar E-Mail</h3>
+            <p>Insira o novo E-Mail</p>
+            <input type="text" id="novoEmail" onchange="verificarAtualizarEmail()" />
+            <span id="mensagemAtualizarEmail"></span>
+            <p>Confirmar senha</p>
+            <input type="password" id="confirmarSenhaEmail" />
+            <div class="confirm-buttons">
+              <button onclick="atualizarEmail()">Atualizar</button>
+              <button onclick="voltarEmail()">Voltar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-bloco">
+          <label for="bdSenha">Senha</label>
+          <div class="input-wrapper">
+            <input type="password" id="bdSenha" value="senha do sujeito" disabled />
+            <button onclick="visualizarSenha()" id="botaoMascaraSenha">
+              <img id="mascaraImagem" src="../assets/senha_oculta.png" alt="maskIMG" />
+            </button>
+            <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha">
+              <img src="../assets/icon_att.png" />
+            </button>
+          </div>
+
+          <div id="confirmarSenha" class="confirm-box">
+            <h3>Atualizar Senha</h3>
+            <p>Insira a nova senha</p>
+            <input type="password" id="novaSenha" onchange="verificarAtualizarSenha()" />
+            <span id="mensagemAtualizarSenha"></span>
+            <p>Senha atual</p>
+            <input type="password" id="confirmarSenhaSenha" />
+            <div class="confirm-buttons">
+              <button onclick="atualizarSenha()">Atualizar</button>
+              <button onclick="voltarSenha()">Voltar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-bloco">
+          <label for="bdData">Data de criação</label>
+          <input type="text" id="bdData" placeholder="xx/xx/xxxx" disabled />
+        </div>
+
+        <div class="delete-bloco">
+          <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
+          <div id="confirmarDelete" class="confirm-box">
+            <h3>Deletar Conta</h3>
+
+            <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUÍDA PERMANENTEMENTE.</p>
+
+            <button onclick="deletarConta()">Deletar</button>
+            <button id="voltarbt" onclick="voltarDelete()">Voltar</button>
+          </div>
+        </div>
+      </section>
+    </main>
+</body>
+
+</html>
