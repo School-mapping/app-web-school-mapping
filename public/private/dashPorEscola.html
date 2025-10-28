@@ -11,20 +11,22 @@
 </head>
 
 <body>
-  <aside class="barraLateral-esquerda">
-      <img src="../assets/user.png" alt="" class="iconepessoa" />
+    <aside class="barraLateral-esquerda">
+        <img src="../assets/user.png" alt="" class="iconepessoa" />
 
-      <div class="conteudo-central">
+        <div class="conteudo-central">
 
-        <nav class="menu-lateral">
-          <a href="../dash.html" class="btn-menu">Home</a>
-          <a href="./escolas.HTML" class="btn-menu">Escolas</a>
-          <a href="../configuracao.html" class="btn-menu">Configuração</a>
-        </nav><ss="sair-section">
-            <!-- Fechar seção -->
-          <a href="#" class="btn-menu">Sair</a>
+            <span id="nomeUser"></span>
 
-      </div>
+            <nav class="menu-lateral">
+                <a href="../dash.html" class="btn-menu">Home</a>
+                <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+                <a href="../configuracao.html" class="btn-menu">Configuração</a>
+            </nav><ss="sair-section">
+                <!-- Fechar seção -->
+                <a href="#" class="btn-menu">Sair</a>
+
+        </div>
     </aside>
 
     <Main class="conteudo">
@@ -36,22 +38,22 @@
         <div class="classKpis" id="divKpis">
             <div class="classKpi classKpi1">
                 <b>7.8 <a class="variacao1">(-1🔽)</a></b><br>
-                IDEB atual 
+                IDEB atual
             </div>
             <div class="classKpi classKpi2">
                 <b>300k <a class="variacao2">(+R$50k🔼)</a></b><br>
-               Último repasse Financeiro - PTRF  
+                Último repasse Financeiro - PTRF
             </div>
             <div class="classKpi classKpi3">
                 <b>48º Lugar <a class="variacao3">(+3🔼)</a></b><br>
-               Ranking de melhores escolas (IDEB) 
+                Ranking de melhores escolas (IDEB)
             </div>
         </div>
 
         <div class="classGraficoPrincipal">
             <canvas id="canvasGraficoPrincipal"></canvas>
         </div>
-   
+
     </Main>
 
 </body>
@@ -59,66 +61,70 @@
 </html>
 <script>
 
-const ctx = document.getElementById('canvasGraficoPrincipal');
+    function carregarNome() {
+        nomeUser.innerHTML = sessionStorage.USUARIO;
+    }
 
-const mixedChart = new Chart(ctx, {
-    type: 'bar', // Tipo base (pode ser qualquer um, mas 'bar' é comum)
-    data: {
-        labels: ['2023', '2024'],
-        datasets: [
-            {
-                type: 'line',
-                label: 'Repasses Financeiros',
-                data: [250000, 300000],
-                yAxisID: 'RightY', // eixo da direita
-                borderColor: '#000AC2',
-                backgroundColor: '#000AC2',
-                tension: 0.3,
-                borderWidth: 1,
-                borderRadius: 6,
-                borderSkipped: false,
-            },
-            {
-                type: 'bar',
-                label: 'IDEB',
-                data: [8.8, 7.8],
-                yAxisID: 'LeftY', // eixo da esquerda
-                backgroundColor: '#4600C2',
-                borderColor: '#4600C2',
-                borderWidth: 1,
-                borderRadius: 6,
-                borderSkipped: false,
-            }
-        ]
-    },
-    options: {
-        responsive: true, // desativa redimensionamento automático
-        maintainAspectRatio: false,
-        scales: {
-            LeftY: {
-                type: 'linear',
-                position: 'left',
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Escala do IDEB'
-                }
-            },
-            RightY: {
-                type: 'linear',
-                position: 'right',
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Repasses financeiros - PTRF'
+    const ctx = document.getElementById('canvasGraficoPrincipal');
+
+    const mixedChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2023', '2024'],
+            datasets: [
+                {
+                    type: 'line',
+                    label: 'Repasses Financeiros',
+                    data: [250000, 300000],
+                    yAxisID: 'RightY', // eixo da direita
+                    borderColor: '#000AC2',
+                    backgroundColor: '#000AC2',
+                    tension: 0.3,
+                    borderWidth: 1,
+                    borderRadius: 6,
+                    borderSkipped: false,
                 },
-                grid: {
-                    drawOnChartArea: false // evita sobreposição da grade
+                {
+                    type: 'bar',
+                    label: 'IDEB',
+                    data: [8.8, 7.8],
+                    yAxisID: 'LeftY', // eixo da esquerda
+                    backgroundColor: '#4600C2',
+                    borderColor: '#4600C2',
+                    borderWidth: 1,
+                    borderRadius: 6,
+                    borderSkipped: false,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                LeftY: {
+                    type: 'linear',
+                    position: 'left',
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Escala do IDEB'
+                    }
+                },
+                RightY: {
+                    type: 'linear',
+                    position: 'right',
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Repasses financeiros - PTRF'
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    }
                 }
             }
         }
-    }
-});
+    });
 
 
 </script>

@@ -9,6 +9,63 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    function formatarNumero(numero) {
+      return numero.toFixed(1).replace('.', ',');
+    }
+
+    function calcularVariacao(atual, anterior) {
+      if (anterior === 0) return 0;
+      return ((atual - anterior) / anterior) * 100;
+    }
+
+    function formatarVariacao(variacao) {
+      const elemento = document.getElementById('variacao-ideb');
+      const valorFormatado = Math.abs(variacao).toFixed(1).replace('.', ',');
+
+      if (variacao > 0) {
+        elemento.innerHTML = `+${valorFormatado}%`;
+        elemento.className = 'kpi-value positive';
+      } else if (variacao < 0) {
+        elemento.innerHTML = `-${valorFormatado}%`;
+        elemento.className = 'kpi-value negative';
+      } else {
+        elemento.innerHTML = `${valorFormatado}%`;
+        elemento.className = 'kpi-value neutral';
+      }
+    }
+
+    function calcularMedia(array) {
+      if (array.length === 0) return 0;
+      const soma = array.reduce((a, b) => a + b, 0);
+      return soma / array.length;
+    }
+
+    function carregarDadosIdeb() {
+      const dataAtual = new Date();
+      const anoAtual = 2025; // Ano fixo para coincidir com o gráfico
+      const anoAnterior = 2023; // Ano fixo para coincidir com o gráfico
+
+      document.getElementById('ano-atual').textContent = anoAtual;
+      document.getElementById('ano-anterior').textContent = anoAnterior;
+
+      // Usando os mesmos dados do gráfico de barras
+      const dadosIdebAtual = [6.2, 7.0, 5.3, 3.3, 8.0]; // Valores de 2025 (atual)
+      const dadosIdebAnterior = [6.8, 7.6, 6.3, 5.3, 8.5]; // Valores de 2023 (anterior)
+
+      const mediaAtual = calcularMedia(dadosIdebAtual);
+      const mediaAnterior = calcularMedia(dadosIdebAnterior);
+      const variacao = calcularVariacao(mediaAtual, mediaAnterior);
+
+      document.getElementById('ideb-atual').textContent = formatarNumero(mediaAtual);
+      document.getElementById('ideb-anterior').textContent = formatarNumero(mediaAnterior);
+      formatarVariacao(variacao);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      carregarDadosIdeb();
+    });
+  </script>
 </head>
 
 <body onload="carregarNome()">
@@ -17,12 +74,13 @@
       <img src="./assets/user.png" alt="" class="iconepessoa" />
       <div class="conteudo-central">
 
+        <span id="nomeUser"></span>
+
         <nav class="menu-lateral">
           <a href="dash.html" class="btn-menu">Home</a>
           <a href="private/escolas.HTML" class="btn-menu">Escolas</a>
           <a href="configuracao.html" class="btn-menu">Configuração</a>
         </nav><ss="sair-section">
-          <!-- Fechar seção -->
           <a href="#" class="btn-menu">Sair</a>
 
       </div>
@@ -35,10 +93,21 @@
       </div>
       <div class="linha-graficos">
         <div class="kpis">
-          <div class="grafico kpi">teste</div>
-          <div class="grafico kpi">teste</div>
-          <div class="grafico kpi">teste 2</div>
-          <div class="grafico kpi">teste</div>
+          <div class="grafico kpi">
+            <div class="kpi-title">Média IDEB Atual</div>
+            <div class="kpi-value" id="ideb-atual">-</div>
+            <div class="kpi-subtitle">Ano: <span id="ano-atual">-</span></div>
+          </div>
+          <div class="grafico kpi">
+            <div class="kpi-title">Média IDEB Anterior</div>
+            <div class="kpi-value" id="ideb-anterior">-</div>
+            <div class="kpi-subtitle">Ano: <span id="ano-anterior">-</span></div>
+          </div>
+          <div class="grafico kpi">
+            <div class="kpi-title">Variação</div>
+            <div class="kpi-value" id="variacao-ideb">-</div>
+            <div class="kpi-subtitle">Em relação ao ano anterior</div>
+          </div>
         </div>
         <div class="grafico">
           <canvas id="graficoBarras"></canvas>
