@@ -1,0 +1,94 @@
+/* ======= LAYOUT GERAL ======= */
+body {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: #2c2c2c;
+  background-color: #f6f8fa;
+  margin: 0;
+}
+
+/* ======= CONTEÚDO ======= */
+.conteudo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.classHitorico {
+  font-size: 0.9rem;
+  color: #6b7280;
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ======= PAINEL ======= */
+.classPainelEscolas {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.titleEscolas {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+/* ======= TABELA ======= */
+.listaEscolas {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.listaEscolas table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.listaEscolas thead {
+  background-color: #1f2937;
+  color: #fff;
+  position: sticky;
+  top: 0;
+}
+
+.listaEscolas th,
+.listaEscolas td {
+  text-align: center;
+  padding: 12px 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.listaEscolas tbody tr {
+  background-color: #fff;
+  transition: background-color 0.2s;
+  height: 50px; /* <- altura fixa */
+}
+
+.listaEscolas tbody tr:hover {
+  background-color: #f3f4f6;
+}
+
+.listaEscolas td {
+  color: #374151;
+}
+
+/* ======= SCROLL PERSONALIZADO ======= */
+.listaEscolas::-webkit-scrollbar {
+  width: 8px;
+}
+.listaEscolas::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+  border-radius: 4px;
+}
+.listaEscolas::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280;
+}

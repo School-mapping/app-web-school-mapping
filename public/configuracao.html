@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configurações - School Mapping</title>
   <link rel="stylesheet" href="./css/configuracao.css" />
+  <link rel="stylesheet" href="css/dash.css">
   <script src="./js/configuracao.js"></script>
 </head>
+
 <body onload="getInfoUser()">
 
   <div class="container">
-    <aside class="barraLat">
-    <img src="./assets/user.png" alt="" class="iconepessoa"/>
+    <aside class="barraLateral-esquerda">
+      <img src="./assets/user.png" alt="" class="iconepessoa" />
 
-      <nav>
-        <a href="index.html">Home</a>
-        <a class="ativo" href="#">Configuração</a>
-        <a href="dash.html">Sair</a>
-      </nav>
+      <div class="conteudo-central">
+
+        <nav class="menu-lateral">
+          <a href="dash.html" class="btn-menu">Home</a>
+          <a href="private/escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="configuracao.html" class="btn-menu">Configuração</a>
+        </nav><ss="sair-section">
+          <!-- Fechar seção -->
+          <a href="#" class="btn-menu">Sair</a>
+
+      </div>
+
     </aside>
 
     <main class="conteudoPrincipal">
@@ -26,13 +36,13 @@
 
         <div class="info-bloco">
           <label for="bdUsuario">Usuário</label>
-          <input type="text" id="bdUsuario" placeholder="Xxxxx" />
+          <input type="text" id="bdUsuario" placeholder="Xxxxx" disabled/>
         </div>
 
         <div class="info-bloco">
           <label for="bdEmail">E-Mail</label>
           <div class="input-wrapper">
-            <input type="email" id="bdEmail" placeholder="x@z.com" />
+            <input type="email" id="bdEmail" placeholder="x@z.com" disabled/>
             <button onclick="atualizarEmailMensagem()" id="botaoAtualizarEmail">
               <img src="./assets/icon_att.png" />
             </button>
@@ -55,19 +65,19 @@
         <div class="info-bloco">
           <label for="bdSenha">Senha</label>
           <div class="input-wrapper">
-            <input type="password" id="bdSenha" value="senha do sujeito" />
+            <input type="password" id="bdSenha" value="senha do sujeito" disabled/>
             <button onclick="visualizarSenha()" id="botaoMascaraSenha">
               <img id="mascaraImagem" src="./assets/senha_oculta.png" alt="maskIMG" />
             </button>
             <button onclick="atualizarSenhaMensagem()" id="botaoAtualizarSenha">
               <img src="./assets/icon_att.png" />
             </button>
-        </div>
+          </div>
 
           <div id="confirmarSenha" class="confirm-box">
             <h3>Atualizar Senha</h3>
             <p>Insira a nova senha</p>
-            <input type="password" id="novaSenha" onchange="verificarAtualizarSenha()" />
+            <input type="password" id="novaSenha" onchange="verificarAtualizarSenha()"/>
             <span id="mensagemAtualizarSenha"></span>
             <p>Senha atual</p>
             <input type="password" id="confirmarSenhaSenha" />
@@ -80,21 +90,22 @@
 
         <div class="info-bloco">
           <label for="bdData">Data de criação</label>
-          <input type="text" id="bdData" placeholder="xx/xx/xxxx" />
+          <input type="text" id="bdData" placeholder="xx/xx/xxxx" disabled/>
         </div>
 
         <div class="delete-bloco">
-            <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
-            <div id="confirmarDelete" class ="confirm-box">
-                <h3>Deletar Conta</h3>
+          <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
+          <div id="confirmarDelete" class="confirm-box">
+            <h3>Deletar Conta</h3>
 
-                <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUIDA PERMANENTEMENTE.</p>
+                <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUÍDA PERMANENTEMENTE.</p>
 
-                <button onclick="deletarConta()">Deletar</button>
-                <button id="voltarbt" onclick="voltarDelete()">Voltar</button>
-            </div>
+            <button onclick="deletarConta()">Deletar</button>
+            <button id="voltarbt" onclick="voltarDelete()">Voltar</button>
+          </div>
         </div>
-        </section>
+      </section>
     </main>
 </body>
+
 </html>

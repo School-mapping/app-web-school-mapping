@@ -10,29 +10,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
-<body>
+<body onload="carregarNome()">
   <div class="dashboard">
-    <aside class="barraLateral-esquerda">
-      <img src="./assets/user.png" alt="" class="iconepessoa" />
-
+<aside class="barraLateral-esquerda">
+    <img src="./assets/user.png" alt="" class="iconepessoa"/>
+    <span id="nomeUser"></span>
       <div class="conteudo-central">
 
         <nav class="menu-lateral">
-          <div class="btn-menu" style="display: flex; flex-direction: row; align-items: center;">
-            <img src="./assets/home_icon.png" style="width: 25px; height: 25px; margin-right: 4px" />
-            <a href="index.html">Home</a>
-          </div>
-
-          <div class="btn-menu" style="display: flex; flex-direction: row; align-items: center;">
-            <img src="assets/config_icon.png" style="width: 25px; height: 25px; margin-right: 4px">
-            <a href="configuracao.html">Configuração</a>
-          </div>
+          <a href="dash.html" class="btn-menu">Home</a>
+          <a href="private/escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="configuracao.html" class="btn-menu">Configuração</a>
         </nav><ss="sair-section">
-          <div class="btn-menu" style="display: flex; flex-direction: row; align-items: center;">
-            <img src="assets/logout_icon.png" style="width: 25px; height: 25px; margin-right: 4px">
-            <a href="index.html">Sair</a>
-          </div>
+                      <!-- Fechar seção -->
+          <a href="#" class="btn-menu">Sair</a>
 
       </div>
     </aside>
@@ -66,9 +57,33 @@
         </div>
       </div>
     </main>
+
+    <aside class="barraLateral-direita">
+        <div class="notificacoes">
+  <div class="notificacao" style="color: red;">Novo IDEB! </div>
+  <div class="notificacao" style="color: blue;">Repasse Financeiro novo</div>
+  <div class="notificacao" style="color: green;">Aumento de 2.2 no IDEB</div>
+  <!-- <div class="notificacao">4</div>
+  <div class="notificacao">5</div>
+  <div class="notificacao">6</div>
+  <div class="notificacao">7</div>
+  <div class="notificacao">8</div> -->
+</div>
+
+
+    </aside>
   </div>
 </body>
 </div>
+
+  <div cla
+</html>
+
+<script>
+  function carregarNome() {
+    nomeUser.innerHTML = sessionStorage.USUARIO;
+  }
+</script>
 <script>
   const ctx = document.getElementById('graficoBarras');
 

@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    height: 100dvh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.conteudo {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    /* background-color: chartreuse; */
+}
+
+.classHitorico {
+    /* background-color: aqua; */
+    width: 100%;
+    height: 8.5%;
+    color: #6b7280;
+    margin-bottom: 1.5%;
+    border-bottom: 1px solid #d1d5db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.9rem;
+}
+
+.classKpis {
+    /* background-color: blue; */
+    width: 90%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.classKpis .classKpi {
+    /* background-color: aliceblue; */
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    /* box-shadow: 1px 1px 4px 3px rgba(0, 0, 0, 0.2); */
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.classGraficoPrincipal {
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    /* box-shadow: 1px 1px 4px 3px rgba(0, 0, 0, 0.2); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70% !important;
+    width: 90%;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
+
+#canvasGraficoPrincipal {
+    width: 95% !important;
+    height: 95% !important;
+    /* background-color: blueviolet; */
+}

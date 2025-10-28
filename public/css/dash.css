@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body,
@@ -14,6 +14,14 @@ html {
   display: flex;
   height: 100vh;
   width: 100vw;
+}
+
+#nomeUser {
+  display: flex;
+  position: absolute;
+  top: 15%;
+  font-size: 19px;
+  text-decoration: underline;
 }
 
 .cabecalho {
