@@ -44,7 +44,7 @@ html {
 }
 
 .barraLateral-esquerda {
-  width: 11vw;
+  width: 12vw;
   height: 100vh;
   background-color: #2a0331;
   color: white;
@@ -81,6 +81,7 @@ html {
   text-decoration: none;
   cursor: pointer;
   transition: background 0.3s ease;
+  color: white;
 }
 
 .btn-menu a {

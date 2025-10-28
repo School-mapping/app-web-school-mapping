@@ -35,15 +35,15 @@
 
         <div class="classKpis" id="divKpis">
             <div class="classKpi classKpi1">
-                <b>7.8 (-1🔽)</b><br>
+                <b>7.8 <a class="variacao1">(-1🔽)</a></b><br>
                 IDEB atual 
             </div>
             <div class="classKpi classKpi2">
-                <b>300k (+R$50k🔼)</b><br>
+                <b>300k <a class="variacao2">(+R$50k🔼)</a></b><br>
                Último repasse Financeiro - PTRF  
             </div>
             <div class="classKpi classKpi3">
-                <b>48º Lugar (+3🔼)</b><br>
+                <b>48º Lugar <a class="variacao3">(+3🔼)</a></b><br>
                Ranking de melhores escolas (IDEB) 
             </div>
         </div>
@@ -67,27 +67,33 @@ const mixedChart = new Chart(ctx, {
         labels: ['2023', '2024'],
         datasets: [
             {
-                type: 'bar',
-                label: 'IDEB',
-                data: [8.8, 7.8],
-                yAxisID: 'LeftY', // eixo da esquerda
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            },
-            {
                 type: 'line',
                 label: 'Repasses Financeiros',
                 data: [250000, 300000],
                 yAxisID: 'RightY', // eixo da direita
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                tension: 0.3
+                borderColor: '#000AC2',
+                backgroundColor: '#000AC2',
+                tension: 0.3,
+                borderWidth: 1,
+                borderRadius: 6,
+                borderSkipped: false,
+            },
+            {
+                type: 'bar',
+                label: 'IDEB',
+                data: [8.8, 7.8],
+                yAxisID: 'LeftY', // eixo da esquerda
+                backgroundColor: '#4600C2',
+                borderColor: '#4600C2',
+                borderWidth: 1,
+                borderRadius: 6,
+                borderSkipped: false,
             }
         ]
     },
     options: {
-        responsive: false, // desativa redimensionamento automático
+        responsive: true, // desativa redimensionamento automático
+        maintainAspectRatio: false,
         scales: {
             LeftY: {
                 type: 'linear',
