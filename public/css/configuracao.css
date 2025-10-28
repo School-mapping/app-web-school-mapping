@@ -7,7 +7,7 @@
 
 body {
   background-color: #f0f0f5;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   overflow-y: hidden;
 }
@@ -17,58 +17,14 @@ body {
   width: 100%;
 }
 
-.barraLat {
-  width: 220px;
-  background-color: #2a0331;
-  color: wheat;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px 0;
-  font-size: 19px;
-}
-
-#nomeUser {
-  display: flex;
-  position: absolute;
-  top: 15%;
-  color: white;
-  text-decoration: underline;
-}
-
-.iconePerfil {
-  font-size: 40px;
-  margin-bottom: 40px;
-}
-
-.barraLat nav {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  align-items: center;
-}
-
-.barraLat a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
-
-.barraLat a:hover,
-.barraLat a.ativo {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 .conteudoPrincipal {
   flex: 1;
   padding: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  }
+  align-items: center;
+}
 
   .confirm-box h3{
     color: #24a4f4 !important;

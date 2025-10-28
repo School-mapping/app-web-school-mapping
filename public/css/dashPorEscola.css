@@ -43,6 +43,24 @@ body {
     font-size: 0.9rem;
 }
 
+#buttonCompararEscola{
+    margin: 0;
+    border: none;
+    background-color: #4600C2;
+    color: #ffffff;
+    padding: 7px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px #6b7280;
+}
+
+#buttonCompararEscola:hover{
+    background-color: #5711d3;
+    color: #ffffff;
+    padding: 7px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 .classKpis {
     /* background-color: blue; */
     width: 90%;
