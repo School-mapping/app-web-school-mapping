@@ -10,23 +10,27 @@
     <link rel="stylesheet" href="../css/escolas.css" />
 </head>
 
-<body>
+<body onload="carregarNome()">
 
-    <aside class="barraLateral-esquerda"> <img src="../assets/user.png" alt="" class="iconepessoa" />
+    <aside class="barraLateral-esquerda">
+        <img src="../assets/user.png" alt="" class="iconepessoa" />
         <div class="conteudo-central">
+
+            <span id="nomeUser"></span>
+
             <nav class="menu-lateral">
-                <a href="../dash.html" class="btn-menu">Home</a>
+                <a href="./dash.html" class="btn-menu">Home</a>
                 <a href="./escolas.HTML" class="btn-menu">Escolas</a>
-                <a href="../configuracao.html" class="btn-menu">Configuração</a>
-            </nav>
-            <ss="sair-section"> <!-- Fechar seção -->
+                <a href="./configuracao.html" class="btn-menu">Configuração</a>
+            </nav><ss="sair-section">
                 <a href="#" class="btn-menu">Sair</a>
+
         </div>
     </aside>
 
     <main class="conteudo">
         <header class="classHitorico">
-            <span>Dashboard principal > Escolas</span>
+            <span>Visão Geral Municipal (IDEB) > Escolas</span>
         </header>
 
         <section class="classPainelEscolas">
@@ -88,5 +92,11 @@
         </section>
     </main>
 </body>
+
+<Script>
+    function carregarNome() {
+        nomeUser.innerHTML = sessionStorage.USUARIO;
+    }
+</Script>
 
 </html>

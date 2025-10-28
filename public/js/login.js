@@ -37,7 +37,7 @@ function logar() {
             sessionStorage.EMAIL_USUARIO = json.email;
             mensagem = "<span style='color:Lime'>Login concluído! Entrando...</span>";
             resultadoLogin.innerHTML = mensagem;
-            setTimeout(() => { window.location = "./dash.html"; }, 1500);
+            setTimeout(() => { window.location = "./private/dash.html"; }, 1500);
         })
         .catch(erro => {
             console.error(erro);

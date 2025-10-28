@@ -2,6 +2,11 @@ var usuarioInfo = "";
 var emailInfo = "";
 var senhaInfo = "";
 var dataInfo = "";
+  
+function carregarNome() {
+    nomeUser.innerHTML = sessionStorage.USUARIO;
+}
+
 
 function getInfoUser() {
     var id = sessionStorage.ID_USUARIO;
@@ -120,10 +125,10 @@ function visualizarSenha() {
 
     if (bdSenha.type == "password") {
         bdSenha.type = "text";
-        mascaraImagem.setAttribute("src", "./assets/senha_visivel.png");
+        mascaraImagem.setAttribute("src", "../assets/senha_visivel.png");
     } else {
         bdSenha.type = "password"
-        document.getElementById("mascaraImagem").setAttribute("src", "./assets/senha_oculta.png");
+        document.getElementById("mascaraImagem").setAttribute("src", "../assets/senha_oculta.png");
     }
 }
 
