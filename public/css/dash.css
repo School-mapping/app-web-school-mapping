@@ -197,9 +197,7 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  width: 31%;
-  height: 100%;
+  padding: 20px;
 }
 
 
@@ -213,8 +211,8 @@ html {
 }
 
 .kpi-value {
-  font-size: larger;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
   color: #2a0331;
   margin: 5px 0;
 }
