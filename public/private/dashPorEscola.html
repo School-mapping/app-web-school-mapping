@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
 <link rel="stylesheet" href="../css/dash.css" />
 <link rel="stylesheet" href="../css/dashPorEscola.css" />
 
@@ -22,7 +24,7 @@
                 <a href="./escolas.HTML" class="btn-menu">Escolas</a>
                 <a href="./configuracao.html" class="btn-menu">Configuração</a>
             </nav><ss="sair-section">
-                <a href="#" class="btn-menu">Sair</a>
+                <a href="#" class="btn-menu">Sair</a><!-- Adicionr função de encerramento de seção -->
 
         </div>
     </aside>
@@ -34,17 +36,34 @@
         </div>
 
         <div class="classKpis" id="divKpis">
+
             <div class="classKpi classKpi1">
-                <b>7.8 <a class="variacao1">(-1🔽)</a></b><br>
-                IDEB atual
+                <div class="kpi-title">IDEB atual</div>
+                <div class="kpi-value">
+                    <span id="ideb-atual">7,8 / 10,0 </span>
+                    <a class="variacao1">(-1🔻)</a>
+                    <span class="kpi-ref-ano" id="ano-atual">(2025)</span>
+                </div>
+                <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
+
             </div>
+
             <div class="classKpi classKpi2">
-                <b>300k <a class="variacao2">(+R$50k🔼)</a></b><br>
-                Último repasse Financeiro - PTRF
+                <div class="kpi-title">Repasse Financeiro - PTRF (R$)</div>
+                <div class="kpi-value">
+                    <span id="ideb-atual">R$ 300k</span>
+                    <a class="variacao2">(+R$50k🔼)</a>
+                </div>
+                <div class="kpi-subtitle">Ano: <span>2025</span></div>
             </div>
+
             <div class="classKpi classKpi3">
-                <b>48º Lugar <a class="variacao3">(+3🔼)</a></b><br>
-                Ranking de melhores escolas (IDEB)
+                <div class="kpi-title">Ranking de melhores escolas (IDEB)</div>
+                <div class="kpi-value">
+                    <span id="ideb-atual">48º Lugar</span>
+                    <a class="variacao3">(+3🔼)</a>
+                </div>
+                <div class="kpi-subtitle">Ano: <span>2025</span></div>
             </div>
         </div>
 
@@ -68,17 +87,17 @@
     const mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['2023', '2024'],
+            labels: ['2023', '2025'],
             datasets: [
                 {
                     type: 'line',
                     label: 'Repasses Financeiros',
                     data: [250000, 300000],
                     yAxisID: 'RightY', // eixo da direita
-                    borderColor: '#000AC2',
-                    backgroundColor: '#000AC2',
+                    borderColor: '#85BB65',
+                    backgroundColor: '#85BB65',
                     tension: 0.3,
-                    borderWidth: 1,
+                    borderWidth: 4,
                     borderRadius: 6,
                     borderSkipped: false,
                 },
@@ -98,6 +117,32 @@
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                title: { display: true, text: 'IDEB e Repasses Financeiros (R$) no decorrer dos anos' },
+                legend: { display: true },
+                tooltip: { mode: 'index', intersect: false },
+                annotation: {
+                    annotations: {
+                        linhaMeta: {
+                            type: 'line',
+                            yMin: 7.0,
+                            yMax: 7.0,
+                            borderColor: '#d9534f',
+                            borderWidth: 3,
+                            borderDash: [10, 5], // Deixa a linha tracejada (10px traço, 5px espaço)
+                            label: {
+                                enabled: true,
+                                content: 'Meta: 7,0',
+                                position: 'end',
+                                backgroundColor: 'rgba(217, 83, 79, 0.8)',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             scales: {
                 LeftY: {
                     type: 'linear',
