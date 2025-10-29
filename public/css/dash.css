@@ -150,18 +150,19 @@ html {
 
 .linha-graficos {
   display: flex;
-  width: 95% !important;
+  width: 98% !important;
   gap: 20px;
   margin: 0;
   padding: 10px;
+  height: 90%;
 }
 
 .linha1 {
-  height: 40%;
+  height: 45%;
 }
 
 .linha2 {
-  height: 50%;
+  height: 45%;
 }
 
 .grafico {
@@ -181,12 +182,32 @@ html {
 /* Estilos para o container dos KPIs */
 .kpis {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   justify-content: space-between;
+  align-items: center;
 }
+
+.kpi-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48%;
+  width: 100%;
+}
+
+.kpi-line-bottom{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.kpi-line-bottom .kpi{
+  width: 40%;
+}
+
 
 /* Estilo para cada KPI individual */
 .kpi {
@@ -197,10 +218,10 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
+  height: 100%;
+  width: 30%;
 }
-
-
 
 .kpi-title {
   font-size: 14px;
@@ -211,7 +232,7 @@ html {
 }
 
 .kpi-value {
-  font-size: 28px;
+  font-size: larger;
   font-weight: 700;
   color: #2a0331;
   margin: 5px 0;

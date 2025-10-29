@@ -96,53 +96,58 @@
       </div>
 
       <div class="linha-graficos linha1">
+
         <div class="kpis">
-          
-          <div class="grafico kpi">
-            <div class="kpi-title">Média IDEB
-            </div>
-            <div class="kpi-value">
-              <span id="ideb-atual">-</span>
-              <span class="kpi-ref-ano" id="ano-atual">-</span>
-            </div>
-            <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
+          <div class="kpi-line kpi-line-up">
+            <div class="grafico kpi">
+              <div class="kpi-title">Média IDEB
+              </div>
+              <div class="kpi-value">
+                <span id="ideb-atual">-</span>
+                <span class="kpi-ref-ano" id="ano-atual">-</span>
+              </div>
+              <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
 
+            </div>
+
+            <div class="grafico kpi">
+              <span class="kpi-title">Média IDEB</span>
+              <div class="kpi-value">
+                <span id="ideb-anterior">-</span>
+                <span class="kpi-ref-ano" id="ano-anterior">-</span>
+              </div>
+              <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
+            </div>
+
+            <div class="grafico kpi">
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="kpi-title">Variação</div>
+                <div class="kpi-value" id="variacao-ideb">-</div>
+                <div class="kpi-subtitle">Em relação ao ano anterior</div>
+              </div>
+            </div>
           </div>
 
-          <div class="grafico kpi">
-            <div style="display: flex; flex-direction: column; align-items: center;">
-              <div class="kpi-title">Verba Destinada ao Municipio</div>
-              <div class="kpi-value">R$ 253.200.000</div>
-              <div class="kpi-subtitle">Ano: <span>2025</span></div>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: center;">
-              <div class="kpi-title">Variação</div>
-              <div class="kpi-value" style="color: green;">+R$ 25.200.000</div>
-              <div class="kpi-subtitle">Em relação ao ano anterior</div>
-            </div>
-          </div>
+          <div class="kpi-line kpi-line-bottom">
 
-          <div class="grafico kpi">
-            <div class="kpi-title">Média IDEB
+            <div class="grafico kpi">
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="kpi-title">Verba Destinada ao Municipio</div>
+                <div class="kpi-value">
+                  <span id="">R$ 253.200.000</span>
+                  <span class="kpi-ref-ano" id="">(2025)</span>
+                </div>
+              </div>
             </div>
-            <div class="kpi-value">
-              <span id="ideb-anterior">-</span>
-              <span class="kpi-ref-ano" id="ano-anterior">-</span>
-            </div>
-            <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
-          </div>
 
-          <div class="grafico kpi">
-            <div style="display: flex; flex-direction: column; align-items: center;">
-              <div class="kpi-title">Média IDEB Atual</div>
-              <div class="kpi-value" id="ideb-atual">-</div>
-              <div class="kpi-subtitle">Ano: <span id="ano-atual">-</span></div>
+            <div class="grafico kpi">
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="kpi-title">Variação</div>
+                <div class="kpi-value" style="color: green;">+R$ 25.200.000</div>
+                <div class="kpi-subtitle">Em relação ao ano anterior</div>
+              </div>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: center;">
-              <div class="kpi-title">Variação</div>
-              <div class="kpi-value" id="variacao-ideb">-</div>
-              <div class="kpi-subtitle">Em relação ao ano anterior</div>
-            </div>
+
           </div>
 
         </div>
@@ -165,8 +170,9 @@
           <canvas id="graficoBarras2"></canvas>
         </div>
       </div>
+  </div>
 
-    </main>
+  </main>
   </div>
 
 </body>
@@ -260,7 +266,7 @@
           borderRadius: 6,
         },
         {
-          label: 'Verba (R$ mil)',
+          label: 'Verba (R$ milhões)',
           data: [-62, -70, -53, -33, -80],
           backgroundColor: '#85BB65',
           borderRadius: 6,
