@@ -263,7 +263,7 @@ function deletarConta() {
                 console.log('Busquei informações do usuário', resposta)
                 alert("Conta excluída.");
 
-                window.location = "cadastro.html";
+                window.location = "../cadastro.html";
 
                 sessionStorage.setItem("ID_USUARIO", "")
                 sessionStorage.setItem("EMAIL_USUARIO", "")
