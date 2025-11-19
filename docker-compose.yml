@@ -1,0 +1,32 @@
+services:
+  mysql:
+    container_name: ContainerBD
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: urubu100
+      MYSQL_DATABASE: SchoolMapping
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./src/databse/init-scripts/:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  site:
+    container_name: ContainerSite
+    build:
+      context: ./
+      dockerfile: dockerFile
+    restart: always
+    ports:
+      - "3333:3333"
+    depends_on:
+     - mysql
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASS: urubu100
+      DB_PORT: 3306
+      DB_NAME: SchoolMapping
+volumes:
+  mysql_data:
