@@ -1,0 +1,194 @@
+.botaoEditar {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 80px;
+    border-style: none;
+    justify-content: center;
+    margin-left: 30%;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+}
+
+.botaoRemover {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 80px;
+    border-style: none;
+    justify-content: center;
+    margin-left: 40%;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+}
+
+.botaoCadastrar {
+    display: flex;
+    background-color: green;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    width: 190px;
+    height: 40px;
+    font-size: 18px;
+    position: relative;
+    left: 85%;
+    margin: 10px 0px 10px 0px;
+    align-items: center;
+    justify-content: center;
+    border-style: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    cursor: pointer;
+}
+
+.cadastrarEmpresa {
+    display: none;
+    background-color: rgb(219, 219, 219);
+    box-shadow: 1px 1px 10px black;
+    padding: 0 8px 8px 8px;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+}
+
+.empresa-conteudo {
+    height: 100%;
+    width: 100%;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.campo {
+    position: relative;
+    width: 22%;
+}
+
+.mensagemValidacao {
+    font-size: 10px;
+    margin: 0;
+    color: red;
+    position: absolute;
+    top: -12px;
+    left: 0;
+}
+
+.inputEmpresa {
+    height: 25px;
+    width: 100%;
+    padding-left: 5px;
+    margin-top: 5px;
+}
+
+.botoesCadastroEmpresa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.salvarCadastroEmpresa {
+    border-style: none;
+    background-color: green;
+    height: 24px;
+    width: 65px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px black;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+.fecharCadastroEmpresa {
+    border-style: none;
+    background-color: red;
+    height: 24px;
+    width: 65px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px black;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+.atualizarEmpresa {
+    display: none;
+    background-color: rgb(219, 219, 219);
+    box-shadow: 1px 1px 10px black;
+    padding: 0 8px 8px 8px;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+}
+
+.empresa-conteudo {
+    height: 100%;
+    width: 100%;
+}
+
+.removerEmpresa {
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    height: 120px;
+    align-items: center;
+}
+
+.deleteConteudo {
+    display: block;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    background-color: rgb(219, 219, 219);
+    box-shadow: 1px 1px 10px black;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.textoDelete {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#mensagem-aviso-delete {
+    margin-top: 5px;
+    display: flex;
+    color: red;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoesDelete {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#remover-empresa {
+    background-color: rgb(197, 52, 52);;
+    border-style: none;
+    border-radius: 4px;
+    width: 20%;
+    height: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+}
+
+#cancelar-remover-empresa {
+    background-color: #ccc;
+    border-style: none;
+    border-radius: 4px;
+    width: 20%;
+    height: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+}

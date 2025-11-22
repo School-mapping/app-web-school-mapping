@@ -102,7 +102,7 @@ function atualizarEmail(req, res) {
     if (id == undefined) {
         console.log("id está indefinido!");
     } else if (email == undefined) {
-        console.log("E-Mmail está indefinido!");
+        console.log("E-Mail está indefinido!");
     } else {
         usuarioModel.atualizarEmail(id, email)
         .then(
