@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfis</title>
+  <link rel="stylesheet" href="../css/perfil.css" />
+</head>
+<body onload="carregarNome()">
+  <aside class="barraLateral-esquerda">
+    <div class="topo-barra">
+      <img src="../assets/user.png" alt="Usuário" class="iconepessoa" />
+      <span id="nomeUser">Usuário</span>
+    </div>
+
+    <nav class="menu-lateral">
+      <a href="./dash.html" class="btn-menu">Home</a>
+      <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+      <a href="./configuracao.html" class="btn-menu">Configuração</a>
+    </nav>
+
+    <div class="sair-section">
+      <a href="#" class="btn-menu">Sair</a>
+    </div>
+  </aside>
+
+  <main class="conteudo">
+    <header class="classHitorico">
+      <span>aa > perfis</span>
+    </header>
+
+    <div class="painel-perfis">
+      <section class="painel-esquerdo">
+        <h2>Criar Perfil</h2>
+        <label for="tipo">Tipo de perfil:</label>
+        <select id="tipo">
+          <option value="admin">Administrador</option>
+          <option value="professor">Professor</option>
+          <option value="aluno">Aluno</option>
+        </select>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" placeholder="Digite o nome" />
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" rows="4" placeholder="Digite a descrição"></textarea>
+
+        <button class="btn-criar">Criar Perfil</button>
+        <button class="btn-deletar">Deletar Perfil</button>
+      </section>
+
+      <section class="painel-direito">
+        <h1 class="titlePerfis">Lista de Usuários</h1>
+        <div class="listaPerfis">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Tipo de Perfil</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pessoa1</td>
+                <td>Administrador</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit...</td>
+                <td>
+                  <select class="select-alterar">
+                    <option value="admin">Administrador</option>
+                    <option value="professor">Professor</option>
+                    <option value="aluno">Aluno</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>pessoa2</td>
+                <td>Professor</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit...</td>
+                <td>
+                  <select class="select-alterar">
+                    <option value="admin">Administrador</option>
+                    <option value="professor">Professor</option>
+                    <option value="aluno">Aluno</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>pessoa3</td>
+                <td>Aluno</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit...</td>
+                <td>
+                  <select class="select-alterar">
+                    <option value="admin">Administrador</option>
+                    <option value="professor">Professor</option>
+                    <option value="aluno">Aluno</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function carregarNome() {
+      nomeUser.innerHTML = sessionStorage.USUARIO || "Usuário";
+    }
+  </script>
+</body>
+</html>
