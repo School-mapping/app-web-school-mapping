@@ -74,7 +74,7 @@
   </script>
 </head>
 
-<body onload="carregarNome()">
+<body">
   <div class="dashboard">
     <aside class="barraLateral-esquerda">
       <img src="../assets/user.png" alt="" class="iconepessoa" />
@@ -85,6 +85,7 @@
         <nav class="menu-lateral">
           <a href="./dash.html" class="btn-menu">Home</a>
           <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="./empresas.html" class="btn-menu" id="btn-empresa">Empresas</a>
           <a href="./configuracao.html" class="btn-menu">Configuração</a>
           <a href="./perfil.html" class="btn-menu">Perfil</a>
 
@@ -122,7 +123,7 @@
 </div>
 
         </nav><ss="sair-section">
-          <a href="#" class="btn-menu">Sair</a><!-- Adicionr função de encerramento de seção -->
+          <a href="../login.html" class="btn-menu">Sair</a>
 
       </div>
     </aside>
@@ -221,6 +222,49 @@
   function carregarNome() {
     nomeUser.innerHTML = sessionStorage.USUARIO;
   }
+
+  function carregarPerfil() {
+
+    var id = sessionStorage.ID_USUARIO;
+
+    fetch(`/perfil/carregarPerfil/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(function (resposta) {
+        console.log(resposta);
+
+        if (resposta.ok) {
+          console.log('Busquei informações do perfil', resposta)
+          return resposta.json();
+
+        } else {
+          throw "Erro ao buscar dados no data base";
+        }
+      })
+      .then(function (perfilUser) {
+        console.log(perfilUser[0].id_perfil)
+
+        if (perfilUser[0].id_perfil == 1) {
+          document.getElementById("btn-empresa").style.display = "none";
+        } else {
+          document.getElementById("btn-empresa").style.display = "block";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+</script>
+
+<script>
+  window.onload = function () {
+    carregarNome();
+    carregarPerfil();
+  };
 </script>
 
 <!-- Gráficos gerais -->

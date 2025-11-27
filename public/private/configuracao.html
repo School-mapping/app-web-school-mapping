@@ -12,7 +12,7 @@
   <script src="../js/modal.js"></script>
 </head>
 
-<body onload="getInfoUser(); carregarNome();">
+<body onload="getInfoUser(), carregarNome(), carregarPerfil();">
 
   <div class="container">
     <!-- Barra lateral -->
@@ -25,7 +25,8 @@
         <!-- Menu lateral -->
         <nav class="menu-lateral">
           <a href="./dash.html" class="btn-menu">Home</a>
-          <a href="./escolas.html" class="btn-menu">Escolas</a>
+          <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+          <a href="./empresas.html" id="btn-empresa" class="btn-menu">Empresas</a>
           <a href="./configuracao.html" class="btn-menu">Configuração</a>
           <a href="./perfil.html" class="btn-menu">Perfil</a>
           <a href="./testechamados.html" class="btn-menu">Chamado</a>
@@ -148,6 +149,42 @@
       </form>
     </div>
   </div>
-
-</body>
 </html>
+
+<script>
+  function carregarPerfil() {
+
+    var id = sessionStorage.ID_USUARIO;
+
+    fetch(`/perfil/carregarPerfil/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(function (resposta) {
+        console.log(resposta);
+
+        if (resposta.ok) {
+          console.log('Busquei informações do perfil', resposta)
+          return resposta.json();
+
+        } else {
+          throw "Erro ao buscar dados no data base";
+        }
+      })
+      .then(function (perfilUser) {
+        console.log(perfilUser[0].id_perfil)
+
+        if (perfilUser[0].id_perfil == 1) {
+          document.getElementById("btn-empresa").style.display = "none";
+        } else {
+          document.getElementById("btn-empresa").style.display = "block";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+</script>

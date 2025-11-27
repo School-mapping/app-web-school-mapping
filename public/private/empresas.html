@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empresas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/empresas.js"></script>
+    <link rel="stylesheet" href="../css/dash.css" />
+    <link rel="stylesheet" href="../css/escolas.css" />
+    <link rel="stylesheet" href="../css/empresas.css">
+</head>
+
+<body onload="carregarNome(); carregarEmpresas();">
+
+    <aside class="barraLateral-esquerda">
+        <img src="../assets/user.png" alt="" class="iconepessoa" />
+        <div class="conteudo-central">
+
+            <span id="nomeUser"></span>
+
+            <nav class="menu-lateral">
+                <a href="./dash.html" class="btn-menu">Home</a>
+                <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+                <a href="./empresas.html" class="btn-menu">Empresas</a>
+                <a href="./configuracao.html" class="btn-menu">Configuração</a>
+            </nav><ss="sair-section">
+                <a href="#" class="btn-menu">Sair</a> <!-- Adicionar função de encerramento de seção -->
+
+        </div>
+    </aside>
+
+    <main class="conteudo">
+        <header class="classHitorico">
+            <span>Visão Geral Municipal (IDEB) > Empresas</span>
+        </header>
+
+        <section class="classPainelEscolas">
+            <h1 class="titleEscolas">Lista de Empresas Cadastradas</h1>
+
+            <!-- ----------------------- -->
+
+            <div id="adicionar-empresa" class="cadastrarEmpresa">
+                <div class="empresa-conteudo">
+                    <h2>Cadastrar Empresa</h2>
+
+                    <div class="linha">
+                        <div class="campo">
+                            <p id="mensagem-razao-social" class="mensagemValidacao"></p>
+                            <input type="text" id="empresa-nome" class="inputEmpresa" placeholder="Razão Social"
+                                oninput="validarRazaoSocial()">
+                        </div>
+
+                        <div class="campo">
+                            <p id="mensagem-cnpj" class="mensagemValidacao"></p>
+                            <input type="text" maxlength="14" id="empresa-cnpj" class="inputEmpresa" placeholder="CNPJ"
+                                oninput="validarCnpj()">
+                        </div>
+
+                        <div class="campo">
+                            <p id="mensagem-email" class="mensagemValidacao"></p>
+                            <input type="text" id="empresa-email" class="inputEmpresa" placeholder="Email"
+                                oninput="validarEmail()">
+                        </div>
+
+                        <div class="campo">
+                            <p id="mensagem-telefone" class="mensagemValidacao"></p>
+                            <input type="text" maxlength="11" id="empresa-telefone" class="inputEmpresa"
+                                placeholder="Telefone" oninput="validarTelefone()">
+                        </div>
+                    </div>
+
+                    <div class="botoesCadastroEmpresa">
+                        <button class="salvarCadastroEmpresa" onclick="salvarEmpresa()">Salvar</button>
+                        <button class="fecharCadastroEmpresa" onclick="sairEmpresa()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ----------------------- -->
+
+            <div id="update-empresa" class="atualizarEmpresa">
+                <div class="empresa-conteudo">
+                    <h2>Atualizar Empresa</h2>
+
+                    <div class="linha">
+                        <div class="campo">
+                            <p id="mensagem-razao-social-atualizar" class="mensagemValidacao"></p>
+                            <input type="text" id="empresa-nome-atualizar" class="inputEmpresa" placeholder="Razão Social"
+                                oninput="validarRazaoSocialAtualizar()">
+                        </div>
+
+                        <div class="campo">
+                            <p id="mensagem-cnpj-atualizar" class="mensagemValidacao"></p>
+                            <input type="text" maxlength="14" id="empresa-cnpj-atualizar" class="inputEmpresa" placeholder="CNPJ"
+                                oninput="validarCnpjAtualizar()">
+                        </div>
+
+                        <div class="campo">
+                            <p id="mensagem-email-atualizar" class="mensagemValidacao"></p>
+                            <input type="text" id="empresa-email-atualizar" class="inputEmpresa" placeholder="Email"
+                                oninput="validarEmailAtualizar()">
+                        </div>
+
+                        <div class="campo">
+                            <p id="mensagem-telefone-atualizar" class="mensagemValidacao"></p>
+                            <input type="text" maxlength="11" id="empresa-telefone-atualizar" class="inputEmpresa"
+                                placeholder="Telefone" oninput="validarTelefoneAtualizar()">
+                        </div>
+                    </div>
+
+                    <div class="botoesCadastroEmpresa">
+                        <button class="salvarCadastroEmpresa" onclick="salvarAtualizarEmpresa()">Salvar</button>
+                        <button class="fecharCadastroEmpresa" onclick="sairAtualizarEmpresa()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ----------------------- -->
+
+            <div id="deletar-empresa" class="removerEmpresa">
+                <div id="deletar-conteudo" class="deleteConteudo">
+                    <div class="textoDelete">
+                        <p id="mensagem-remover"></p>
+                    </div>
+                    <p id="mensagem-aviso-delete">A ALTERAÇÃO NÃO PODERÁ SER DESFEITA</p>
+                    <br>
+                    <div class="botoesDelete">
+                        <button id="remover-empresa" onclick="deletarEmpresa()">Remover</button>
+                        <button id="cancelar-remover-empresa" onclick="cancelarRemoverEmpresa()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listaEscolas">
+
+                <button class="botaoCadastrar" onclick="cadastrarUmaEmpresa()">+ Cadastrar Empresa</button>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Razão Social</th>
+                            <th>CNPJ</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Token</th>
+                            <th>Editar</th>
+                            <th>Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-empresas">
+
+                        <tr>
+                            <td>Fundação Pró-Aprendiz de São Paulo</td>
+                            <td>71.449.112/0001-03</td>
+                            <td>contato@proaprendizsp.org</td>
+                            <td>(11) 93368-2040</td>
+                            <td>d28d34gfcvbnkugfe3456</td>
+                            <td><button class="botaoEditar" onclick="atualizarEmpresa(this)"><img
+                                        src="../assets/icon_att.png" /></button></td>
+                            <td><button class="botaoRemover" onclick="removerEmpresa(this)"><img
+                                        src="../assets/cancel.png" alt=""></button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+<Script>
+    function carregarNome() {
+        nomeUser.innerHTML = sessionStorage.USUARIO;
+    }
+</Script>
+
+</html>
