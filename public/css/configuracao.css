@@ -159,15 +159,15 @@ body {
   border: none;
     color: white;
   }
-  .iconepessoa {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid white;
-    margin-top: 10px;
-    margin-bottom: 100%;
-  }
+ .iconepessoa {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  margin: 20px 0; 
+}
+
   #confirmarDelete h3{
   color: red !important;
   
@@ -187,3 +187,39 @@ body {
   #bdUsuario{
 
   }
+
+  .barraLateral-esquerda {
+  width: 12vw;
+  min-width: 160px;
+  height: 100vh;
+  background-color: #2a0331;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 10px;
+  box-sizing: border-box;
+}
+
+.conteudo-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  flex: 1; 
+  gap: 20px;
+}
+
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.sair-section {
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
