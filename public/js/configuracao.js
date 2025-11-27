@@ -39,13 +39,13 @@ function getInfoUser() {
             bdUsuario.value = infoUser[0].nome;
             bdEmail.value = infoUser[0].email;
             bdSenha.value = infoUser[0].senha;
-            bdData.value = infoUser[0].criado_em;
+            bdData.value = infoUser[0].data_cadastro;
             nomeUser.innerHTML = infoUser[0].nome;
 
             usuarioInfo = infoUser[0].usuario;
             emailInfo = infoUser[0].email;
             senhaInfo = infoUser[0].senha;
-            dataInfo = infoUser[0].criado_em;
+            dataInfo = infoUser[0].data_cadastro;
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
