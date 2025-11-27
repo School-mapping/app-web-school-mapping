@@ -35,6 +35,7 @@ function logar() {
             sessionStorage.ID_USUARIO = json.id;
             sessionStorage.USUARIO = json.nome;
             sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.ID_PERFIL = json.id_perfil;
             mensagem = "<span style='color:Lime'>Login concluído! Entrando...</span>";
             resultadoLogin.innerHTML = mensagem;
             setTimeout(() => { window.location = "./private/dash.html"; }, 1500);

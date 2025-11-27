@@ -1,5 +1,3 @@
-/* CSS feito por IA */
-
 /* ======= LAYOUT GERAL ======= */
 body {
   display: flex;
@@ -35,6 +33,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
 }
 
@@ -46,6 +45,7 @@ body {
 
 /* ======= TABELA ======= */
 .listaEscolas {
+  width: 100%;
   flex: 1;
   overflow-y: auto;
 }
@@ -72,7 +72,7 @@ body {
 .listaEscolas tbody tr {
   background-color: #fff;
   transition: background-color 0.2s;
-  height: 50px; /* <- altura fixa */
+  height: 50px;
 }
 
 .listaEscolas tbody tr:hover {
