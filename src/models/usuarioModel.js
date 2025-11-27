@@ -26,7 +26,7 @@ function getInfoUser(id) {
                 nome, 
                 email, 
                 senha, 
-                date_format(criado_em, '%d/%m/%Y') as criado_em
+                date_format(data_cadastro, '%d/%m/%Y') as data_cadastro
             FROM TB_Usuarios WHERE id = ${id};
             `
             console.log("Executando a instrução SQL: \n" + instrucaoSql);
