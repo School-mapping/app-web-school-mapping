@@ -7,35 +7,42 @@
   <title>Configurações - School Mapping</title>
   <link rel="stylesheet" href="../css/configuracao.css" />
   <link rel="stylesheet" href="../css/dash.css">
+  <link rel="stylesheet" href="../css/modal.css">
   <script src="../js/configuracao.js"></script>
+  <script src="../js/modal.js"></script>
 </head>
 
 <body onload="getInfoUser(), carregarNome(), carregarPerfil();">
 
   <div class="container">
+    <!-- Barra lateral -->
     <aside class="barraLateral-esquerda">
-      <img src="../assets/user.png" alt="" class="iconepessoa" />
-      <div class="conteudo-central">
+      <img src="../assets/user.png" alt="Usuário" class="iconepessoa" />
 
+      <div class="conteudo-central">
         <span id="nomeUser"></span>
 
+        <!-- Menu lateral -->
         <nav class="menu-lateral">
           <a href="./dash.html" class="btn-menu">Home</a>
           <a href="./escolas.HTML" class="btn-menu">Escolas</a>
           <a href="./empresas.html" id="btn-empresa" class="btn-menu">Empresas</a>
           <a href="./configuracao.html" class="btn-menu">Configuração</a>
-        </nav><ss="sair-section">
-          <a href="#" class="btn-menu">Sair</a><!-- Adicionr função de encerramento de seção -->
+          <a href="./perfil.html" class="btn-menu">Perfil</a>
+          <a href="./testechamados.html" class="btn-menu">Chamado</a>
+        </nav>
+      </div>
 
+      <!-- Botão de sair fixo no rodapé -->
+      <div class="sair-section">
+        <a href="#" class="btn-menu">Sair</a>
       </div>
     </aside>
 
-    </aside>
-
+    <!-- Conteúdo principal -->
     <main class="conteudoPrincipal">
-
       <div class="classHitorico">
-        <div class="">Configurações de usuário</div>
+        <div>Configurações de usuário</div>
       </div>
 
       <section class="user-card">
@@ -104,17 +111,44 @@
           <button onclick="deletarMensagem()" id="botaoDeletar">Deletar usuário</button>
           <div id="confirmarDelete" class="confirm-box">
             <h3>Deletar Conta</h3>
-
             <p>ATENÇÃO: AO CLICAR NO BOTÃO "DELETAR" SUA CONTA SERÁ EXCLUÍDA PERMANENTEMENTE.</p>
-
             <button onclick="deletarConta()">Deletar</button>
             <button id="voltarbt" onclick="voltarDelete()">Voltar</button>
           </div>
         </div>
       </section>
     </main>
-</body>
+  </div>
 
+  <!-- Modal de chamado -->
+  <div id="modalChamado" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2>Suporte Digital</h2>
+      <form>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="assunto">Assunto:</label>
+        <input type="text" id="assunto" name="assunto" required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" required></textarea>
+
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecione uma opção</option>
+          <option value="erro_dash">Erro de dashboard</option>
+          <option value="inconsistencia_dados">Inconsistência de Dados</option>
+          <option value="erro_graficos">Erro no Painel de Gráficos</option>
+          <option value="erro_slack">Erro do Slack</option>
+          <option value="erro_escolas">Erro no Painel de Escolas</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
 </html>
 
 <script>
