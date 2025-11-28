@@ -89,7 +89,8 @@ html {
 
 .btn-menu {
   display: block;
-  background-color: transparent;
+  background-color: rgba(71, 48, 75, 0.493);
+  border-radius: 15px;
   border: none;
   font-size: 1.3rem;
   padding: 10px 10px;

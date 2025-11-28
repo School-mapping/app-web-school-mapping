@@ -12,7 +12,7 @@
   <script src="../js/modal.js"></script>
 </head>
 
-<body onload="carregarNome()">
+<body onload="carregarNome(), carregarPerfil(), carregarChamados();">
   <aside class="barraLateral-esquerda">
     <img src="../assets/user.png" alt="" class="iconepessoa" />
     <div class="conteudo-central">
@@ -20,9 +20,10 @@
       <nav class="menu-lateral">
         <a href="./dash.html" class="btn-menu">Home</a>
         <a href="./escolas.html" class="btn-menu">Escolas</a>
+        <a href="./empresas.html" class="btn-menu" id="btn-empresa">Empresas</a>
         <a href="./configuracao.html" class="btn-menu">Configuração</a>
-        <a href="./perfil.html" class="btn-menu">Perfil</a>
-        <a href="#" class="btn-menu">Chamados</a>
+        <!-- <a href="./perfil.html" class="btn-menu">Perfil</a> -->
+        <a href="./testechamados.html" class="btn-menu">Chamados</a>
         <a href="#" class="btn-menu">Sair</a>
       </nav>
     </div>
@@ -30,7 +31,7 @@
 
   <main class="conteudo">
     <header class="classHitorico">
-      <span>CAMINHO > Chamados</span>
+      <span>Visão Geral Municipal (IDEB) > Chamados</span>
     </header>
 
     <section class="classPainelEscolas">
@@ -88,21 +89,20 @@
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecione uma opção</option>
+          <option value="erro_dash">Erro de Dashboard</option>
+          <option value="inconsistencia_dados">Inconsistência de Dados</option>
+          <option value="erro_graficos">Erro no Painel de Gráficos</option>
+          <option value="erro_slack">Erro do Slack</option>
+        </select>
+
         <label for="assunto">Assunto:</label>
         <input type="text" id="assunto" name="assunto" required>
 
         <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" required></textarea>
-
-        <label for="tipo">Tipo:</label>
-        <select id="tipo" name="tipo" required>
-          <option value="">Selecione uma opção</option>
-          <option value="erro_dash">Erro de dashboard</option>
-          <option value="inconsistencia_dados">Inconsistência de Dados</option>
-          <option value="erro_graficos">Erro no Painel de Gráficos</option>
-          <option value="erro_slack">Erro do Slack</option>
-          <option value="erro_escolas">Erro no Painel de Escolas</option>
-        </select>
+        <textarea id="descricao" name="descricao" required></textarea>        
 
         <button type="submit" class="btn-enviar">Enviar</button>
       </form>
@@ -113,6 +113,46 @@
     function carregarNome() {
       nomeUser.innerHTML = sessionStorage.USUARIO;
     }
+
+    function carregarPerfil() {
+
+    var id = sessionStorage.ID_USUARIO;
+
+    fetch(`/perfil/carregarPerfil/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(function (resposta) {
+        console.log(resposta);
+
+        if (resposta.ok) {
+          console.log('Busquei informações do perfil', resposta)
+          return resposta.json();
+
+        } else {
+          throw "Erro ao buscar dados no data base";
+        }
+      })
+      .then(function (perfilUser) {
+        console.log(perfilUser[0].id_perfil)
+
+        if (perfilUser[0].id_perfil == 1) {
+          document.getElementById("btn-empresa").style.display = "none";
+        } else {
+          document.getElementById("btn-empresa").style.display = "block";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function carregarChamados() {
+
+  }
   </script>
 </body>
 
