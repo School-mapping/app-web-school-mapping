@@ -65,6 +65,10 @@ function cadastrarUmaEmpresa() {
     document.getElementById("deletar-empresa").style.display = "none";
 }
 
+function gerarToken() {
+    return Math.random().toString(36).substring(2, 12);
+}
+
 function salvarEmpresa() {
     var razaoSocial = document.getElementById("empresa-nome").value;
     var cnpj = document.getElementById("empresa-cnpj").value;
@@ -73,42 +77,60 @@ function salvarEmpresa() {
 
     if (razaoSocialOk && cnpjOk && emailOk && telefoneOk) {
 
-        var razaoSocialVar = razaoSocial;
-        var cnpjVar = cnpj;
-        var emailVar = email;
-        var telefoneVar = telefone;
-
         fetch("/empresas/cadastrarEmpresa", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                razaoSocialServer: razaoSocialVar,
-                cnpjServer: cnpjVar,
-                emailServer: emailVar,
-                telefoneServer: telefoneVar
+                razaoSocialServer: razaoSocial,
+                cnpjServer: cnpj,
+                emailServer: email,
+                telefoneServer: telefone
             }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
 
-                if (resposta.ok) {
-                    console.log('Credenciais enviadas para o backend.')
-
-                    setTimeout(() => {
-                        window.location = "empresas.html";
-                    }, 1500);
-                } else {
+                if (!resposta.ok) {
                     throw "Erro ao cadastrar empresa!";
                 }
+
+                return resposta.json();
             })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
+            .then(function (dadosEmpresa) {
+
+                const idEmpresa = dadosEmpresa.insertId;
+                const tokenEmpresa = gerarToken();
+                console.log("token gerado: ", tokenEmpresa);
+
+                return fetch("/empresas/gerarToken", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        tokenServer: tokenEmpresa,
+                        idServer: idEmpresa
+                    })
+                });
+            })
+            .then(function (respostaToken) {
+
+                console.log("Segunda resposta: ", respostaToken);
+
+                if (!respostaToken.ok) {
+                    throw "Erro ao salvar token!";
+                }
+
+                console.log("Token salvo com sucesso!");
+
+                setTimeout(() => {
+                    window.location = "empresas.html";
+                }, 1500);
+            })
+            .catch(function (erro) {
+                console.error("Erro na requisição:", erro);
             });
 
     } else {
-        console.error("Credenciais para cadastrar a empresa estão incorretas.")
+        console.error("Credenciais para cadastrar a empresa estão incorretas.");
     }
 }
 
@@ -160,6 +182,7 @@ function carregarEmpresas() {
                     <td>${empresaAtual.cnpj}</td>
                     <td>${empresaAtual.email}</td>
                     <td>${empresaAtual.telefone}</td>
+                    <td>${empresaAtual.token}</td>
                     <td
                         ><button class="botaoEditar" 
                                 data-id="${empresaAtual.id}"

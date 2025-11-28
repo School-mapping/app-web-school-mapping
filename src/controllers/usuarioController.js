@@ -1,7 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var usuario = req.body.usuarioServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -31,6 +30,34 @@ function cadastrar(req, res) {
     }
 }
 
+function vincular(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+    var token = req.body.tokenServer;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("id usuário está indefinido!");
+    } else if (token == undefined) {
+        res.status(400).send("Token está indefinido!");
+    } else {
+        usuarioModel.vincular(idUsuario, token)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao vincular! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function logar(req, res) {
     var usuario = req.body.usuarioServer;
     var senha = req.body.senhaServer;
@@ -49,11 +76,11 @@ function logar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                            res.json({
-                                id: resultadoAutenticar[0].id,
-                                nome: resultadoAutenticar[0].nome,
-                                email: resultadoAutenticar[0].email
-                            });
+                        res.json({
+                            id: resultadoAutenticar[0].id,
+                            nome: resultadoAutenticar[0].nome,
+                            email: resultadoAutenticar[0].email
+                        });
 
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -78,8 +105,8 @@ function getInfoUser(req, res) {
         console.log('id está indefinido!');
     } else {
         usuarioModel.getInfoUser(id)
-        .then(
-            function (resultado) {
+            .then(
+                function (resultado) {
                     res.json(resultado);
                 }
             ).catch(
@@ -91,7 +118,7 @@ function getInfoUser(req, res) {
                     );
                     res.status(500).json(erro.sqlMessage);
                 }
-        );
+            );
     }
 }
 
@@ -105,16 +132,16 @@ function atualizarEmail(req, res) {
         console.log("E-Mail está indefinido!");
     } else {
         usuarioModel.atualizarEmail(id, email)
-        .then(
-            function () {
-                res.json("E-Mail atualizado.");
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            }
-        )
+            .then(
+                function () {
+                    res.json("E-Mail atualizado.");
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
     }
 }
 
@@ -128,16 +155,16 @@ function atualizarSenha(req, res) {
         console.log("Senha está indefinido!");
     } else {
         usuarioModel.atualizarSenha(id, senha)
-        .then(
-            function () {
-                res.json("Senha atualizada.");
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            }
-        )
+            .then(
+                function () {
+                    res.json("Senha atualizada.");
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
     }
 }
 
@@ -148,16 +175,16 @@ function deletarConta(req, res) {
         console.log("id está indefinido!");
     } else {
         usuarioModel.deletarConta(id)
-        .then(
-            function () {
-                res.json("Usuário deletado.");
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            }
-        )
+            .then(
+                function () {
+                    res.json("Usuário deletado.");
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
     }
 }
 
@@ -165,6 +192,7 @@ function deletarConta(req, res) {
 module.exports = {
     cadastrar,
     logar,
+    vincular,
     getInfoUser,
     atualizarEmail,
     atualizarSenha,
