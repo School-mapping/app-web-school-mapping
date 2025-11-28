@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="../css/dash.css" />
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script src="../js/modal.js"></script>
-<link rel="stylesheet" href="../css/modal.css">
+  <script src="../js/modal.js"></script>
+  <link rel="stylesheet" href="../css/modal.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script
@@ -81,6 +81,7 @@
       <div class="conteudo-central">
 
         <span id="nomeUser"></span>
+        <span id="nomeEmpresa"></span>
 
         <nav class="menu-lateral">
           <a href="./dash.html" class="btn-menu">Home</a>
@@ -90,35 +91,35 @@
           <!-- <a href="./perfil.html" class="btn-menu">Perfil</a> -->
           <a href="testechamados.html" class="btn-menu">Chamado</a>
 
-<div id="modalChamado" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">&times;</span>
-    <h2>Suporte Digital</h2>
-    
-    <form>
-      <label for="nome" aria-placeholder="Insira seu nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required>
+          <div id="modalChamado" class="modal" style="display:none;">
+            <div class="modal-content">
+              <span class="close" onclick="fecharModal()">&times;</span>
+              <h2>Suporte Digital</h2>
 
-      <label for="assunto">Assunto:</label>
-      <input type="text" id="assunto" name="assunto" required>
+              <form>
+                <label for="nome" aria-placeholder="Insira seu nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
 
-      <label for="descricao">Descrição:</label>
-      <textarea id="descricao" name="descricao" required></textarea>
+                <label for="assunto">Assunto:</label>
+                <input type="text" id="assunto" name="assunto" required>
 
-      <label for="tipo">Tipo:</label>
-      <select id="tipo" name="tipo" required>
-        <option value="">Selecione uma opção</option>
-        <option value="erro_dash">Erro de dashboard</option>
-        <option value="inconsistencia_dados">Inconsistência de Dados</option>
-        <option value="erro_graficos">Erro no Painel de Gráficos</option>
-        <option value="erro_slack">Erro do Slack</option>
-        <option value="erro_escolas">Erro no Painel de Escolas</option>
-      </select>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" required></textarea>
 
-      <button type="submit">Enviar</button>
-    </form>
-  </div>
-</div>
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                  <option value="">Selecione uma opção</option>
+                  <option value="erro_dash">Erro de dashboard</option>
+                  <option value="inconsistencia_dados">Inconsistência de Dados</option>
+                  <option value="erro_graficos">Erro no Painel de Gráficos</option>
+                  <option value="erro_slack">Erro do Slack</option>
+                  <option value="erro_escolas">Erro no Painel de Escolas</option>
+                </select>
+
+                <button type="submit">Enviar</button>
+              </form>
+            </div>
+          </div>
 
         </nav><ss="sair-section">
           <a href="../login.html" class="btn-menu">Sair</a>
@@ -212,7 +213,7 @@
   </main>
   </div>
 
-</body>
+  </body>
 
 </html>
 
@@ -245,6 +246,8 @@
       })
       .then(function (perfilUser) {
         console.log(perfilUser[0].id_perfil)
+        console.log(perfilUser[0].razao_social)
+        nomeEmpresa.innerHTML = perfilUser[0].razao_social;
 
         if (perfilUser[0].id_perfil == 1) {
           document.getElementById("btn-empresa").style.display = "none";

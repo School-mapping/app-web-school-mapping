@@ -21,6 +21,7 @@
         <div class="conteudo-central">
 
             <span id="nomeUser"></span>
+            <span id="nomeEmpresa"></span>
 
             <nav class="menu-lateral">
                 <a href="./dash.html" class="btn-menu">Home</a>
@@ -161,6 +162,8 @@
             })
             .then(function (perfilUser) {
                 console.log(perfilUser[0].id_perfil)
+                console.log(perfilUser[0].razao_social)
+                nomeEmpresa.innerHTML = perfilUser[0].razao_social;
 
                 if (perfilUser[0].id_perfil == 1) {
                     document.getElementById("btn-empresa").style.display = "none";

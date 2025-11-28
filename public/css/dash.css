@@ -25,17 +25,25 @@ html {
   text-decoration: underline;
 }
 
+#nomeEmpresa {
+  display: flex;
+  position: absolute;
+  top: 20%;
+  font-size: 19px;
+  text-decoration: underline;
+}
+
 .classHitorico {
-    width: 100%;
-    height: 10%;
-    color: #6b7280;
-    border-bottom: 1px solid #d1d5db;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 0.9rem;
+  width: 100%;
+  height: 10%;
+  color: #6b7280;
+  border-bottom: 1px solid #d1d5db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 0.9rem;
 }
 
 /* .cabecalho {
@@ -205,12 +213,12 @@ html {
   width: 100%;
 }
 
-.kpi-line-bottom{
+.kpi-line-bottom {
   display: flex;
   justify-content: space-evenly;
 }
 
-.kpi-line-bottom .kpi{
+.kpi-line-bottom .kpi {
   width: 40%;
 }
 
@@ -252,7 +260,7 @@ html {
 
 .kpi-ref-ano {
   font-size: small;
-    color: #aaa;
+  color: #aaa;
 }
 
 .positive {
@@ -297,4 +305,3 @@ html {
   width: 100%;
   height: 300px;
 }
-
