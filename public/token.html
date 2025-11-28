@@ -5,22 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/token.css">
+    <script src="./js/token.js"></script>
     <title>Token</title>
 </head>
 
 <body>
 
-    <section class="modalToken">
+    <section id="modalTokenId" class="modalToken">
         <div id="perguntaToken">
             <p id="mensagemToken">Deseja se vincular com uma empresa?</p>
         </div>
         <div id="botoesToken">
-            <button id="botao1">Sim</button>
-            <button id="botao2">Não</button>
+            <button id="botao1" onclick="aceitar()">Sim</button>
+            <button id="botao2" onclick="cancelar()">Não</button>
         </div>
     </section>
 
-    <section class="modalVincular">
+    <section id="modalVincularId" class="modalVincular">
         <div id="tituloVincular">
             <p id="mensagemTokenParaInserir">Token</p>
         </div>
@@ -28,11 +29,11 @@
             <input id="inputToken" type="password">
         </div>
         <div id="mensagemVincularBox">
-            <p id="mensagemInsertToken">teste</p>
+            <p id="mensagemInsertToken"></p>
         </div>
         <div id="botoesVincular">
-            <button id="botaoVincular">Vincular</button>
-            <button id="botaoVoltar">Voltar</button>
+            <button id="botaoVincular" onclick="vincular()">Vincular</button>
+            <button id="botaoVoltar" onclick="sair()">Voltar</button>
         </div>
     </section>
 </body>

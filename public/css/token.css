@@ -11,7 +11,7 @@ overflow-x: hidden;
 
 .modalToken {
     border: 1px solid white;
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 40%;
     justify-self: center;
@@ -52,6 +52,11 @@ overflow-x: hidden;
     box-shadow: 1px 1px 5px black;
 }
 
+#botao1:hover {
+    width: 26%;
+    transition: 0.5s;
+}
+
 #botao2 {
     width: 25%;
     background-color: red;
@@ -60,9 +65,14 @@ overflow-x: hidden;
     box-shadow: 1px 1px 5px black;
 }
 
+#botao2:hover {
+    width: 26%;
+    transition: 0.5s;
+}
+
 .modalVincular {
     border: 1px solid white;
-    display: block;
+    display: none;
     flex-direction: column;
     width: 40%;
     justify-self: center;
@@ -91,6 +101,7 @@ overflow-x: hidden;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    width: 100%;
 }
 
 #inputToken {
@@ -100,6 +111,7 @@ overflow-x: hidden;
     border: none;
     padding-left: 10px;
     box-shadow: 1px 1px 5px black;
+    text-align: center;
 }
 
 #mensagemVincularBox {

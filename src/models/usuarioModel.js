@@ -2,9 +2,18 @@ var database = require("../database/config")
 
 function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-    
+
     var instrucaoSql = `
         INSERT INTO TB_Usuarios (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function vincular(idUsuario, token) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function vincular(): ", idUsuario, token)
+    var instrucaoSql = `
+        UPDATE TB_Usuarios SET id_empresa = (SELECT id_empresa FROM TB_Tokens WHERE token = '${token}') WHERE id = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -29,8 +38,8 @@ function getInfoUser(id) {
                 date_format(data_cadastro, '%d/%m/%Y') as data_cadastro
             FROM TB_Usuarios WHERE id = ${id};
             `
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 function atualizarEmail(id, email) {
@@ -39,8 +48,8 @@ function atualizarEmail(id, email) {
     var instrucaoSql = `
             UPDATE TB_Usuarios SET email = "${email}" WHERE id = ${id};
             `
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 function atualizarSenha(id, senha) {
@@ -49,8 +58,8 @@ function atualizarSenha(id, senha) {
     var instrucaoSql = `
             UPDATE TB_Usuarios SET senha = "${senha}" WHERE id = ${id};
             `
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 function deletarConta(id) {
@@ -59,13 +68,14 @@ function deletarConta(id) {
     var instrucaoSql = `
             DELETE FROM TB_Usuarios WHERE id = ${id};
             `
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 module.exports = {
     cadastrar,
     logar,
+    vincular,
     getInfoUser,
     atualizarEmail,
     atualizarSenha,
