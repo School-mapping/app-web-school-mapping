@@ -13,17 +13,16 @@ telefone CHAR(11) NOT NULL
 
 CREATE TABLE TB_Perfis (
 id INT PRIMARY KEY AUTO_INCREMENT,
-cargo VARCHAR(20) NOT NULL
+cargo VARCHAR(20) NOT NULL 
 );
 
 CREATE TABLE TB_Usuarios (
 id INT PRIMARY KEY AUTO_INCREMENT,
-id_perfil INT NOT NULL,
+id_perfil INT NOT NULL DEFAULT 1,
 id_empresa INT,
 nome VARCHAR(60) NOT NULL,
 email VARCHAR(45) NOT NULL,
-senha VARCHAR(45) NOT NULL,
-tipo VARCHAR(15) NOT NULL DEFAULT "Padrão", /*Da para colocar um ENUM*/ 
+senha VARCHAR(45) NOT NULL, 
 data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT fk_perfil_tb_usuarios
 		FOREIGN KEY (id_perfil) REFERENCES TB_Perfis(id),
@@ -129,4 +128,3 @@ INSERT INTO TB_Regioes (nome) VALUES
 ('Sul'),
 ('Centro'),
 ('Oeste');
-
