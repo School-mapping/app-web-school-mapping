@@ -9,69 +9,12 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script src="../js/modal.js"></script>
+  <script src="../js/dash.js"></script>
   <link rel="stylesheet" href="../css/modal.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
-
-  <script>
-    function formatarNumero(numero) {
-      return numero.toFixed(1).replace('.', ',') + " / 10,0";
-    }
-
-    function calcularVariacao(atual, anterior) {
-      if (anterior === 0) return 0;
-      return ((atual - anterior) / anterior) * 100;
-    }
-
-    function formatarVariacao(variacao) {
-      const elemento = document.getElementById('variacao-ideb');
-      const valorFormatado = Math.abs(variacao).toFixed(1).replace('.', ',');
-
-      if (variacao > 0) {
-        elemento.innerHTML = `+${valorFormatado}%`;
-        elemento.className = 'kpi-value positive';
-      } else if (variacao < 0) {
-        elemento.innerHTML = `-${valorFormatado}%`;
-        elemento.className = 'kpi-value negative';
-      } else {
-        elemento.innerHTML = `${valorFormatado}%`;
-        elemento.className = 'kpi-value neutral';
-      }
-    }
-
-    function calcularMedia(array) {
-      if (array.length === 0) return 0;
-      const soma = array.reduce((a, b) => a + b, 0);
-      return soma / array.length;
-    }
-
-    function carregarDadosIdeb() {
-      const dataAtual = new Date();
-      const anoAtual = 2025; // Ano fixo para coincidir com o gráfico
-      const anoAnterior = 2023; // Ano fixo para coincidir com o gráfico
-
-      document.getElementById('ano-atual').textContent = "(" + anoAtual + ")";
-      document.getElementById('ano-anterior').textContent = "(" + anoAnterior + ")";
-
-      // Usando os mesmos dados do gráfico de barras
-      const dadosIdebAtual = [6.2, 7.0, 5.3, 3.3, 8.0]; // Valores de 2025 (atual)
-      const dadosIdebAnterior = [6.8, 7.6, 6.3, 5.3, 8.5]; // Valores de 2023 (anterior)
-
-      const mediaAtual = calcularMedia(dadosIdebAtual);
-      const mediaAnterior = calcularMedia(dadosIdebAnterior);
-      const variacao = calcularVariacao(mediaAtual, mediaAnterior);
-
-      document.getElementById('ideb-atual').textContent = formatarNumero(mediaAtual);
-      document.getElementById('ideb-anterior').textContent = formatarNumero(mediaAnterior);
-      formatarVariacao(variacao);
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      carregarDadosIdeb();
-    });
-  </script>
 </head>
 
 <body">
@@ -170,10 +113,20 @@
 
             <div class="grafico kpi">
               <div style="display: flex; flex-direction: column; align-items: center;">
-                <div class="kpi-title">Verba Destinada ao Municipio</div>
+                <div class="kpi-title">Verba Destinada ao Municipio <span class="kpi-ref-ano"
+                    id="ano-atual-ptrf">-</span></div>
                 <div class="kpi-value">
-                  <span id="">R$ 253.200.000</span>
-                  <span class="kpi-ref-ano" id="">(2025)</span>
+                  <span id="atual-soma-ptrf">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grafico kpi">
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="kpi-title">Verba Destinada ao Municipio <span class="kpi-ref-ano"
+                    id="ano-anterior-ptrf">-</span></div>
+                <div class="kpi-value">
+                  <span id="anterior-soma-ptrf">-</span>
                 </div>
               </div>
             </div>
@@ -181,7 +134,7 @@
             <div class="grafico kpi">
               <div style="display: flex; flex-direction: column; align-items: center;">
                 <div class="kpi-title">Variação</div>
-                <div class="kpi-value" style="color: green;">+R$ 25.200.000</div>
+                <div class="kpi-value" id="variacao-ptrf">-</div>
                 <div class="kpi-subtitle">Em relação ao ano anterior</div>
               </div>
             </div>
@@ -217,6 +170,16 @@
 
 </html>
 
+<script>
+  window.onload = function () {
+    carregarNome();
+    carregarPerfil();
+    carregarDadosIdeb();
+    carregarDadosPtrf();
+  };
+</script>
+
+<!-- Pessoais -->
 <script>
   function carregarNome() {
     nomeUser.innerHTML = sessionStorage.USUARIO;
@@ -261,165 +224,182 @@
   }
 </script>
 
-<script>
-  window.onload = function () {
-    carregarNome();
-    carregarPerfil();
-  };
-</script>
-
 <!-- Gráficos gerais -->
 <script>
   // Grafico de barras - Zonas
   const ctx = document.getElementById('graficoBarras');
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
-      datasets: [{
-        label: 'IDEB (2023)',
-        data: [6.8, 7.6, 6.3, 5.3, 8.5],
-        backgroundColor: '#4600C2',
-        borderRadius: 6,
-        borderSkipped: false
-      }, {
-        label: 'IDEB (2025)',
-        data: [6.2, 7.0, 5.3, 3.3, 8.0],
-        backgroundColor: '#000AC2',
-        borderRadius: 6,
-        borderSkipped: false
-      }]
-    },
-    options: {
-      grouped: true,
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        title: { display: true, text: 'Média do IDEB por zona em comparação ao ano anterior' },
-        legend: { display: true },
-        tooltip: { mode: 'index', intersect: false },
-        annotation: {
-          annotations: {
-            linhaMeta: {
-              type: 'line',
-              yMin: 7.0,
-              yMax: 7.0,
-              borderColor: '#d9534f',
-              borderWidth: 3,
-              borderDash: [10, 5], // Deixa a linha tracejada (10px traço, 5px espaço)
-              label: {
-                enabled: true,
-                content: 'Meta: 7,0',
-                position: 'end',
-                backgroundColor: 'rgba(217, 83, 79, 0.8)',
-                font: {
-                  weight: 'bold'
+  carregarGraficoBarra()
+    .then(resultado => {
+      const dadosBarra = resultado.dadosBarra;
+      const anos = resultado.anos;
+
+      console.log("Log: " + dadosBarra)
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: dadosBarra[2],
+          datasets: [{
+            label: `IDEB (` + anos[0] + `)`,
+            data: dadosBarra[0],
+            backgroundColor: '#4600C2',
+            borderRadius: 6,
+            borderSkipped: false
+          }, {
+            label: `IDEB (` + anos[1] + `)`,
+            data: dadosBarra[1],
+            backgroundColor: '#000AC2',
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          grouped: true,
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: { display: true, text: 'Média do IDEB por zona em comparação ao ano anterior' },
+            legend: { display: true },
+            tooltip: { mode: 'index', intersect: false },
+            annotation: {
+              annotations: {
+                linhaMeta: {
+                  type: 'line',
+                  yMin: 7.0,
+                  yMax: 7.0,
+                  borderColor: '#d9534f',
+                  borderWidth: 3,
+                  borderDash: [10, 5], // Deixa a linha tracejada (10px traço, 5px espaço)
+                  label: {
+                    enabled: true,
+                    content: 'Meta: 7,0',
+                    position: 'end',
+                    backgroundColor: 'rgba(217, 83, 79, 0.8)',
+                    font: {
+                      weight: 'bold'
+                    }
+                  }
                 }
               }
             }
+          },
+          scales: {
+            x: {
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.06)' },
+              ticks: { precision: 0 }
+            }
           }
         }
-      },
-      scales: {
-        x: {
-          grid: { display: false }
-        },
-        y: {
-          beginAtZero: true,
-          grid: { color: 'rgba(0,0,0,0.06)' },
-          ticks: { precision: 0 }
-        }
-      }
-    }
-  });
+      });
+    })
+
 
   // Gráfico de barra - Bidirecional
   const ctxBarras2 = document.getElementById('graficoBarras2');
 
-  const config = {
-    type: 'bar',
-    data: {
-      labels: ['Zona Sul', 'Zona Leste', 'Zona Oeste', 'Zona Norte', 'Centro'],
-      datasets: [
-        {
-          label: 'Nota média (IDEB)',
-          data: [6.2, 7.0, 5.3, 3.3, 8.0],
-          backgroundColor: '#4600C2',
-          borderRadius: 6,
-        },
-        {
-          label: 'Verba (R$ milhões)',
-          data: [-62, -70, -53, -33, -80],
-          backgroundColor: '#85BB65',
-          borderRadius: 6,
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      indexAxis: 'y',
-      plugins: {
-        title: {
-          display: true,
-          text: 'Comparação de verba e notas por zona'
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              let label = context.dataset.label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += Math.abs(context.parsed.x);
-              return label;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          offset: false,
-          ticks: {
-            callback: function (value, index, values) {
-              return Math.abs(value);
-            }
-          },
-          title: {
-            display: true,
-            text: 'Valor'
-          },
-          grid: {
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: true,
-            color: function (context) {
-              if (context.tick.value === 0) {
-                return 'rgba(0, 0, 0, 0.6)';
-              }
-              return 'rgba(0, 0, 0, 0.1)';
-            }
-          },
-          min: -85,
-          max: 10,
-        },
-        y: {
-          stacked: true,
-          title: {
-            display: true,
-            text: 'Zonas'
-          },
-          grid: {
-            drawOnChartArea: false,
-            drawTicks: true
-          }
-        }
-      }
-    }
-  };
+  carregarGraficoBidirecional()
+    .then(dados => {
 
-  const myChart = new Chart(ctxBarras2, config);
+      const dadosBidirecional = dados.dadosBidirecional;
+      const ano = dados.ano;
+
+      const notas = dadosBidirecional[0];
+      const verbas = dadosBidirecional[1];
+      const zonas = dadosBidirecional[2];
+
+      const config = {
+        type: 'bar',
+        data: {
+          labels: zonas,
+          datasets: [
+            {
+              label: 'Nota média (IDEB)',
+              data: notas,
+              backgroundColor: '#4600C2',
+              borderRadius: 6,
+              yAxisID: 'LeftY',
+            },
+            {
+              label: 'Verba (R$ Mil)',
+              data: verbas,
+              backgroundColor: '#85BB65',
+              borderRadius: 6,
+              yAxisID: 'RightY',
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'IDEB e Verba por Zona (Escalas Duplas)'
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function (context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.dataset.yAxisID === 'RightY') {
+                    const valor = context.parsed.y;
+                    return `R$ ${valor.toLocaleString('pt-BR')} Mil`;
+                  }
+                  return label + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false }
+            },
+            LeftY: {
+              type: 'linear',
+              position: 'left',
+              beginAtZero: true,
+              max: 10,
+              title: {
+                display: true,
+                text: 'IDEB (0-10)'
+              },
+              grid: { color: 'rgba(0,0,0,0.06)' }
+            },
+            RightY: {
+              type: 'linear',
+              position: 'right',
+              beginAtZero: true,
+              max: 350,
+              title: {
+                display: true,
+                text: 'Verba (R$ Mil)'
+              },
+              ticks: {
+                callback: function (value) {
+                  return `R$ ${value.toLocaleString('pt-BR')}`;
+                }
+              },
+              grid: {
+                drawOnChartArea: false
+              }
+            }
+          }
+        }
+      };
+
+      const myChart = new Chart(ctxBarras2, config);
+    })
+
+
 
 </script>
 
