@@ -7,6 +7,10 @@ router.post("/cadastrarEmpresa", function(req, res) {
     empresaController.cadastrarEmpresa(req, res);
 });
 
+router.post("/gerarToken", function(req, res) {
+    empresaController.gerarToken(req, res);
+});
+
 router.get("/carregarEmpresas", function(req, res) {
     empresaController.carregarEmpresas(req, res);
 });

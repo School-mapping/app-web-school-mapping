@@ -13,3 +13,30 @@
 
 .btn-abrir-chamado:hover {
   background-color: #2c0475; }
+
+#nome-chamado {
+  cursor: pointer;
+}
+
+.botaoRemover {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.botaoRemover img {
+  width: 20px;
+  height: 20px;
+}
+
+.botaoRemover:hover {
+  transform: scale(1.15);
+}
+
+.botaoRemover:active {
+  transform: scale(0.95);
+}

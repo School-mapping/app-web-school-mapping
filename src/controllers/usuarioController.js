@@ -1,7 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var usuario = req.body.usuarioServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -23,6 +22,34 @@ function cadastrar(req, res) {
                     console.log(erro);
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function vincular(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+    var token = req.body.tokenServer;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("id usuário está indefinido!");
+    } else if (token == undefined) {
+        res.status(400).send("Token está indefinido!");
+    } else {
+        usuarioModel.vincular(idUsuario, token)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao vincular! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -69,6 +96,8 @@ function getInfoUser(req, res) {
         usuarioModel.getInfoUser(id)
             .then(
                 function (resultado) {
+            .then(
+                function (resultado) {
                     res.json(resultado);
                 }
             ).catch(
@@ -80,6 +109,7 @@ function getInfoUser(req, res) {
                     );
                     res.status(500).json(erro.sqlMessage);
                 }
+            );
             );
     }
 }
@@ -150,6 +180,7 @@ function deletarConta(req, res) {
 module.exports = {
     cadastrar,
     logar,
+    vincular,
     getInfoUser,
     atualizarEmail,
     atualizarSenha,

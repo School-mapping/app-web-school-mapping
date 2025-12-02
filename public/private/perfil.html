@@ -6,11 +6,12 @@
   <title>Perfis</title>
   <link rel="stylesheet" href="../css/perfil.css" />
 </head>
-<body onload="carregarNome()">
+<body onload="carregarNome(), carregarPerfil()">
   <aside class="barraLateral-esquerda">
     <div class="topo-barra">
       <img src="../assets/user.png" alt="Usuário" class="iconepessoa" />
-      <span id="nomeUser">Usuário</span>
+      <span id="nomeUser"></span>
+      <span id="nomeEmpresa"></span>
     </div>
 
     <nav class="menu-lateral">

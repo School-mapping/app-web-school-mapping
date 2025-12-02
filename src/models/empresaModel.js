@@ -13,6 +13,19 @@ function cadastrarEmpresa(razaoSocial, cnpj, email, telefone) {
     });
 }
 
+function gerarToken(idEmpresa, tokenEmpresa) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function gerarTOken():", idEmpresa, tokenEmpresa);
+
+    var instrucaoSql = `CALL SP_CadastrarEmpresa(?, ?, ?, ?);`;
+    var parametros = [razaoSocial, cnpj, email, telefone];
+
+    return database.executarComParametros(instrucaoSql, parametros)
+    .then(resultado => { 
+        console.log("Resultado da PROC:", resultado[0][0]);
+        return resultado[0][0];
+    });
+}
+
 function carregarEmpresas() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function carregarEmpresas():");
 
@@ -26,7 +39,7 @@ function carregarEmpresas() {
 }
 
 function salvarAtualizarEmpresa(id, razaoSocial, cnpj, email, telefone) {
-     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarAtualizarEmpresa():", id, razaoSocial, cnpj, email, telefone);
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function salvarAtualizarEmpresa():", id, razaoSocial, cnpj, email, telefone);
 
     var instrucaoSql = `CALL SP_SalvarAtualizarEmpresa(?, ?, ?, ?, ?);`;
 
@@ -54,6 +67,7 @@ function deletarEmpresa(id) {
 }
 
 module.exports = {
+    gerarToken,
     cadastrarEmpresa,
     carregarEmpresas,
     salvarAtualizarEmpresa,

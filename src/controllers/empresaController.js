@@ -34,6 +34,34 @@ function cadastrarEmpresa(req, res) {
     }
 }
 
+function gerarToken(req, res) {
+
+    var tokenEmpresa = req.body.tokenServer;
+    var idEmpresa = req.body.idServer;
+
+    if (tokenEmpresa == undefined) {
+        res.status(400).send("Token está undefined!");
+    } else if (idEmpresa == undefined) {
+        res.status(400).send("id da empresa está undefined");
+    } else {
+        empresaModel.gerarToken(idEmpresa, tokenEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao inserir token! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function carregarEmpresas(req, res) {
 
     empresaModel.carregarEmpresas()
@@ -92,20 +120,21 @@ function deletarEmpresa(req, res) {
         console.log("id está indefinido!");
     } else {
         empresaModel.deletarEmpresa(id)
-        .then(
-            function () {
-                res.json("Empresa deletada.");
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            }
-        )
+            .then(
+                function () {
+                    res.json("Empresa deletada.");
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
     }
 }
 
 module.exports = {
+    gerarToken,
     cadastrarEmpresa,
     carregarEmpresas,
     salvarAtualizarEmpresa,

@@ -14,6 +14,15 @@ function cadastrar(nome, email, senha) {
 
 }
 
+function vincular(idUsuario, token) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function vincular(): ", idUsuario, token)
+    var instrucaoSql = `
+        UPDATE TB_Usuarios SET id_empresa = (SELECT id_empresa FROM TB_Tokens WHERE token = '${token}') WHERE id = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function logar(usuario, senha) {
     console.log("ACESSEI O USUARIO MODEL - logar:", usuario, senha);
 
@@ -82,6 +91,7 @@ function deletarConta(id) {
 module.exports = {
     cadastrar,
     logar,
+    vincular,
     getInfoUser,
     atualizarEmail,
     atualizarSenha,
