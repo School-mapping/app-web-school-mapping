@@ -49,6 +49,8 @@ var perfilRouter = require("./src/routes/perfil");
 var dashRouter = require("./src/routes/dashPrincipal");
 var dashPorEscolaRouter = require("./src/routes/dashPorEscola");
 var chamadoRouter = require("./src/routes/chamados")
+var notificacaoRouter = require("./src/routes/notificacoes")
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -62,6 +64,7 @@ app.use("/perfil", perfilRouter);
 app.use("/dashPrincipal", dashRouter);
 app.use("/dashPorEscola", dashPorEscolaRouter);
 app.use("/chamados", chamadoRouter);
+app.use("/notificacoes", notificacaoRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`
