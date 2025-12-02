@@ -73,7 +73,7 @@ nome VARCHAR(10) NOT NULL /*da para ser ENUM*/
 );
 
 CREATE TABLE TB_Enderecos (
-id INT,
+id INT AUTO_INCREMENT,
 id_regiao INT,
 cep CHAR(9) NOT NULL, # Inserir com " - "
 bairro VARCHAR(45) NOT NULL,
@@ -87,10 +87,10 @@ numero VARCHAR(10) NOT NULL,
 
 CREATE TABLE TB_Escolas (
 id INT PRIMARY KEY AUTO_INCREMENT,
-id_endereco INT NOT NULL,
-nome VARCHAR(60) NOT NULL,
+id_endereco INT,
+nome VARCHAR(100) NOT NULL,
 codigo_inep CHAR(8) NOT NULL,
-subprefeitura VARCHAR(60) NOT NULL,
+subprefeitura VARCHAR(60),
 	CONSTRAINT fk_endereco_tb_escolas
 		FOREIGN KEY (id_endereco) REFERENCES TB_Enderecos(id)
 );
@@ -130,3 +130,169 @@ INSERT INTO TB_Regioes (nome) VALUES
 ('Centro'),
 ('Oeste');
 
+
+SELECT * FROM TB_Escolas;
+SELECT * FROM TB_Ideb;
+SELECT * FROM TB_Regioes;
+SELECT * FROM TB_Logs;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_CadastrarUsuario(
+    IN p_nome VARCHAR(60),
+    IN p_email VARCHAR(45),
+    IN p_senha VARCHAR(45),
+    IN p_id_perfil INT
+)
+BEGIN
+    INSERT INTO TB_Usuarios (nome, email, senha, id_perfil)
+    VALUES (p_nome, p_email, p_senha, p_id_perfil);
+
+    SELECT LAST_INSERT_ID() AS id_usuario;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_LogarUsuario(
+    IN p_usuario VARCHAR(60),
+    IN p_senha VARCHAR(45)
+)
+BEGIN
+    SELECT 
+        id AS id_usuario,
+        nome,
+        email
+    FROM TB_Usuarios
+    WHERE nome = p_usuario
+      AND senha = p_senha
+    LIMIT 1;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_AtualizarEmail(
+    IN p_id INT,
+    IN p_email VARCHAR(45)
+)
+BEGIN
+    UPDATE TB_Usuarios
+    SET email = p_email
+    WHERE id = p_id;
+
+    SELECT ROW_COUNT() AS linhas_afetadas;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_AtualizarSenha(
+    IN p_id INT,
+    IN p_senha VARCHAR(45)
+)
+BEGIN
+    UPDATE TB_Usuarios
+    SET senha = p_senha
+    WHERE id = p_id;
+
+    SELECT ROW_COUNT() AS linhas_afetadas;
+END $$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_DeletarUsuario(
+    IN p_id INT
+)
+BEGIN
+    DELETE FROM TB_Usuarios
+    WHERE id = p_id;
+
+    SELECT ROW_COUNT() AS linhas_afetadas;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_CadastrarEmpresa(
+    IN p_razao_social VARCHAR(45),
+    IN p_cnpj CHAR(14),
+    IN p_email VARCHAR(45),
+    IN p_telefone CHAR(11)
+)
+BEGIN
+    INSERT INTO TB_Empresas (razao_social, cnpj, email, telefone)
+    VALUES (p_razao_social, p_cnpj, p_email, p_telefone);
+
+    SELECT LAST_INSERT_ID() AS id_empresa;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_CarregarEmpresas()
+BEGIN
+    SELECT * FROM TB_Empresas;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_AtualizarEmpresa(
+    IN p_id INT,
+    IN p_razao_social VARCHAR(45),
+    IN p_cnpj CHAR(14),
+    IN p_email VARCHAR(45),
+    IN p_telefone CHAR(11)
+)
+BEGIN
+    UPDATE TB_Empresas
+    SET razao_social = p_razao_social,
+        cnpj = p_cnpj,
+        email = p_email,
+        telefone = p_telefone
+    WHERE id = p_id;
+
+    SELECT ROW_COUNT() AS linhas_afetadas;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_DeletarEmpresa(
+    IN p_id INT
+)
+BEGIN
+    DELETE FROM TB_Empresas
+    WHERE id = p_id;
+
+    SELECT ROW_COUNT() AS linhas_afetadas;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE SP_CarregarPerfil(
+	IN p_id INT
+)
+BEGIN
+    SELECT id_perfil 
+    FROM TB_Usuarios 
+    WHERE id = p_id;
+END $$
+
+DELIMITER ;
+
+
+SELECT * FROM TB_Usuarios;
