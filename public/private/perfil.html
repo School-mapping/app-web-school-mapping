@@ -22,6 +22,8 @@
       <a href="./configuracao.html" class="btn-menu">Configuração</a>
       <a href="./perfil.html" class="btn-menu">Notificações</a>
       <a href="testechamados.html" class="btn-menu">Chamado</a>
+      <a href="listaNotificacoes.html" class="btn-menu">Lista Not</a>
+
 
 
       <div id="modalChamado" class="modal" style="display:none;">
@@ -85,8 +87,7 @@
         </select>
 
 
-        <button onclick="inserirNotificacao()" class="btn-criar">aaa</button>
-        <button class="btn-deletar">b</button>
+        <button onclick="inserirNotificacao()" class="btn-criar">Enviar Notificação</button>
       </section>
 
 
@@ -151,30 +152,27 @@
         });
     }
 
-    function inserirNotificacao(idUsuario, idCanal, tipoAlerta) {
-      const selectCanal = document.getElementById("selectCanal")
-      const selectTipo = document.getElementById("selectTipo")
+function inserirNotificacao() {
+  const idUsuario = Number(sessionStorage.getItem("ID_USUARIO"));
+  const selectCanal = document.getElementById("selectCanal");
+  const selectTipo = document.getElementById("selectTipo");
 
-      fetch("/notificacoes/inserir", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          idUsuario: Number(sessionStorage.getItem("ID_USUARIO")),
-          idCanal: Number(selectCanal.value),
-          tipoAlerta: selectTipo.value
-        })
-      }).then(res => {
-        if (res.ok) {
-          let mensagem = ("Contiguração enviada com sucesso!")
-          alert(mensagem)
-        }
-
-      }).catch(function (erro) {
-        console.log(erro)
-      })
+  fetch("/notificacoes/inserir", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idUsuario: idUsuario,
+      idCanal: Number(selectCanal.value),
+      tipoAlerta: selectTipo.value
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      alert("Configuração enviada com sucesso!");
     }
+  })
+  .catch(erro => console.log("Erro ao inserir:", erro));
+}
 
 
 

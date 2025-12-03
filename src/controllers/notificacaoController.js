@@ -1,3 +1,4 @@
+const e = require("express");
 var notificacaoModel = require("../models/notificacaoModel");
 
 function buscarCanais(req, res) {
@@ -56,8 +57,28 @@ notificacaoModel
 })
 }
 
+function deletarNotificacao(req, res){
+const idNotificacao = req.params.id
+
+notificacaoModel
+.deletarNotificacao(idNotificacao)
+.then(function(resultado){
+  if(resultado.affectedRows > 0){
+
+  res.status(200).json("Deletado com sucesso")
+  }
+  else{
+    res.status(400).send("Erro")
+  }
+})
+.catch(function(erro){
+ res.status(500).json(erro.sqlMessage)
+})
+};
+
 module.exports = {
   buscarCanais,
   inserirNotificacao,
-  buscarNotificacoes
+  buscarNotificacoes,
+  deletarNotificacao
 };

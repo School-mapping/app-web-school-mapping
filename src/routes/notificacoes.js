@@ -12,10 +12,13 @@ router.post("/inserir", function(req, res) {
 });
 
 router.get("/buscar/:idUsuario", function(req, res) {
-console.log("cheguei no routes")
     notificacaoController.buscarNotificacoes(req, res);
     
 });
 
+
+router.delete("/deletar/:id", function(req, res) {
+    notificacaoController.deletarNotificacao(req, res);
+});
 
 module.exports = router;
