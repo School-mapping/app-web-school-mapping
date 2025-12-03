@@ -15,12 +15,16 @@ function cadastrar(nome, email, senha) {
 }
 
 function vincular(idUsuario, token) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function vincular(): ", idUsuario, token)
-    var instrucaoSql = `
-        UPDATE TB_Usuarios SET id_empresa = (SELECT id_empresa FROM TB_Tokens WHERE token = '${token}') WHERE id = ${idUsuario};
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    console.log("ACESSEI O USUARIO MODEL - vincular:", idUsuario, token);
+
+    var instrucaoSql = `CALL SP_VincularUsuario(?, ?);`;
+    var parametros = [idUsuario, token];
+
+    return database.executarComParametros(instrucaoSql, parametros)
+        .then(resultado => {
+            console.log("Resultado da PROC:", resultado[0][0]);
+            return resultado[0][0];
+        });
 }
 
 function logar(usuario, senha) {
@@ -41,7 +45,7 @@ function getInfoUser(id) {
 
     var instrucaoSql = `
         SELECT id, nome, email, senha, 
-               date_format(data_cadastro, '%d/%m/%Y') as criado_em
+               date_format(data_cadastro, '%d/%m/%Y') as data_cadastro
         FROM TB_Usuarios 
         WHERE id = ?;
     `;
