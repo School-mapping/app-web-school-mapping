@@ -215,11 +215,12 @@ html {
 
 .kpi-line-bottom {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  font-size: small;
 }
 
 .kpi-line-bottom .kpi {
-  width: 40%;
+  width: 30%;
 }
 
 
