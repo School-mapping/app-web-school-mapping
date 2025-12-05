@@ -4,71 +4,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>novo not</title>
+  <title>Criar Notificação</title>
+  <link rel="stylesheet" href="../css/escolas.css" />
   <link rel="stylesheet" href="../css/perfil.css" />
+  <link rel="stylesheet" href="../css/dash.css" />
+  <link rel="stylesheet" href="../css/modal.css">
+  
 </head>
 
-<body onload="carregarNome(), carregarPerfil()">
+<body>
   <aside class="barraLateral-esquerda">
     <div class="topo-barra">
       <img src="../assets/user.png" alt="Usuário" class="iconepessoa" />
-      <span id="nomeUser"></span>
+      <span id="nomeUser" style="font-size: 1rem;"></span>
       <span id="nomeEmpresa"></span>
     </div>
 
-    <nav class="menu-lateral">
-      <a href="./dash.html" class="btn-menu">Home</a>
-      <a href="./escolas.HTML" class="btn-menu">Escolas</a>
-      <a href="./configuracao.html" class="btn-menu">Configuração</a>
-      <a href="./perfil.html" class="btn-menu">Notificações</a>
-      <a href="testechamados.html" class="btn-menu">Chamado</a>
-      <a href="listaNotificacoes.html" class="btn-menu">Lista Not</a>
+    <div class="conteudo-central">
+      <nav class="menu-lateral">
+        <a href="./dash.html" class="btn-menu">Home</a>
+        <a href="./escolas.HTML" class="btn-menu">Escolas</a>
+        <a href="./empresas.html" class="btn-menu">Empresas</a>
+        <a href="./configuracao.html" class="btn-menu">Configuração</a>
+        <a href="testechamados.html" class="btn-menu">Chamado</a>
+        <a href="./listaNotificacoes.html" class="btn-menu">Lista Notificações</a>
+        <a href="./perfil.html" class="btn-menu">Criar Notificação</a>
+        <a href="../login.html" class="btn-menu">Sair</a>
+      </nav><ss="sair-section">
+
+    </div>
 
 
+    <div id="modalChamado" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <h2>Suporte Digital</h2>
 
-      <div id="modalChamado" class="modal" style="display:none;">
-        <div class="modal-content">
-          <span class="close" onclick="fecharModal()">&times;</span>
-          <h2>Suporte Digital</h2>
+        <form>
+          <label for="nome" aria-placeholder="Insira seu nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required>
 
-          <form>
-            <label for="nome" aria-placeholder="Insira seu nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+          <label for="assunto">Assunto:</label>
+          <input type="text" id="assunto" name="assunto" required>
 
-            <label for="assunto">Assunto:</label>
-            <input type="text" id="assunto" name="assunto" required>
+          <label for="descricao">Descrição:</label>
+          <textarea id="descricao" name="descricao" required></textarea>
 
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" required></textarea>
+          <label for="tipo">Tipo:</label>
+          <select id="" name="tipo" required>
+            <option value="">Selecione uma opção</option>
+            <option value="erro_dash">Erro de dashboard</option>
+            <option value="inconsistencia_dados">Inconsistência de Dados</option>
+            <option value="erro_graficos">Erro no Painel de Gráficos</option>
+            <option value="erro_slack">Erro do Slack</option>
+            <option value="erro_escolas">Erro no Painel de Escolas</option>
+          </select>
 
-            <label for="tipo">Tipo:</label>
-            <select id="" name="tipo" required>
-              <option value="">Selecione uma opção</option>
-              <option value="erro_dash">Erro de dashboard</option>
-              <option value="inconsistencia_dados">Inconsistência de Dados</option>
-              <option value="erro_graficos">Erro no Painel de Gráficos</option>
-              <option value="erro_slack">Erro do Slack</option>
-              <option value="erro_escolas">Erro no Painel de Escolas</option>
-            </select>
-
-            <button type="submit">Enviar</button>
-          </form>
-        </div>
+          <button type="submit">Enviar</button>
+        </form>
       </div>
-
-
-
-
+    </div>
     </nav>
-
-    <div class="sair-section">
-      <a href="#" class="btn-menu">Sair</a>
     </div>
   </aside>
 
   <main class="conteudo">
     <header class="classHitorico">
-      <span>aa > perfis</span>
+      <span id="correcao">Visão Geral Municipal (IDEB) > Criar Notificações</span>
     </header>
 
     <div class="painel-perfis">
@@ -87,7 +89,7 @@
         </select>
 
 
-        <button onclick="inserirNotificacao()" class="btn-criar">Enviar Notificação</button>
+        <button onclick="inserirNotificacao()" class="btn-criar">Parametrizar Notificação</button>
       </section>
 
 
@@ -96,7 +98,7 @@
 
   <script>
     function carregarNome() {
-      nomeUser.innerHTML = sessionStorage.USUARIO || "Usuário";
+        nomeUser.innerHTML = sessionStorage.USUARIO;
     }
     function abrirModal() {
       document.getElementById('modalChamado').style.display = 'flex';
@@ -108,6 +110,7 @@
 
     window.onload = function () {
       carregarSelect();
+      carregarNome();
     };
 
     function carregarSelect() {
@@ -152,27 +155,27 @@
         });
     }
 
-function inserirNotificacao() {
-  const idUsuario = Number(sessionStorage.getItem("ID_USUARIO"));
-  const selectCanal = document.getElementById("selectCanal");
-  const selectTipo = document.getElementById("selectTipo");
+    function inserirNotificacao() {
+      const idUsuario = Number(sessionStorage.getItem("ID_USUARIO"));
+      const selectCanal = document.getElementById("selectCanal");
+      const selectTipo = document.getElementById("selectTipo");
 
-  fetch("/notificacoes/inserir", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      idUsuario: idUsuario,
-      idCanal: Number(selectCanal.value),
-      tipoAlerta: selectTipo.value
-    })
-  })
-  .then(res => {
-    if (res.ok) {
-      alert("Configuração enviada com sucesso!");
+      fetch("/notificacoes/inserir", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idUsuario: idUsuario,
+          idCanal: Number(selectCanal.value),
+          tipoAlerta: selectTipo.value
+        })
+      })
+        .then(res => {
+          if (res.ok) {
+            alert("Configuração enviada com sucesso!");
+          }
+        })
+        .catch(erro => console.log("Erro ao inserir:", erro));
     }
-  })
-  .catch(erro => console.log("Erro ao inserir:", erro));
-}
 
 
 
