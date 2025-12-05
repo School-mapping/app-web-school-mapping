@@ -69,6 +69,7 @@ html {
 
 .barraLateral-esquerda {
   width: 12vw;
+  min-width: 12vw;
   height: 100vh;
   background-color: #2a0331;
   color: white;
@@ -100,7 +101,7 @@ html {
   background-color: rgba(71, 48, 75, 0.493);
   border-radius: 15px;
   border: none;
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   padding: 10px 10px;
   text-align: center;
   text-decoration: none;
@@ -159,7 +160,7 @@ html {
   justify-content: space-between;
   flex-direction: column;
   margin: 0;
-  padding: 0;
+  padding: 30px;
 }
 
 .linha-graficos {

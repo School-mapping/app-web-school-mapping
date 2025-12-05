@@ -1,5 +1,3 @@
-const { link } = require("../../src/routes/empresas");
-
 function aceitar() {
     document.getElementById("modalTokenId").style.display = "none";
     document.getElementById("modalVincularId").style.display = "flex";

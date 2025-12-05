@@ -22,8 +22,12 @@ body {
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+}
+
+#correcao {
+  padding: 40px;
 }
 
   .confirm-box h3{
@@ -182,10 +186,6 @@ body {
   }
   #voltarbt{
     background-color: #24a4f4 !important;
-  }
-
-  #bdUsuario{
-
   }
 
   .barraLateral-esquerda {
