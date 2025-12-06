@@ -21,7 +21,9 @@ html {
   display: flex;
   position: absolute;
   top: 15%;
-  font-size: 19px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
   text-decoration: underline;
 }
 
@@ -86,7 +88,6 @@ html {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  gap: 20px;
 }
 
 .menu-lateral {
@@ -99,15 +100,16 @@ html {
 .btn-menu {
   display: block;
   background-color: rgba(71, 48, 75, 0.493);
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  /* font-size: 1.3rem; */
+  font-size: 1.3rem;
   padding: 10px 10px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.3s ease;
   color: white;
+  width: 100%;
 }
 
 .btn-menu a {
@@ -151,7 +153,6 @@ html {
 }
 
 .conteudo {
-  padding: 20px;
   height: 100%;
   width: 100vw;
   background-color: #f4f4f4;
