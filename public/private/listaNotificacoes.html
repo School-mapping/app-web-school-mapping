@@ -29,7 +29,7 @@
                 <a href="./testechamados.html" class="btn-menu">Chamados</a>
                 <a href="./listaNotificacoes.html" class="btn-menu">Lista Notificações</a>
                 <a href="./perfil.html" class="btn-menu">Criar Notificação</a>
-                <a href="../login.html" class="btn-menu">Sair</a>
+                <a class="btn-menu" onclick="logout()">Sair</a>
             </nav>
         </div>
     </aside>
@@ -151,6 +151,11 @@
                     }
                 })
                 .catch(erro => console.log("Erro ao deletar:", erro));
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            window.location = "../login.html";
         }
 
     </script>

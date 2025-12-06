@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <a href="../login.html" class="btn-menu">Sair</a>
+          <a class="btn-menu" onclick="logout()">Sair</a>
         </nav><ss="sair-section">
 
       </div>
@@ -416,7 +416,6 @@
   async function initMap() {
 
     try {
-
       const response = await fetch("../geojsons/subprefeituras-sp.geojson");
       if (!response.ok) {
         throw new Error('Não foi possível carregar o GeoJSON!');
@@ -481,5 +480,10 @@
     } catch (error) {
       console.error(error);
     }
+  }
+
+  function logout() {
+    sessionStorage.clear();
+    window.location = "../login.html";
   }
 </script>

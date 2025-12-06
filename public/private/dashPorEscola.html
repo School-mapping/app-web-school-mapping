@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../css/dashPorEscola.css" />
 <link rel="stylesheet" href="../css/perfil.css">
 <script src="../js/modal.js"></script>
+<script src="../js/dashPorEscola.js"></script>
 <link rel="stylesheet" href="../css/modal.css">
 <link rel="stylesheet" href="../css/escolas.css" />
 
@@ -16,7 +17,7 @@
     <title>Dash específica</title>
 </head>
 
-<body onload="carregarNome(), carregarPerfil()">
+<body>
     <aside class="barraLateral-esquerda">
         <img src="../assets/user.png" alt="" class="iconepessoa" />
         <div class="conteudo-central">
@@ -64,7 +65,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="../login.html" class="btn-menu">Sair</a>
+                <a class="btn-menu" onclick="logout()">Sair</a>
             </nav><ss="sair-section">
 
         </div>
@@ -72,39 +73,45 @@
 
     <Main class="conteudo">
         <div class="classHitorico">
-            <div class="">Visão Geral Municipal (IDEB) > Escolas > Escola Selecionada</div>
+            <span>
+                <a href="dash.html">Visão Geral Municipal (IDEB)</a> >
+                <a href="escolas.HTML">Escolas</a> >
+                <a id="escola-atual">-</a>
+            </span>
             <button id="buttonCompararEscola">Comparar com melhor escola do ranking</button>
         </div>
 
         <div class="classKpis" id="divKpis">
 
             <div class="classKpi classKpi1">
-                <div class="kpi-title">IDEB atual</div>
+                <div class="kpi-title">
+                    IDEB atual <span class="kpi-ref-ano">(-)</span>
+                </div>
                 <div class="kpi-value">
-                    <span id="ideb-atual">7,8 / 10,0 </span>
-                    <a class="variacao1">(-1🔻)</a>
-                    <span class="kpi-ref-ano" id="ano-atual">(2025)</span>
+                    <span><span id="ideb-atual">(-)</span>
+                        <a class="variacao-ideb" id="ideb-atual-variacao">(-)</a>
                 </div>
                 <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
 
             </div>
 
             <div class="classKpi classKpi2">
-                <div class="kpi-title">Repasse Financeiro - PTRF (R$)</div>
+                <div class="kpi-title">Repasse Financeiro - PTRF atual (R$)</div>
                 <div class="kpi-value">
-                    <span id="ideb-atual">R$ 300k</span>
-                    <a class="variacao2">(+R$50k🔼)</a>
+                    <span id="ptrf-atual">-</span>
+                    <a class="variacao-ptrf" id="ptrf-atual-variacao">-</a>
                 </div>
-                <div class="kpi-subtitle">Ano: <span>2025</span></div>
+                <div class="kpi-subtitle">
+                    Ano: <span class="kpi-ref-ano">-</span></div>
             </div>
 
             <div class="classKpi classKpi3">
                 <div class="kpi-title">Ranking de melhores escolas (IDEB)</div>
                 <div class="kpi-value">
-                    <span id="ideb-atual">48º Lugar</span>
-                    <a class="variacao3">(+3🔼)</a>
+                    <span id="ranking-atual" class="kpi-ranking-atual">-</span>
+                    <a id="variacao-ranking">-</a>
                 </div>
-                <div class="kpi-subtitle">Ano: <span>2025</span></div>
+                <div class="kpi-ref-ano">Ano: <span>-</span></div>
             </div>
         </div>
 
@@ -117,6 +124,14 @@
 </body>
 
 </html>
+
+<Script>
+    window.onload = function () {
+        carregarNome();
+        carregarPerfil();
+        montarGrafico(sessionStorage.ID_ESCOLA)
+    };
+</Script>
 
 <script>
 
@@ -136,7 +151,6 @@
             }
         })
             .then(function (resposta) {
-                console.log(resposta);
 
                 if (resposta.ok) {
                     console.log('Busquei informações do perfil', resposta)
@@ -147,8 +161,6 @@
                 }
             })
             .then(function (perfilUser) {
-                console.log(perfilUser[0].id_perfil)
-                console.log(perfilUser[0].razao_social)
                 nomeEmpresa.innerHTML = perfilUser[0].razao_social;
 
                 if (perfilUser[0].id_perfil == 1) {
@@ -162,92 +174,112 @@
             });
     }
 
-    const ctx = document.getElementById('canvasGraficoPrincipal');
+    function montarGrafico(idEscola) {
 
-    const mixedChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['2023', '2025'],
-            datasets: [
-                {
-                    type: 'line',
-                    label: 'Repasses Financeiros',
-                    data: [250000, 300000],
-                    yAxisID: 'RightY', // eixo da direita
-                    borderColor: '#85BB65',
-                    backgroundColor: '#85BB65',
-                    tension: 0.3,
-                    borderWidth: 4,
-                    borderRadius: 6,
-                    borderSkipped: false,
-                },
-                {
-                    type: 'bar',
-                    label: 'IDEB',
-                    data: [8.8, 7.8],
-                    yAxisID: 'LeftY', // eixo da esquerda
-                    backgroundColor: '#4600C2',
-                    borderColor: '#4600C2',
-                    borderWidth: 1,
-                    borderRadius: 6,
-                    borderSkipped: false,
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: { display: true, text: 'IDEB e Repasses Financeiros (R$) no decorrer dos anos' },
-                legend: { display: true },
-                tooltip: { mode: 'index', intersect: false },
-                annotation: {
-                    annotations: {
-                        linhaMeta: {
+        const ctx = document.getElementById('canvasGraficoPrincipal');
+
+        carregarDadosDashboard(idEscola).then((resposta) => {
+
+            const nome = resposta.nomeEscola;
+            const anos = resposta.anosGerais;
+            const ptrfs = resposta.ptrf;
+            const idebs = resposta.ideb;
+
+            plotarKpi(resposta);
+
+            const mixedChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: anos,
+                    datasets: [
+                        {
                             type: 'line',
-                            yMin: 7.0,
-                            yMax: 7.0,
-                            borderColor: '#d9534f',
-                            borderWidth: 3,
-                            borderDash: [10, 5], // Deixa a linha tracejada (10px traço, 5px espaço)
-                            label: {
-                                enabled: true,
-                                content: 'Meta: 7,0',
-                                position: 'end',
-                                backgroundColor: 'rgba(217, 83, 79, 0.8)',
-                                font: {
-                                    weight: 'bold'
+                            label: 'Repasses Financeiros',
+                            data: ptrfs,
+                            yAxisID: 'RightY', // eixo da direita
+                            borderColor: '#85BB65',
+                            backgroundColor: '#85BB65',
+                            tension: 0.3,
+                            borderWidth: 4,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        },
+                        {
+                            type: 'bar',
+                            label: 'IDEB',
+                            data: idebs,
+                            yAxisID: 'LeftY', // eixo da esquerda
+                            backgroundColor: '#4600C2',
+                            borderColor: '#4600C2',
+                            borderWidth: 1,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'IDEB e Repasses Financeiros (R$) no decorrer dos anos' },
+                        legend: { display: true },
+                        tooltip: { mode: 'index', intersect: false },
+                        annotation: {
+                            annotations: {
+                                linhaMeta: {
+                                    type: 'line',
+                                    yMin: 7.0,
+                                    yMax: 7.0,
+                                    borderColor: '#d9534f',
+                                    borderWidth: 3,
+                                    borderDash: [10, 5], // Deixa a linha tracejada (10px traço, 5px espaço)
+                                    label: {
+                                        enabled: true,
+                                        content: 'Meta: 7,0',
+                                        position: 'end',
+                                        backgroundColor: 'rgba(217, 83, 79, 0.8)',
+                                        font: {
+                                            weight: 'bold'
+                                        }
+                                    }
                                 }
+                            }
+                        }
+                    },
+                    scales: {
+                        LeftY: {
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Escala do IDEB'
+                            }
+                        },
+                        RightY: {
+                            type: 'linear',
+                            position: 'right',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Repasses financeiros - PTRF'
+                            },
+                            grid: {
+                                drawOnChartArea: false
                             }
                         }
                     }
                 }
-            },
-            scales: {
-                LeftY: {
-                    type: 'linear',
-                    position: 'left',
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Escala do IDEB'
-                    }
-                },
-                RightY: {
-                    type: 'linear',
-                    position: 'right',
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Repasses financeiros - PTRF'
-                    },
-                    grid: {
-                        drawOnChartArea: false
-                    }
-                }
-            }
-        }
-    });
+            });
+        })
 
+        carregarKpiRank(idEscola)
+
+    }
+
+    function logout() {
+        sessionStorage.clear();
+        window.location = "../login.html";
+    }
 
 </script>

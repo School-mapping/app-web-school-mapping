@@ -30,7 +30,7 @@
                 <a href="testechamados.html" class="btn-menu">Chamados</a>
                 <a href="./listaNotificacoes.html" class="btn-menu">Lista Notificações</a>
                 <a href="./perfil.html" class="btn-menu">Criar Notificação</a>
-                <a href="../login.html" class="btn-menu">Sair</a>
+                <a class="btn-menu" onclick="logout()">Sair</a>
             </nav><ss="sair-section">
 
         </div>
@@ -178,6 +178,11 @@
 <Script>
     function carregarNome() {
         nomeUser.innerHTML = sessionStorage.USUARIO;
+    }
+
+    function logout() {
+        sessionStorage.clear();
+        window.location = "../login.html";
     }
 </Script>
 

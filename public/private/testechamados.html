@@ -14,7 +14,7 @@
   <script src="../js/chamado.js"></script>
 </head>
 
-<body onload="carregarNome(), carregarPerfil();">
+<body>
   <aside class="barraLateral-esquerda">
     <img src="../assets/user.png" alt="" class="iconepessoa" />
     <div class="conteudo-central">
@@ -30,7 +30,7 @@
         <a href="./testechamados.html" class="btn-menu">Chamados</a>
         <a href="./listaNotificacoes.html" class="btn-menu">Lista Notificações</a>
         <a href="./perfil.html" class="btn-menu">Criar Notificação</a>
-        <a href="../login.html" class="btn-menu">Sair</a>
+        <a class="btn-menu" onclick="logout()">Sair</a>
       </nav>
     </div>
   </aside>
@@ -95,6 +95,17 @@
   </div>
 
   <script>
+
+    window.onload = function () {
+      carregarNome();
+      carregarPerfil();
+    };
+
+    function logout() {
+      sessionStorage.clear();
+      window.location = "../login.html";
+    }
+
     function carregarNome() {
       console.log(sessionStorage.USUARIO);
       nomeUser.innerHTML = sessionStorage.USUARIO;
@@ -124,9 +135,7 @@
           }
         })
         .then(function (perfilUser) {
-          console.log(perfilUser[0].id_perfil)
           sessionStorage.setItem("ID_PERFIL", perfilUser[0].id_perfil)
-          console.log(perfilUser[0].razao_social)
           nomeEmpresa.innerHTML = perfilUser[0].razao_social;
           carregarChamados();
 
@@ -166,6 +175,8 @@
 
           var tabelaChamados = document.getElementById("tabela-chamados");
           tabelaChamados.innerHTML = "";
+
+          console.log(chamadoList);
 
           for (var i = 0; i < chamadoList.length; i++) {
             var chamadoAtual = chamadoList[i];

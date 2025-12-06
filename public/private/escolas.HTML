@@ -64,7 +64,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="../login.html" class="btn-menu">Sair</a>
+                <a class="btn-menu" onclick="logout()">Sair</a>
             </nav><ss="sair-section">
 
         </div>
@@ -72,11 +72,14 @@
 
     <main class="conteudo">
         <header class="classHitorico">
-            <span>Visão Geral Municipal (IDEB) > Escolas</span>
+            <span>
+                <a href="dash.html">Visão Geral Municipal (IDEB)</a> >
+                <a href="escolas.HTML">Escolas</a>
+            </span>
         </header>
 
         <section class="classPainelEscolas">
-            <h1 class="titleEscolas">Lista de Escolas do Município</h1>
+            <h1 class="titleEscolas">Lista de Escolas do Município - Maior ao menor IDEB</h1>
 
             <div class="listaEscolas">
                 <table>
@@ -124,7 +127,6 @@
             }
         })
             .then(function (resposta) {
-                console.log(resposta);
 
                 if (resposta.ok) {
                     console.log('Busquei informações do perfil', resposta)
@@ -148,6 +150,11 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+    }
+
+    function logout() {
+        sessionStorage.clear();
+        window.location = "../login.html";
     }
 </script>
 

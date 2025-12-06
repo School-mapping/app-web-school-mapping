@@ -25,6 +25,11 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.classHitorico span a{
+  text-decoration: none;
+  color: #6b7280;
+}
+
 /* ======= PAINEL ======= */
 
 .classPainelEscolas {
@@ -51,7 +56,7 @@ body {
 /* ======= TABELA CONTAINER ======= */
 .listaEscolas {
   width: 100%;
-  max-height: 400px; 
+  max-height: 800px; 
   overflow-y: auto; 
   border-bottom: 1px solid #e5e7eb; 
 }
