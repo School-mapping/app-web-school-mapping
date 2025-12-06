@@ -64,7 +64,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="../login.html" class="btn-menu">Sair</a>
+                <a class="btn-menu" onclick="logout()">Sair</a>
             </nav><ss="sair-section">
 
         </div>
@@ -150,6 +150,11 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+    }
+
+    function logout() {
+        sessionStorage.clear();
+        window.location = "../login.html";
     }
 </script>
 

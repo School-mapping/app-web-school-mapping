@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <a href="../login.html" class="btn-menu">Sair</a>
+          <a class="btn-menu" onclick="logout()">Sair</a>
         </nav><ss="sair-section">
 
       </div>
@@ -480,5 +480,10 @@
     } catch (error) {
       console.error(error);
     }
+  }
+
+  function logout() {
+    sessionStorage.clear();
+    window.location = "../login.html";
   }
 </script>

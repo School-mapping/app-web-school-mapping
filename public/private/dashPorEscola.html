@@ -65,7 +65,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="../login.html" class="btn-menu">Sair</a>
+                <a class="btn-menu" onclick="logout()">Sair</a>
             </nav><ss="sair-section">
 
         </div>
@@ -73,9 +73,9 @@
 
     <Main class="conteudo">
         <div class="classHitorico">
-            <span>  
+            <span>
                 <a href="dash.html">Visão Geral Municipal (IDEB)</a> >
-                <a href="escolas.HTML">Escolas</a> > 
+                <a href="escolas.HTML">Escolas</a> >
                 <a id="escola-atual">-</a>
             </span>
             <button id="buttonCompararEscola">Comparar com melhor escola do ranking</button>
@@ -85,11 +85,11 @@
 
             <div class="classKpi classKpi1">
                 <div class="kpi-title">
-                    IDEB atual <span class="kpi-ref-ano" >(-)</span>
+                    IDEB atual <span class="kpi-ref-ano">(-)</span>
                 </div>
                 <div class="kpi-value">
                     <span><span id="ideb-atual">(-)</span>
-                    <a class="variacao-ideb" id="ideb-atual-variacao">(-)</a>
+                        <a class="variacao-ideb" id="ideb-atual-variacao">(-)</a>
                 </div>
                 <div class="kpi-subtitle">🎯Meta: <span id="">7,0</span></div>
 
@@ -102,7 +102,7 @@
                     <a class="variacao-ptrf" id="ptrf-atual-variacao">-</a>
                 </div>
                 <div class="kpi-subtitle">
-                    Ano: <span class="kpi-ref-ano" >-</span></div>
+                    Ano: <span class="kpi-ref-ano">-</span></div>
             </div>
 
             <div class="classKpi classKpi3">
@@ -175,7 +175,7 @@
     }
 
     function montarGrafico(idEscola) {
-        
+
         const ctx = document.getElementById('canvasGraficoPrincipal');
 
         carregarDadosDashboard(idEscola).then((resposta) => {
@@ -272,11 +272,14 @@
                 }
             });
         })
-    
+
         carregarKpiRank(idEscola)
 
     }
 
-
+    function logout() {
+        sessionStorage.clear();
+        window.location = "../login.html";
+    }
 
 </script>
