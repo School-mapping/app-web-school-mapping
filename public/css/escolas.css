@@ -24,6 +24,11 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.classHitorico span a{
+  text-decoration: none;
+  color: #6b7280;
+}
+
 /* ======= PAINEL ======= */
 
 .classPainelEscolas {
