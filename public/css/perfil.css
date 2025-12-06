@@ -7,7 +7,7 @@ body {
   margin: 0;
 }
 
-.barraLateral-esquerda {
+/* .barraLateral-esquerda {
   width: 12vw;
   min-width: 160px;
   height: 100vh;
@@ -16,40 +16,38 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px 10px;
   box-sizing: border-box;
-}
+} */
 
-.topo-barra {
+/* .topo-barra {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-}
+} */
 
-.iconepessoa {
+/* .iconepessoa {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid white;
-}
+} */
 
-#nomeUser {
+/* #nomeUser {
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-}
+} */
 
-.menu-lateral {
+/* .menu-lateral {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 40px;
-}
+} */
 
-.btn-menu {
+/* .btn-menu {
   font-size: 1.2rem;
   color: white;
   text-decoration: none;
@@ -58,24 +56,24 @@ body {
   transition: background 0.3s ease;
   width: 100%;
   text-align: center;
-}
+} */
 
-.btn-menu:hover {
+/* .btn-menu:hover {
   background-color: rgba(255, 255, 255, 0.1);
-}
+} */
 
-.sair-section {
+/* .sair-section {
   margin-top: auto;
   display: flex;
   justify-content: center;
-}
+} */
 
-.conteudo {
+/* .conteudo {
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: 30px;
-}
+} */
 
 .classHistorico {
   font-size: 0.9rem;
