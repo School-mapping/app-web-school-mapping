@@ -176,7 +176,7 @@ function cadastrar() {
                 }
             })
             .then(function (dadosCadastro) {
-                const idUsuario = dadosCadastro.insertId;
+                const idUsuario = dadosCadastro.id_usuario; 
                 sessionStorage.setItem("ID_USUARIO", idUsuario);
 
                 setTimeout(() => {

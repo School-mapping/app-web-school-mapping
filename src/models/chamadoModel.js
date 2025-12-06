@@ -3,8 +3,8 @@ var database = require("../database/config");
 function enviarChamado(id, assunto, descricao, tipo) {
     console.log("ACESSEI O CHAMADO MODEL - enviarChamado:", id, assunto, descricao, tipo);
 
-    var instrucaoSql = `CALL SP_EnviarChamado(?, ?, ?, ?);`;
-    var parametros = [id, assunto, descricao, tipo];
+    var instrucaoSql = `CALL SP_EnviarChamado(?, ?, ?);`;
+    var parametros = [id, assunto, descricao];
 
     return database.executarComParametros(instrucaoSql, parametros)
         .then(resultado => {

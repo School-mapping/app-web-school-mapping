@@ -2,14 +2,11 @@ var chamadoModel = require("../models/chamadoModel");
 
 function enviarChamado(req, res) {
     var id = req.body.idServer
-    // var nome = req.body.nomeServer;
     var assunto = req.body.assuntoServer;
     var descricao = req.body.descricaoServer;
 
     if (id == undefined) {
         console.log("id está indefinido!")
-        // } else if (nome == undefined) {
-        //     console.log("nome está indefinido!");
     } else if (assunto == undefined) {
         console.log("Assunto está indefinido!");
     } else if (descricao == undefined) {

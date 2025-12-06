@@ -16,11 +16,13 @@ function cadastrar(req, res) {
     }
 
     usuarioModel.cadastrar(usuario, email, senha)
-        .then(resultado => res.json(resultado))
-        .catch(erro => {
-            console.log("\nHouve um erro ao realizar o cadastro! Erro:", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        });
+    .then(resultado => {
+        res.json({ id_usuario: resultado.id_usuario });
+    })
+    .catch(erro => {
+        console.log("\nHouve um erro ao realizar o cadastro! Erro:", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function vincular(req, res) {
