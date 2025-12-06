@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Notificações</title>
+    <link rel="stylesheet" href="../css/dash.css" />
+    <link rel="stylesheet" href="../css/escolas.css" />
+    <link rel="stylesheet" href="../css/testechamados.css">
+    <link rel="stylesheet" href="../css/modal.css" />
+    <link rel="stylesheet" href="../css/perfil.css">
+    <script src="../js/modal.js"></script>
+    <script src="../js/chamado.js"></script>
+</head>
+
+<body onload="carregarNome(), carregarNotificacoes()">
+    <aside class="barraLateral-esquerda">
+        <img src="../assets/user.png" alt="" class="iconepessoa" />
+        <div class="conteudo-central">
+            <span id="nomeUser"></span>
+            <span id="nomeEmpresa"></span>
+            <br><br>
+            <nav class="menu-lateral">
+                <a href="./dash.html" class="btn-menu">Home</a>
+                <a href="./escolas.html" class="btn-menu">Escolas</a>
+                <a href="./empresas.html" class="btn-menu" id="btn-empresa">Empresas</a>
+                <a href="./configuracao.html" class="btn-menu">Configuração</a>
+                <a href="./testechamados.html" class="btn-menu">Chamados</a>
+                <a href="./listaNotificacoes.html" class="btn-menu">Lista Notificações</a>
+                <a href="./perfil.html" class="btn-menu">Criar Notificação</a>
+                <a href="../login.html" class="btn-menu">Sair</a>
+            </nav>
+        </div>
+    </aside>
+
+    <main class="conteudo">
+        <header class="classHitorico">
+            <span>Visão Geral Municipal (IDEB) > Notificações</span>
+        </header>
+
+        <section class="classPainelEscolas">
+            <h1 class="titleEscolas">Lista de Notificações</h1>
+            <div id="modalChamados" class="listaEscolas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Canal</th>
+                            <th>Tipo de Alerta</th>
+                            <th>Último Disparo</th>
+                            <th>Ações</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-chamados"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="modalChamado" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Suporte Digital</h2>
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome-chamado" name="nome" disabled>
+                <label for="assunto">Assunto:</label>
+                <input type="text" id="assunto-chamado" name="assunto" required>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao-chamado" name="descricao" required></textarea>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function carregarNome() {
+            nomeUser.innerHTML = sessionStorage.USUARIO || "Usuário";
+        }
+
+        function abrirModal() {
+            document.getElementById('modalChamado').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('modalChamado').style.display = 'none';
+        }
+        function carregarNotificacoes() {
+            const idUsuario = Number(sessionStorage.getItem("ID_USUARIO"));
+
+            fetch(`/notificacoes/buscar/${idUsuario}`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            })
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json)
+                    const tabela = document.getElementById("tabela-chamados");
+                    tabela.innerHTML = "";
+
+                    for (let i = 0; i < json.length; i++) {
+                        const n = json[i];
+                        const linha = document.createElement("tr");
+
+                        const tdId = document.createElement("td");
+                        tdId.textContent = n.id;
+
+                        const tdUsuario = document.createElement("td");
+                        tdUsuario.textContent = n.id_usuario;
+
+                        const tdCanal = document.createElement("td");
+                        tdCanal.textContent = n.canalNome;
+
+                        const tdTipo = document.createElement("td");
+                        tdTipo.textContent = n.tipo_alerta;
+
+                        const tdUltimoDisparo = document.createElement("td");
+                        tdUltimoDisparo.textContent = n.ultimo_disparo;
+
+                        const tdCancelar = document.createElement("td");
+                        const button = document.createElement("button")
+                        button.id = "botaoCancelar"
+                        button.style.backgroundImage = 'URL("../assets/cancel.png")'
+                        button.onclick = function () {
+                            deletarNotificacao(n.id_notificacao)
+                        };
+                        tdCancelar.appendChild(button)
+
+                        linha.appendChild(tdCanal);
+                        linha.appendChild(tdTipo);
+                        linha.appendChild(tdUltimoDisparo);
+                        linha.appendChild(tdCancelar);
+                        tabela.appendChild(linha);
+                    }
+                })
+                .catch(erro => console.log("Erro ao carregar notificações:", erro));
+        }
+
+        function deletarNotificacao(id) {
+
+            fetch(`/notificacoes/deletar/${id}`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" }
+            })
+                .then(res => {
+                    if (res.ok) {
+                        alert("Notificação deletada com sucesso!");
+                        carregarNotificacoes();
+                    } else {
+                        alert("Erro ao deletar notificação.");
+                    }
+                })
+                .catch(erro => console.log("Erro ao deletar:", erro));
+        }
+
+    </script>
+</body>
+
+</html>
