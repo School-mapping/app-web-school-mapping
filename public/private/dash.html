@@ -416,7 +416,6 @@
   async function initMap() {
 
     try {
-
       const response = await fetch("../geojsons/subprefeituras-sp.geojson");
       if (!response.ok) {
         throw new Error('Não foi possível carregar o GeoJSON!');

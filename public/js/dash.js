@@ -174,8 +174,7 @@ function buscarSomaPTRf() {
         });
 }
 
-
-// Funções sem requisições
+// Funções sem requisições HTTP
 
 function carregarDadosIdeb() {
     carregarGraficoBarra()
@@ -235,6 +234,9 @@ function carregarDadosPtrf() {
 
 }
 
+
+// Auxiliares
+
 function formatarNumero(numero) {
     return numero.toFixed(1).replace('.', ',') + " / 10,0";
 }
@@ -279,7 +281,6 @@ function calcularMedia(array) {
     const soma = array.reduce((a, b) => a + b, 0);
     return soma / array.length;
 }
-
 
 function ordernarMatriz(matriz) {
 

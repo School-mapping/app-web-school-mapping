@@ -72,11 +72,14 @@
 
     <main class="conteudo">
         <header class="classHitorico">
-            <span>Visão Geral Municipal (IDEB) > Escolas</span>
+            <span>
+                <a href="dash.html">Visão Geral Municipal (IDEB)</a> >
+                <a href="escolas.HTML">Escolas</a>
+            </span>
         </header>
 
         <section class="classPainelEscolas">
-            <h1 class="titleEscolas">Lista de Escolas do Município</h1>
+            <h1 class="titleEscolas">Lista de Escolas do Município - Maior ao menor IDEB</h1>
 
             <div class="listaEscolas">
                 <table>
@@ -124,7 +127,6 @@
             }
         })
             .then(function (resposta) {
-                console.log(resposta);
 
                 if (resposta.ok) {
                     console.log('Busquei informações do perfil', resposta)
