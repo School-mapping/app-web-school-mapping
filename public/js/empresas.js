@@ -98,7 +98,7 @@ function salvarEmpresa() {
             })
             .then(function (dadosEmpresa) {
 
-                const idEmpresa = dadosEmpresa.insertId;
+                const idEmpresa = dadosEmpresa.id_empresa;
                 const tokenEmpresa = gerarToken();
                 console.log("token gerado: ", tokenEmpresa);
 
@@ -107,7 +107,7 @@ function salvarEmpresa() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         tokenServer: tokenEmpresa,
-                        idServer: idEmpresa
+                        idEmpresaServer: idEmpresa
                     })
                 });
             })

@@ -13,7 +13,6 @@ function enviarChamado() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 idServer: idUsuario,
-                // nomeServer: nome,
                 assuntoServer: assunto,
                 descricaoServer: descricao,
             }),
