@@ -25,6 +25,12 @@ body {
   align-items: center;
 }
 
+.classHitorico a {
+  text-decoration: none;
+  font-style: none;
+  color: #6b7280;
+}
+
 #correcao {
   padding: 40px;
 }
