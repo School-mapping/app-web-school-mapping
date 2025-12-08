@@ -3,7 +3,7 @@ var notificacaoModel = require("../models/notificacaoModel");
 
 function buscarCanais(req, res) {
   notificacaoModel
-    .buscarCanais()
+    .buscarCanais(req.params.idUsuario)
     .then(function (resultado) {
       res.json(resultado);
     })

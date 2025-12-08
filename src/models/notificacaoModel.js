@@ -1,12 +1,12 @@
 var database = require("../database/config");
 
-function buscarCanais() {
+function buscarCanais(idUsuario) {
   console.log(
     "ACESSEI O NOTIFICAÇÃO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n "
   );
 
   var instrucaoSql = `
-            SELECT * FROM TB_Canal_Slack
+            SELECT * FROM TB_Canal_Slack WHERE id_usuario IS NULL OR id_usuario = ${idUsuario};
         `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -29,7 +29,7 @@ function buscarNotificacoes(idUsuario) {
   );
   const instrucaoSql = `
 SELECT nc.id id_notificacao, cs.nome canalNome ,id_canal, tipo_alerta, date_format( ultimo_disparo,'%d/%m/%Y %h:%i:%s') AS ultimo_disparo FROM TB_Notificacao_Config nc 
-JOIN TB_Canal_Slack cs ON nc.id_canal = cs.id WHERE id_usuario = ${idUsuario};
+JOIN TB_Canal_Slack cs ON nc.id_canal = cs.id WHERE nc.id_usuario = ${idUsuario};
    `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

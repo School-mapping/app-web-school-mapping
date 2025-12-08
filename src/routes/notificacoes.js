@@ -3,7 +3,7 @@ var router = express.Router();
 
 var notificacaoController = require("../controllers/notificacaoController");
 
-router.get("/canal", function(req, res) {
+router.get("/canal/:idUsuario", function(req, res) {
     notificacaoController.buscarCanais(req, res);
 });
 

@@ -112,7 +112,7 @@
     };
 
     function carregarSelect() {
-      fetch("/notificacoes/canal", {
+      fetch(`/notificacoes/canal/${sessionStorage.ID_USUARIO}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
