@@ -84,6 +84,13 @@ body {
   text-align: left;
 }
 
+
+.classHitorico a {
+  text-decoration: none;
+  font-style: none;
+  color: #6b7280;
+}
+
 .painel-perfis {
   display: flex;
   justify-content: center;
