@@ -42,7 +42,7 @@ function carregarDadosDashboard(req, res) {
 
 function carregarKpiRank(req, res) {
 
-    dashPorEscolaModel.carregarKpiRank(res)
+    dashPorEscolaModel.carregarKpiRank(req, res)
         .then(
             function (resultado) {
                 res.json(resultado);

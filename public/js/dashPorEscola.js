@@ -154,7 +154,6 @@ function montarKpiIdeb(idebs, anosIdeb, anoAtual) {
 
 function montarKpiPtrf(ptrfs, anosPtrf, anoAtual) {
 
-    console.log(ptrfs + " - " + anosPtrf + " - " + anoAtual)
 
     if (pegarAno(anosPtrf) < parseFloat(anoAtual)) {
         document.getElementById('ptrf-atual').textContent = "Escola não possui últimas verbas";
@@ -205,7 +204,6 @@ function montarKpiRanking(idEscola, dados) {
         document.getElementById('variacao-ranking').textContent = '';
         return;
     }
-
     for (let index = 0; index < dados.length; index++) {
         const itemAtual = dados[index];
         if (itemAtual.codigo_inep == idEscola) {
@@ -213,7 +211,10 @@ function montarKpiRanking(idEscola, dados) {
             rankIdeb.rankings.push(itemAtual.ranking);
         }
     }
-
+    console.log("Rankings: " + " [" + rankIdeb.rankings)
+    console.log("Anos: " + " [" + rankIdeb.anos_ideb)
+    console.log("Anos: " + " [" + rankIdeb.anos_ideb)
+    
     let maiorAno = rankIdeb.maiorAno.toString();
 
     if (rankIdeb.anos_ideb.length == 0 || !rankIdeb.anos_ideb.includes(maiorAno)) {
@@ -222,8 +223,8 @@ function montarKpiRanking(idEscola, dados) {
         return;
     }
 
-    const  rankPassado = rankIdeb.rankings[0];
-    const  rankAtual = rankIdeb.rankings[1];
+    const  rankAtual = rankIdeb.rankings[0];
+    const  rankPassado = rankIdeb.rankings[1];
 
     //Caso tudo esteja certo
     document.getElementById('ranking-atual').textContent = rankAtual;
@@ -271,7 +272,6 @@ function formatarVariacao(primeiroIndice, segundoIndice, idHtml) {
 
 function tratarDadosGrafico(valor) {
 
-    console.log("Valor: " + valor)
 
     if (valor == 'N/A') return;
 
