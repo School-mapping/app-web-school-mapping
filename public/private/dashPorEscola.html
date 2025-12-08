@@ -78,7 +78,6 @@
                 <a href="escolas.HTML">Escolas</a> >
                 <a id="escola-atual">-</a>
             </span>
-            <button id="buttonCompararEscola">Comparar com melhor escola do ranking</button>
         </div>
 
         <div class="classKpis" id="divKpis">
@@ -271,6 +270,9 @@
                     }
                 }
             });
+
+            // carregar nome da escola 
+            document.getElementById('escola-atual').textContent = nome
         })
 
         carregarKpiRank(idEscola)

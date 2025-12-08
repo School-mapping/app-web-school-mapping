@@ -46,25 +46,29 @@ function carregarDadosDashboard(id) {
 
 function carregarKpiRank() {
 
+    //select feito por IA
     var instrucaoSql = `
-       SELECT 
-            nome_escola,
-            nota_ideb,
-            soma_ptrf, 
-            ano_ideb,
-            codigo_inep,
-            (select max(ano) from vw_escolas) as maior_ano,
-            DENSE_RANK() OVER (
+        SELECT 
+                    nome_escola,
+                    nota_ideb,
+                    soma_ptrf, 
+                    ano_ideb,
+                    ano, 
+                    codigo_inep,
+                    (select max(ano) from vw_escolas) as maior_ano,
+                    DENSE_RANK() OVER (
+                        PARTITION BY ano
+                        ORDER BY 
+                            CASE WHEN nota_ideb COLLATE utf8mb4_unicode_ci = 'N/A' THEN 0 ELSE 1 END DESC,
+                            CAST(REPLACE(nota_ideb, ',', '.') AS DECIMAL(10,1)) DESC,
+                            soma_ptrf ASC
+                    ) AS ranking
+                FROM 
+                    vw_escolas 
+                WHERE nota_ideb COLLATE utf8mb4_unicode_ci <> 'N/A'
                 ORDER BY 
-                    CASE WHEN nota_ideb = 'N/A' THEN 0 ELSE 1 END DESC,
-                    CAST(REPLACE(nota_ideb, ',', '.') AS DECIMAL(10,1)) DESC,
-                    soma_ptrf ASC
-            ) AS ranking
-        FROM 
-            vw_escolas 
-        where nota_ideb <> 'N/A'
-        ORDER BY 
-            nome_escola ASC;
+                    ano DESC,  
+                    ranking ASC;
             `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
