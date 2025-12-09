@@ -25,7 +25,7 @@ function enviarChamado() {
             })
             .then(function (dadosChamado) {
                 setTimeout(() => {
-                    window.location = "testechamados.html";
+                    window.location = "chamados.html";
                 }, 1500);
             })
             .catch(function (erro) {

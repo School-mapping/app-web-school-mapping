@@ -20,8 +20,8 @@ function cadastrar(req, res) {
         res.json({ id_usuario: resultado.id_usuario });
     })
     .catch(erro => {
-        console.log("\nHouve um erro ao realizar o cadastro! Erro:", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
+        console.log("\nHouve um erro ao realizar o cadastro! Erro:", erro);
+        res.status(500).json(erro);
     });
 }
 
