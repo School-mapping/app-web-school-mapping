@@ -19,6 +19,21 @@ function carregarGraficoBarra(req, res) {
         );
 }
 
+function buscarMediaFluxoZona(req, res) {
+    dashPrincipalModel.buscarMediaFluxoZona()
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao ler dados para o grafico de Bidirecional! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    )
+}
+
 function carregarGraficoBidirecional(req, res) {
 
     dashPrincipalModel.carregarGraficoBidirecional()
@@ -61,5 +76,6 @@ function buscarSomaPtrf(req, res) {
 module.exports = {
     carregarGraficoBarra,
     carregarGraficoBidirecional,
-    buscarSomaPtrf
+    buscarSomaPtrf,
+    buscarMediaFluxoZona
 }

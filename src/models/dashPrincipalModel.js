@@ -11,6 +11,15 @@ function carregarGraficoBarra(req, res) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMediaFluxoZona(req, res) {
+
+    const instrucaoSql = `SELECT * FROM vw_fluxo_regiao`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
 function carregarGraficoBidirecional(req, res) {
 
     var instrucaoSql = `
@@ -126,5 +135,6 @@ function buscarSomaPtrf(req, res) {
 module.exports = {
     carregarGraficoBarra,
     carregarGraficoBidirecional,
-    buscarSomaPtrf
+    buscarSomaPtrf,
+    buscarMediaFluxoZona
 };

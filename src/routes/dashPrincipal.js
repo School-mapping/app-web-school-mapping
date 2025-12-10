@@ -15,6 +15,10 @@ router.get("/buscarSomaPtrf", function(req, res) {
     dashPrincipalController.buscarSomaPtrf(req, res); ///dashPrincipal/buscarSomaPtrf
 });
 
+router.get("/buscarMediaFluxoZona", function(req, res) {
+    dashPrincipalController.buscarMediaFluxoZona(req, res); ///dashPrincipal/buscarMediaFluxoZona
+});
+
 
 
 module.exports = router;

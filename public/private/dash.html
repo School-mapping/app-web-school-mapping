@@ -6,15 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estatísticas - School Mapping</title>
   <link rel="stylesheet" href="../css/dash.css" />
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
   <script src="../js/modal.js"></script>
   <script src="../js/dash.js"></script>
   <link rel="stylesheet" href="../css/modal.css">
   <link rel="stylesheet" href="../css/perfil.css">
   <link rel="stylesheet" href="../css/escolas.css" />
-  <link rel="stylesheet" href="../css/dash.css" />
-
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
@@ -155,11 +152,7 @@
 
       <div class="linha-graficos linha2">
         <div class="grafico">
-          <h2 style="font-weight: 200; color: gray; font-size: 15px;">
-            Mapa de Calor do IDEB por Estado
-          </h2>
-          <div id="mapaCalorGeo" style="width: 100%; height: 100%;"></div>
-
+          <canvas id="graficoFluxoZona" style="width: 100%; height: 100%;"></canvas>
         </div>
 
         <div class="grafico">
@@ -181,6 +174,7 @@
     carregarPerfil();
     carregarDadosIdeb();
     carregarDadosPtrf();
+    carregarMediaFluxoZona();
   };
 </script>
 
@@ -404,86 +398,12 @@
       const myChart = new Chart(ctxBarras2, config);
     })
 
+    carregarMediaFluxoZona()
 
 
-</script>
-
-<!-- Mapa de calor -->
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDPpXaJeeEDVazesF8nBZONca1a8cwbE&callback=initMap"></script>
-<script>
-  // Mapa de calor
-  async function initMap() {
-
-    try {
-      const response = await fetch("../geojsons/subprefeituras-sp.geojson");
-      if (!response.ok) {
-        throw new Error('Não foi possível carregar o GeoJSON!');
-      }
-
-      const bounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(-24.20, -47.00),
-        new google.maps.LatLng(-23.30, -46.20)
-      );
-
-      const geojson = response.json();
-
-      const mapOptions = {
-        zoom: 9,
-        center: { lat: -23.55, lng: -46.63 },
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
-        disableDoubleClickZoom: true,
-        streetViewControl: false,
-        mapTypeControl: false,
-        restriction: {
-          latLngBounds: bounds,
-          strictBounds: false,
-        },
-        labels: false
-      };
-
-      var map = new google.maps.Map(document.getElementById('mapaCalorGeo'), mapOptions);
-
-      map.data.loadGeoJson("../geojsons/subprefeituras-sp.geojson");
-      map.data.setStyle(feature => {
-        const ideb = parseFloat(feature.getProperty('ideb'));
-        let cor;
-        if (ideb < 6.5) {
-          cor = '#FF0000'; // vermelho
-        } else if (ideb < 8.3) {
-          cor = '#FFA500'; // laranja
-        } else {
-          cor = '#00FF00'; // verde
-        }
-        return {
-          fillColor: cor,
-          strokeWeight: 1,
-          fillOpacity: 0.85,
-          strokeColor: '#333',
-        };
-      });
-
-      map.data.addListener("click", function (event) {
-        const nome = event.feature.getProperty("name");
-        const ideb = event.feature.getProperty("ideb");
-
-        const infoWindow = new google.maps.InfoWindow({
-          content: `
-          <div style="font-size:16px; font-weight:bold;">${nome}</div>
-          <div style="margin-top:8px;">IDEB: ${ideb}</div>
-          <div>Meta: 7.5</div>
-          `,
-          position: event.latLng
-        });
-        infoWindow.open(map);
-      });
-    } catch (error) {
-      console.error(error);
+    function logout() {
+      sessionStorage.clear();
+      window.location = "../login.html";
     }
-  }
 
-  function logout() {
-    sessionStorage.clear();
-    window.location = "../login.html";
-  }
 </script>

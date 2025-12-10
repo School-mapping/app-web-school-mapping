@@ -220,10 +220,10 @@ function carregarDadosPtrf() {
             document.getElementById('anterior-soma-ptrf').textContent = formatarDinheiro(somaPenultimoAno);
 
             const diferenca = parseFloat(respostas[2]);
-            if(diferenca > 0 ) {
+            if (diferenca > 0) {
                 document.getElementById('variacao-ptrf').textContent = formatarDinheiro(diferenca);
                 document.getElementById('variacao-ptrf').style = "color: green;"
-            } else if (diferenca < 0 ){
+            } else if (diferenca < 0) {
                 document.getElementById('variacao-ptrf').textContent = formatarDinheiro(diferenca);
                 document.getElementById('variacao-ptrf').style = "color: red;"
             } else {
@@ -234,6 +234,150 @@ function carregarDadosPtrf() {
 
 }
 
+let fluxoZonaChart = null;
+
+function carregarMediaFluxoZona() {
+
+    if (fluxoZonaChart) {
+        fluxoZonaChart.destroy();
+    }
+
+    fetch("/dashPrincipal/buscarMediaFluxoZona")
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error("Erro ao buscar dados do gráfico");
+            }
+        })
+        .then(function (dados) {
+            // Extrair anos e zonas únicas
+            const anos = [...new Set(dados.map(item => item.ano_fluxo))].sort();
+            const zonas = [...new Set(dados.map(item => item.regiao))].sort();
+
+            // Preparar dados para o gráfico
+            const datasets = [];
+            const cores = [
+                '#4600C2', '#000AC2', '#00A3C2', '#00C28F', '#C2B200',
+                '#C23B00', '#7D00C2', '#0085C2', '#00C24F', '#C27D00'
+            ];
+
+            zonas.forEach((regiao, index) => {
+                const dadosZona = anos.map(ano => {
+                    const dado = dados.find(d => d.ano_fluxo === ano && d.regiao === regiao);
+                    return dado ? parseFloat(dado.media_fluxo) : null;
+                });
+
+                datasets.push({
+                    label: `Zona ${regiao}`,
+                    data: dadosZona,
+                    borderColor: cores[index % cores.length],
+                    backgroundColor: cores[index % cores.length] + '33',
+                    borderWidth: 4,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverBorderWidth: 2,
+                    pointBorderColor: cores[index % cores.length],
+                    fill: false
+                });
+            });
+
+            const canvasId = 'graficoFluxoZona';
+            const canvasElement = document.getElementById(canvasId);
+
+            if (!canvasElement) {
+                throw new Error("Elemento do gráfico não encontrado");
+            }
+
+            const graficoExistente = Chart.getChart(canvasId);
+            if (graficoExistente) {
+                graficoExistente.destroy();
+            }
+
+            if (fluxoZonaChart && fluxoZonaChart !== graficoExistente) {
+                fluxoZonaChart.destroy();
+            }
+
+            const ctx = canvasElement.getContext('2d');
+
+            fluxoZonaChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: anos,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Média de Fluxo por Zona ao Longo dos Anos',
+                            font: { size: 14 }
+                        },
+                        legend: {
+                            position: 'top',
+                            labels: { boxWidth: 12 }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toFixed(2);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Ano',
+                                font: { weight: 'bold' }
+                            },
+                            grid: { display: false }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Média de Fluxo',
+                                font: { weight: 'bold' }
+                            },
+                            min: Math.min(...datasets.map(dataset => dataset.data.reduce((min, value) => Math.min(min, value), Infinity))) * 0.98, // 5% padding
+                            max: Math.max(...datasets.map(dataset => dataset.data.reduce((max, value) => Math.max(max, value), -Infinity))) * 1.02, // 5% padding
+                            ticks: {
+                                stepSize: 0.02,
+                                callback: function (value) {
+                                    return value.toFixed(2);
+                                }
+                            },
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(function (erro) {
+            console.error('Erro ao carregar dados do fluxo por zona:', erro);
+            const container = document.getElementById('graficoFluxoZona');
+            if (container) {
+                container.innerHTML =
+                    '<div style="text-align: center; padding: 20px; color: #666;">' +
+                    'Erro ao carregar os dados do gráfico. Por favor, tente novamente mais tarde.' +
+                    '</div>';
+            }
+        });
+}
 
 // Auxiliares
 
